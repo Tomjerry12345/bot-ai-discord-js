@@ -7,8 +7,9 @@
 // CONFIGURATION - ISI DULU!
 // ============================================
 
-const DISCORD_APP_ID = "YOUR_APP_ID_HERE"; // Dari Discord Developer Portal
-const DISCORD_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"; // Bot token
+const DISCORD_APP_ID = "1333873166434570312"; // Dari Discord Developer Portal
+const DISCORD_BOT_TOKEN =
+  "MTMzMzg3MzE2NjQzNDU3MDMxMg.GNjTuM.YLpTRtu59Akv3TXyoqRXt1VIJv0nDsqLLINFpo"; // Bot token
 
 // ============================================
 // SLASH COMMANDS DEFINITION

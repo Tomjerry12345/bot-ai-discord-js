@@ -1,6 +1,6 @@
 /**
  * Toram AI Discord Bot - Cloudflare Workers Edition
- * Slash Commands Version
+ * Fixed Version - Proper Error Handling
  */
 
 import { verifyKey } from "discord-interactions";
@@ -17,7 +17,7 @@ const GROQ_MODEL = "llama-3.3-70b-versatile";
 // ============================================
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     // Verify Discord signature
     const signature = request.headers.get("x-signature-ed25519");
     const timestamp = request.headers.get("x-signature-timestamp");
@@ -43,7 +43,7 @@ export default {
 
     // Handle Slash Commands
     if (interaction.type === 2) {
-      return handleCommand(interaction, env);
+      return handleCommand(interaction, env, ctx);
     }
 
     return new Response("Unknown interaction type", { status: 400 });
@@ -54,12 +54,12 @@ export default {
 // COMMAND HANDLER
 // ============================================
 
-async function handleCommand(interaction, env) {
-  const { name, options } = interaction.data;
+async function handleCommand(interaction, env, ctx) {
+  const { name } = interaction.data;
 
   switch (name) {
     case "tanya":
-      return handleTanya(interaction, env);
+      return handleTanya(interaction, env, ctx);
     case "teach":
       return handleTeach(interaction, env);
     case "list":
@@ -80,7 +80,7 @@ async function handleCommand(interaction, env) {
 // COMMAND: /tanya
 // ============================================
 
-async function handleTanya(interaction, env) {
+async function handleTanya(interaction, env, ctx) {
   const question = getOptionValue(interaction.data.options, "pertanyaan");
 
   if (!question || question.length < 3) {
@@ -90,15 +90,18 @@ async function handleTanya(interaction, env) {
     });
   }
 
-  // Defer reply (karena AI butuh waktu)
-  setTimeout(() => followUpResponse(interaction, env, question), 0);
+  // Use waitUntil to process response asynchronously
+  ctx.waitUntil(followUpResponse(interaction, env, question));
 
+  // Defer reply immediately
   return jsonResponse({
     type: 5, // DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
   });
 }
 
 async function followUpResponse(interaction, env, question) {
+  const followUpUrl = `https://discord.com/api/v10/webhooks/${env.DISCORD_APP_ID}/${interaction.token}`;
+
   try {
     // Search knowledge base
     const knowledge = await getKnowledge(env);
@@ -108,8 +111,6 @@ async function followUpResponse(interaction, env, question) {
     const aiResponse = await getAIResponse(question, results, env);
 
     // Send follow-up message
-    const followUpUrl = `https://discord.com/api/v10/webhooks/${env.DISCORD_APP_ID}/${interaction.token}`;
-
     await fetch(followUpUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -136,16 +137,20 @@ async function followUpResponse(interaction, env, question) {
       interaction.member.user.username
     );
   } catch (error) {
-    console.error("Error:", error);
+    console.error("❌ Error in followUpResponse:", error);
 
-    const followUpUrl = `https://discord.com/api/v10/webhooks/${env.DISCORD_APP_ID}/${interaction.token}`;
-    await fetch(followUpUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        content: `❌ Terjadi error: ${error.message}`,
-      }),
-    });
+    // Send error message to Discord
+    try {
+      await fetch(followUpUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          content: `❌ Terjadi error: ${error.message}`,
+        }),
+      });
+    } catch (webhookError) {
+      console.error("❌ Failed to send error message:", webhookError);
+    }
   }
 }
 
@@ -202,6 +207,7 @@ async function handleTeach(interaction, env) {
       },
     });
   } catch (error) {
+    console.error("❌ Error in teach:", error);
     return jsonResponse({
       type: 4,
       data: { content: `❌ Error: ${error.message}` },
@@ -257,6 +263,7 @@ async function handleList(interaction, env) {
       },
     });
   } catch (error) {
+    console.error("❌ Error in list:", error);
     return jsonResponse({
       type: 4,
       data: { content: `❌ Error: ${error.message}` },
@@ -302,6 +309,7 @@ async function handleDelete(interaction, env) {
       data: { content: `✅ Dihapus: **${deleted.question}**` },
     });
   } catch (error) {
+    console.error("❌ Error in delete:", error);
     return jsonResponse({
       type: 4,
       data: { content: `❌ Error: ${error.message}` },
@@ -352,16 +360,17 @@ async function handleHelp(interaction) {
 // ============================================
 
 async function getAIResponse(question, data, env) {
+  // If no API key, use database only
   if (!env.GROQ_API_KEY) {
     if (data.length > 0) {
       return `🤖 **Dari database:**\n\n${data[0].answer}`;
     }
-    return "⚠️ GROQ_API_KEY belum diset!";
+    return "⚠️ GROQ_API_KEY belum diset! Set di Cloudflare Dashboard → Settings → Variables";
   }
 
-  // Build context
+  // Build context from search results
   const context = data
-    .slice(0, 15)
+    .slice(0, 10)
     .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
     .join("\n\n");
 
@@ -378,11 +387,13 @@ async function getAIResponse(question, data, env) {
           {
             role: "system",
             content:
-              "Kamu AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata.",
+              "Kamu AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata. Gunakan bahasa Indonesia.",
           },
           {
             role: "user",
-            content: `DATABASE:\n${context}\n\nPERTANYAAN: ${question}\n\nJawab berdasarkan database di atas.`,
+            content: context
+              ? `DATABASE:\n${context}\n\nPERTANYAAN: ${question}\n\nJawab berdasarkan database di atas.`
+              : `PERTANYAAN: ${question}`,
           },
         ],
         temperature: 0.2,
@@ -390,15 +401,23 @@ async function getAIResponse(question, data, env) {
       }),
     });
 
-    if (response.ok) {
-      const result = await response.json();
-      return result.choices[0].message.content;
-    } else if (data.length > 0) {
-      return `🤖 **Dari database:**\n\n${data[0].answer}`;
-    } else {
-      return "❌ API Error";
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("❌ Groq API Error:", errorText);
+
+      // Fallback to database
+      if (data.length > 0) {
+        return `🤖 **Dari database:**\n\n${data[0].answer}`;
+      }
+      return `❌ API Error: ${response.status} - Check GROQ_API_KEY`;
     }
+
+    const result = await response.json();
+    return result.choices[0].message.content;
   } catch (error) {
+    console.error("❌ AI Response Error:", error);
+
+    // Fallback to database
     if (data.length > 0) {
       return `🤖 **Dari database:**\n\n${data[0].answer}`;
     }
@@ -411,10 +430,16 @@ async function getAIResponse(question, data, env) {
 // ============================================
 
 async function getKnowledge(env) {
-  const data = await env.TORAM_KV.get("knowledge");
-  if (data) {
-    return JSON.parse(data);
+  try {
+    const data = await env.TORAM_KV.get("knowledge");
+    if (data) {
+      return JSON.parse(data);
+    }
+  } catch (error) {
+    console.error("❌ KV Get Error:", error);
   }
+
+  // Return empty structure if no data or error
   return { qa_pairs: [], conversations: [] };
 }
 
@@ -467,7 +492,7 @@ async function saveConversation(env, question, answer, user) {
 
     await env.TORAM_KV.put("knowledge", JSON.stringify(knowledge));
   } catch (error) {
-    console.error("Failed to save conversation:", error);
+    console.error("❌ Failed to save conversation:", error);
   }
 }
 
