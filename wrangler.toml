@@ -1,4 +1,4 @@
-name = "toram-discord-bot"
+name = "toram-bot-guild"
 main = "index.js"
 compatibility_date = "2024-01-01"
 
