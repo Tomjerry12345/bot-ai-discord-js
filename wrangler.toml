@@ -5,7 +5,7 @@ compatibility_date = "2024-01-01"
 # KV Namespace untuk storage
 [[kv_namespaces]]
 binding = "TORAM_KV"
-id = "YOUR_KV_NAMESPACE_ID"  # Akan dibuat saat setup
+id = "3981a4bce1f14f359acf6519cd672f22"  # Akan dibuat saat setup
 
 # Environment variables (set via Cloudflare dashboard)
 [vars]
