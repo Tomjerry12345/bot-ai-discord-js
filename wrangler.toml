@@ -1,0 +1,14 @@
+name = "toram-discord-bot"
+main = "index.js"
+compatibility_date = "2024-01-01"
+
+# KV Namespace untuk storage
+[[kv_namespaces]]
+binding = "TORAM_KV"
+id = "YOUR_KV_NAMESPACE_ID"  # Akan dibuat saat setup
+
+# Environment variables (set via Cloudflare dashboard)
+[vars]
+# DISCORD_PUBLIC_KEY = "akan diset via dashboard"
+# DISCORD_APP_ID = "akan diset via dashboard"
+# GROQ_API_KEY = "akan diset via dashboard"
