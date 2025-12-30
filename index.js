@@ -1,8 +1,13 @@
 /**
- * Toram AI Discord Bot - AI-Powered Typo Correction
+ * Toram AI Discord Bot - Cloudflare Workers Edition
+ * With Edit & Search Feature
  */
 
 import { verifyKey } from "discord-interactions";
+
+// ============================================
+// CONFIGURATION
+// ============================================
 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "llama-3.3-70b-versatile";
@@ -13,6 +18,7 @@ const GROQ_MODEL = "llama-3.3-70b-versatile";
 
 export default {
   async fetch(request, env, ctx) {
+    // Verify Discord signature
     const signature = request.headers.get("x-signature-ed25519");
     const timestamp = request.headers.get("x-signature-timestamp");
     const body = await request.clone().text();
@@ -30,10 +36,12 @@ export default {
 
     const interaction = JSON.parse(body);
 
+    // Handle Discord PING
     if (interaction.type === 1) {
       return jsonResponse({ type: 1 });
     }
 
+    // Handle Slash Commands
     if (interaction.type === 2) {
       return handleCommand(interaction, env, ctx);
     }
@@ -73,7 +81,7 @@ async function handleCommand(interaction, env, ctx) {
 }
 
 // ============================================
-// COMMAND: /tanya (Enhanced with AI Typo Detection)
+// COMMAND: /tanya
 // ============================================
 
 async function handleTanya(interaction, env, ctx) {
@@ -86,10 +94,12 @@ async function handleTanya(interaction, env, ctx) {
     });
   }
 
+  // Use waitUntil to process response asynchronously
   ctx.waitUntil(followUpResponse(interaction, env, question));
 
+  // Defer reply immediately
   return jsonResponse({
-    type: 5,
+    type: 5, // DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
   });
 }
 
@@ -97,17 +107,14 @@ async function followUpResponse(interaction, env, question) {
   const followUpUrl = `https://discord.com/api/v10/webhooks/${env.DISCORD_APP_ID}/${interaction.token}`;
 
   try {
+    // Search knowledge base
     const knowledge = await getKnowledge(env);
     const results = searchKnowledge(knowledge, question);
 
-    // Get AI response with enhanced system prompt
-    const aiResponse = await getAIResponseWithTypoDetection(
-      question,
-      results,
-      knowledge,
-      env
-    );
+    // Get AI response
+    const aiResponse = await getAIResponse(question, results, env);
 
+    // Send follow-up message
     await fetch(followUpUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -126,6 +133,7 @@ async function followUpResponse(interaction, env, question) {
       }),
     });
 
+    // Save conversation
     await saveConversation(
       env,
       question,
@@ -135,6 +143,7 @@ async function followUpResponse(interaction, env, question) {
   } catch (error) {
     console.error("❌ Error in followUpResponse:", error);
 
+    // Send error message to Discord
     try {
       await fetch(followUpUrl, {
         method: "POST",
@@ -146,242 +155,6 @@ async function followUpResponse(interaction, env, question) {
     } catch (webhookError) {
       console.error("❌ Failed to send error message:", webhookError);
     }
-  }
-}
-
-// ============================================
-// COMMAND: /cari (Enhanced with AI Suggestions)
-// ============================================
-
-async function handleCari(interaction, env) {
-  const keyword = getOptionValue(interaction.data.options, "kata_kunci");
-
-  if (!keyword || keyword.length < 2) {
-    return jsonResponse({
-      type: 4,
-      data: { content: "❌ Kata kunci terlalu pendek! Minimal 2 karakter." },
-    });
-  }
-
-  try {
-    const knowledge = await getKnowledge(env);
-    const results = searchKnowledge(knowledge, keyword);
-
-    if (results.length === 0) {
-      // Use AI to suggest corrections
-      const suggestion = await getAISuggestion(keyword, knowledge, env);
-
-      return jsonResponse({
-        type: 4,
-        data: {
-          embeds: [
-            {
-              title: `🔍 Tidak ditemukan: "${keyword}"`,
-              description: suggestion,
-              color: 0xfee75c,
-              footer: {
-                text: "💡 Coba kata kunci yang disarankan di atas",
-              },
-            },
-          ],
-        },
-      });
-    }
-
-    const displayResults = results.slice(0, 10).map((qa, idx) => {
-      const actualIndex =
-        knowledge.qa_pairs.findIndex(
-          (item) => item.question === qa.question && item.answer === qa.answer
-        ) + 1;
-      return { qa, index: actualIndex };
-    });
-
-    const fields = displayResults.map((item) => {
-      const editIcon = item.qa.edited_by ? " ✏️" : "";
-      return {
-        name: `#${item.index} - ${item.qa.question.substring(
-          0,
-          80
-        )}${editIcon}`,
-        value: `${item.qa.answer.substring(0, 150)}${
-          item.qa.answer.length > 150 ? "..." : ""
-        }`,
-        inline: false,
-      };
-    });
-
-    return jsonResponse({
-      type: 4,
-      data: {
-        embeds: [
-          {
-            title: `🔍 Hasil Pencarian: "${keyword}"`,
-            description: `Ditemukan ${results.length} Q&A yang relevan`,
-            fields: fields,
-            color: 0x5865f2,
-            footer: {
-              text:
-                results.length > 10
-                  ? `Menampilkan 10 dari ${results.length} hasil`
-                  : `Gunakan nomor (#) untuk /edit atau /delete`,
-            },
-          },
-        ],
-      },
-    });
-  } catch (error) {
-    console.error("❌ Error in cari:", error);
-    return jsonResponse({
-      type: 4,
-      data: { content: `❌ Error: ${error.message}` },
-    });
-  }
-}
-
-// ============================================
-// AI INTEGRATION WITH TYPO DETECTION
-// ============================================
-
-async function getAIResponseWithTypoDetection(question, data, knowledge, env) {
-  if (!env.GROQ_API_KEY) {
-    if (data.length > 0) {
-      return `🤖 **Dari database:**\n\n${data[0].answer}`;
-    }
-    return "⚠️ GROQ_API_KEY belum diset! Set di Cloudflare Dashboard → Settings → Variables";
-  }
-
-  // Build context from search results
-  const context = data
-    .slice(0, 10)
-    .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
-    .join("\n\n");
-
-  // Get sample keywords from all Q&A for typo detection
-  const allKeywords = knowledge.qa_pairs
-    .slice(0, 50)
-    .map((qa) => qa.question)
-    .join(", ");
-
-  const systemPrompt = `Kamu adalah AI helper untuk game Toram Online. 
-
-TUGAS UTAMA:
-1. Jawab pertanyaan user dengan singkat dan jelas (maksimal 300 kata)
-2. Gunakan bahasa Indonesia yang natural
-3. **PENTING**: Jika user salah ketik (typo), beritahu kata yang benar dan berikan jawabannya
-
-CONTOH KEYWORDS YANG SERING DICARI:
-${allKeywords.substring(0, 500)}
-
-FORMAT JAWABAN JIKA ADA TYPO:
-🔍 *Mungkin maksud kamu: "[kata yang benar]"*
-
-[Lalu berikan jawaban berdasarkan kata yang benar]
-
-Jika tidak ada typo, langsung jawab saja.`;
-
-  try {
-    const response = await fetch(GROQ_API_URL, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.GROQ_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: GROQ_MODEL,
-        messages: [
-          {
-            role: "system",
-            content: systemPrompt,
-          },
-          {
-            role: "user",
-            content: context
-              ? `DATABASE:\n${context}\n\nPERTANYAAN: ${question}`
-              : `PERTANYAAN: ${question}`,
-          },
-        ],
-        temperature: 0.3,
-        max_tokens: 700,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("❌ Groq API Error:", errorText);
-
-      if (data.length > 0) {
-        return `🤖 **Dari database:**\n\n${data[0].answer}`;
-      }
-      return `❌ API Error: ${response.status} - Check GROQ_API_KEY`;
-    }
-
-    const result = await response.json();
-    return result.choices[0].message.content;
-  } catch (error) {
-    console.error("❌ AI Response Error:", error);
-
-    if (data.length > 0) {
-      return `🤖 **Dari database:**\n\n${data[0].answer}`;
-    }
-    return `❌ Error: ${error.message}`;
-  }
-}
-
-async function getAISuggestion(keyword, knowledge, env) {
-  if (!env.GROQ_API_KEY) {
-    return "💡 Tidak ditemukan hasil. Coba gunakan kata kunci yang lebih umum atau cek ejaan.";
-  }
-
-  // Get sample keywords for AI to compare
-  const allKeywords = knowledge.qa_pairs.map((qa) => qa.question).join("\n");
-
-  try {
-    const response = await fetch(GROQ_API_URL, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.GROQ_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: GROQ_MODEL,
-        messages: [
-          {
-            role: "system",
-            content: `Kamu adalah asisten yang membantu user menemukan kata kunci yang benar.
-
-User mencari: "${keyword}" tapi tidak ditemukan.
-
-Lihat daftar pertanyaan yang ada di database dan sarankan 2-3 kata kunci yang mirip atau relevan.
-
-FORMAT JAWABAN:
-💡 Mungkin yang kamu cari:
-• **kata_1** - penjelasan singkat
-• **kata_2** - penjelasan singkat
-
-Gunakan bahasa Indonesia yang natural dan helpful.`,
-          },
-          {
-            role: "user",
-            content: `DAFTAR PERTANYAAN DI DATABASE:\n${allKeywords.substring(
-              0,
-              2000
-            )}\n\nKATA YANG DICARI: ${keyword}`,
-          },
-        ],
-        temperature: 0.4,
-        max_tokens: 300,
-      }),
-    });
-
-    if (!response.ok) {
-      return "💡 Tidak ditemukan hasil. Coba gunakan kata kunci yang lebih umum atau cek ejaan.";
-    }
-
-    const result = await response.json();
-    return result.choices[0].message.content;
-  } catch (error) {
-    console.error("❌ AI Suggestion Error:", error);
-    return "💡 Tidak ditemukan hasil. Coba gunakan kata kunci yang lebih umum atau cek ejaan.";
   }
 }
 
@@ -401,8 +174,10 @@ async function handleTeach(interaction, env) {
   }
 
   try {
+    // Get existing knowledge
     const knowledge = await getKnowledge(env);
 
+    // Add new Q&A
     knowledge.qa_pairs.push({
       question: pertanyaan,
       answer: jawaban,
@@ -410,6 +185,7 @@ async function handleTeach(interaction, env) {
       timestamp: new Date().toISOString(),
     });
 
+    // Save to KV
     await env.TORAM_KV.put("knowledge", JSON.stringify(knowledge));
 
     return jsonResponse({
@@ -444,10 +220,84 @@ async function handleTeach(interaction, env) {
 }
 
 // ============================================
+// COMMAND: /cari (NEW)
+// ============================================
+
+async function handleCari(interaction, env) {
+  const keyword = getOptionValue(interaction.data.options, "kata_kunci");
+
+  if (!keyword || keyword.length < 2) {
+    return jsonResponse({
+      type: 4,
+      data: { content: "❌ Kata kunci terlalu pendek! Minimal 2 karakter." },
+    });
+  }
+
+  try {
+    const knowledge = await getKnowledge(env);
+    const results = searchKnowledgeWithIndex(knowledge, keyword);
+
+    if (results.length === 0) {
+      return jsonResponse({
+        type: 4,
+        data: {
+          content: `🔍 Tidak ditemukan Q&A dengan kata kunci: **${keyword}**`,
+        },
+      });
+    }
+
+    // Limit to 10 results
+    const displayResults = results.slice(0, 10);
+
+    const fields = displayResults.map((item) => {
+      const editIcon = item.qa.edited_by ? " ✏️" : "";
+      return {
+        name: `#${item.index} - ${item.qa.question.substring(
+          0,
+          80
+        )}${editIcon}`,
+        value:
+          `${item.qa.answer.substring(0, 150)}${
+            item.qa.answer.length > 150 ? "..." : ""
+          }\n` + `📊 Relevance: ${item.score}`,
+        inline: false,
+      };
+    });
+
+    return jsonResponse({
+      type: 4,
+      data: {
+        embeds: [
+          {
+            title: `🔍 Hasil Pencarian: "${keyword}"`,
+            description: `Ditemukan ${results.length} Q&A yang relevan`,
+            fields: fields,
+            color: 0x5865f2,
+            footer: {
+              text:
+                results.length > 10
+                  ? `Menampilkan 10 dari ${results.length} hasil | Gunakan nomor (#) untuk /edit atau /delete`
+                  : `Gunakan nomor (#) untuk /edit atau /delete`,
+            },
+          },
+        ],
+      },
+    });
+  } catch (error) {
+    console.error("❌ Error in cari:", error);
+    return jsonResponse({
+      type: 4,
+      data: { content: `❌ Error: ${error.message}` },
+    });
+  }
+}
+
+// ============================================
 // COMMAND: /edit
 // ============================================
 
 async function handleEdit(interaction, env) {
+  // Check if user has manage_messages permission
   const permissions = BigInt(interaction.member.permissions);
   const MANAGE_MESSAGES = 1n << 13n;
 
@@ -486,19 +336,23 @@ async function handleEdit(interaction, env) {
 
     const oldQA = { ...knowledge.qa_pairs[index - 1] };
 
+    // Update question if provided
     if (pertanyaanBaru) {
       knowledge.qa_pairs[index - 1].question = pertanyaanBaru;
     }
 
+    // Update answer if provided
     if (jawabanBaru) {
       knowledge.qa_pairs[index - 1].answer = jawabanBaru;
     }
 
+    // Add edit metadata
     knowledge.qa_pairs[index - 1].edited_by = interaction.member.user.username;
     knowledge.qa_pairs[index - 1].edited_at = new Date().toISOString();
 
     await env.TORAM_KV.put("knowledge", JSON.stringify(knowledge));
 
+    // Build response fields
     const fields = [];
 
     if (pertanyaanBaru) {
@@ -600,7 +454,7 @@ async function handleList(interaction, env) {
             fields: fields,
             color: 0x5865f2,
             footer: {
-              text: `Total: ${total} Q&A | ✏️ = Diedit`,
+              text: `Total: ${total} Q&A | ✏️ = Diedit | Gunakan /cari untuk pencarian cepat`,
             },
           },
         ],
@@ -620,6 +474,7 @@ async function handleList(interaction, env) {
 // ============================================
 
 async function handleDelete(interaction, env) {
+  // Check if user has manage_messages permission
   const permissions = BigInt(interaction.member.permissions);
   const MANAGE_MESSAGES = 1n << 13n;
 
@@ -676,8 +531,8 @@ async function handleHelp(interaction) {
             {
               name: "💬 Bertanya",
               value:
-                "`/tanya pertanyaan:<text>` - Tanya ke AI (auto-koreksi typo)\n" +
-                "`/cari kata_kunci:<text>` - Cari Q&A dengan saran typo\n" +
+                "`/tanya pertanyaan:<text>` - Tanya ke AI\n" +
+                "`/cari kata_kunci:<text>` - Cari Q&A dengan nomor\n" +
                 "`/list [page]` - Lihat semua data",
               inline: false,
             },
@@ -694,11 +549,10 @@ async function handleHelp(interaction) {
               inline: false,
             },
             {
-              name: "✨ Fitur Baru: AI Typo Correction",
+              name: "💡 Tips",
               value:
-                "• Bot otomatis mendeteksi typo (contoh: 'dek' → 'dex')\n" +
-                "• Memberikan saran kata kunci yang benar\n" +
-                "• Langsung menjawab dengan kata yang dimaksud",
+                "• Gunakan `/cari` untuk menemukan nomor Q&A yang ingin diedit\n" +
+                "• Nomor Q&A ditampilkan dengan format **#1**, **#2**, dst",
               inline: false,
             },
           ],
@@ -708,6 +562,76 @@ async function handleHelp(interaction) {
       ],
     },
   });
+}
+
+// ============================================
+// AI INTEGRATION
+// ============================================
+
+async function getAIResponse(question, data, env) {
+  // If no API key, use database only
+  if (!env.GROQ_API_KEY) {
+    if (data.length > 0) {
+      return `🤖 **Dari database:**\n\n${data[0].answer}`;
+    }
+    return "⚠️ GROQ_API_KEY belum diset! Set di Cloudflare Dashboard → Settings → Variables";
+  }
+
+  // Build context from search results
+  const context = data
+    .slice(0, 10)
+    .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
+    .join("\n\n");
+
+  try {
+    const response = await fetch(GROQ_API_URL, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${env.GROQ_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        model: GROQ_MODEL,
+        messages: [
+          {
+            role: "system",
+            content:
+              "Kamu AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata. Gunakan bahasa Indonesia.",
+          },
+          {
+            role: "user",
+            content: context
+              ? `DATABASE:\n${context}\n\nPERTANYAAN: ${question}\n\nJawab berdasarkan database di atas.`
+              : `PERTANYAAN: ${question}`,
+          },
+        ],
+        temperature: 0.2,
+        max_tokens: 600,
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("❌ Groq API Error:", errorText);
+
+      // Fallback to database
+      if (data.length > 0) {
+        return `🤖 **Dari database:**\n\n${data[0].answer}`;
+      }
+      return `❌ API Error: ${response.status} - Check GROQ_API_KEY`;
+    }
+
+    const result = await response.json();
+    return result.choices[0].message.content;
+  } catch (error) {
+    console.error("❌ AI Response Error:", error);
+
+    // Fallback to database
+    if (data.length > 0) {
+      return `🤖 **Dari database:**\n\n${data[0].answer}`;
+    }
+    return `❌ Error: ${error.message}`;
+  }
 }
 
 // ============================================
@@ -724,6 +648,7 @@ async function getKnowledge(env) {
     console.error("❌ KV Get Error:", error);
   }
 
+  // Return empty structure if no data or error
   return { qa_pairs: [], conversations: [] };
 }
 
@@ -758,6 +683,38 @@ function searchKnowledge(knowledge, query) {
     .map((item) => item.qa);
 }
 
+// Search with index numbers (for /cari command)
+function searchKnowledgeWithIndex(knowledge, query) {
+  const queryLower = query.toLowerCase();
+  const queryWords = queryLower.split(" ").filter((w) => w.length > 2);
+
+  const scored = knowledge.qa_pairs.map((qa, index) => {
+    const qLower = qa.question.toLowerCase();
+    const aLower = qa.answer.toLowerCase();
+    let score = 0;
+
+    // Exact phrase match in question gets highest score
+    if (qLower.includes(queryLower)) score += 10;
+    if (aLower.includes(queryLower)) score += 5;
+
+    // Word matching
+    queryWords.forEach((word) => {
+      if (qLower.includes(word)) score += 3;
+      if (aLower.includes(word)) score += 1;
+    });
+
+    return {
+      qa,
+      score,
+      index: index + 1, // Human-readable index (starts from 1)
+    };
+  });
+
+  return scored
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score);
+}
+
 async function saveConversation(env, question, answer, user) {
   try {
     const knowledge = await getKnowledge(env);
@@ -769,6 +726,7 @@ async function saveConversation(env, question, answer, user) {
       timestamp: new Date().toISOString(),
     });
 
+    // Keep only last 100 conversations
     if (knowledge.conversations.length > 100) {
       knowledge.conversations = knowledge.conversations.slice(-100);
     }
