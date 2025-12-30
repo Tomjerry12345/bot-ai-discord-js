@@ -4,3 +4,6 @@ knowledge_clean.json
 knowledge_db.json
 knowledge.json
 .env
+index-copy.js
+node_modules
+package-lock.json
