@@ -1,12 +1,17 @@
 import dotenv from "dotenv";
 
+// Load environment variables
 dotenv.config();
+
+// ============================================
+// CONFIGURATION - DARI .ENV
+// ============================================
 
 const DISCORD_APP_ID = process.env.DISCORD_APP_ID;
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 
 // ============================================
-// SLASH COMMANDS - ENHANCED WITH CONTEXT
+// SLASH COMMANDS DEFINITION
 // ============================================
 
 const commands = [
@@ -17,7 +22,7 @@ const commands = [
       {
         name: "pertanyaan",
         description: "Pertanyaan kamu",
-        type: 3,
+        type: 3, // STRING
         required: true,
       },
     ],
@@ -29,69 +34,14 @@ const commands = [
       {
         name: "pertanyaan",
         description: "Pertanyaan",
-        type: 3,
+        type: 3, // STRING
         required: true,
       },
       {
         name: "jawaban",
         description: "Jawaban",
-        type: 3,
+        type: 3, // STRING
         required: true,
-      },
-    ],
-  },
-  {
-    name: "context",
-    description:
-      "Ajari AI definisi istilah khusus (contoh: ASPD = kecepatan serangan)",
-    options: [
-      {
-        name: "istilah",
-        description:
-          "Istilah/singkatan yang mau diajari (contoh: ASPD, DPS, MTL)",
-        type: 3,
-        required: true,
-      },
-      {
-        name: "definisi",
-        description:
-          "Arti sebenarnya (contoh: Attack Speed, kecepatan serangan)",
-        type: 3,
-        required: true,
-      },
-      {
-        name: "kategori",
-        description: "Kategori: senjata, stats, skills, crystal, monster, umum",
-        type: 3,
-        required: false,
-        choices: [
-          { name: "Stats & Atribut", value: "stats" },
-          { name: "Senjata & Equipment", value: "senjata" },
-          { name: "Skills & Abilities", value: "skills" },
-          { name: "Crystal & Xtall", value: "crystal" },
-          { name: "Monster & Boss", value: "monster" },
-          { name: "Umum", value: "umum" },
-        ],
-      },
-    ],
-  },
-  {
-    name: "contexts",
-    description: "Lihat daftar context/istilah yang AI sudah pahami",
-    options: [
-      {
-        name: "kategori",
-        description: "Filter berdasarkan kategori (opsional)",
-        type: 3,
-        required: false,
-        choices: [
-          { name: "Stats & Atribut", value: "stats" },
-          { name: "Senjata & Equipment", value: "senjata" },
-          { name: "Skills & Abilities", value: "skills" },
-          { name: "Crystal & Xtall", value: "crystal" },
-          { name: "Monster & Boss", value: "monster" },
-          { name: "Umum", value: "umum" },
-        ],
       },
     ],
   },
@@ -102,7 +52,7 @@ const commands = [
       {
         name: "kata_kunci",
         description: "Kata kunci yang ingin dicari",
-        type: 3,
+        type: 3, // STRING
         required: true,
       },
     ],
@@ -114,19 +64,19 @@ const commands = [
       {
         name: "nomor",
         description: "Nomor Q&A yang mau diedit (lihat di /cari atau /list)",
-        type: 4,
+        type: 4, // INTEGER
         required: true,
       },
       {
         name: "pertanyaan_baru",
         description: "Pertanyaan baru (opsional)",
-        type: 3,
+        type: 3, // STRING
         required: false,
       },
       {
         name: "jawaban_baru",
         description: "Jawaban baru (opsional)",
-        type: 3,
+        type: 3, // STRING
         required: false,
       },
     ],
@@ -138,7 +88,7 @@ const commands = [
       {
         name: "page",
         description: "Nomor halaman (default: 1)",
-        type: 4,
+        type: 4, // INTEGER
         required: false,
       },
     ],
@@ -150,10 +100,14 @@ const commands = [
       {
         name: "nomor",
         description: "Nomor Q&A yang mau dihapus",
-        type: 4,
+        type: 4, // INTEGER
         required: true,
       },
     ],
+  },
+  {
+    name: "stats",
+    description: "Lihat statistik bot (Admin only)",
   },
   {
     name: "help",
@@ -162,7 +116,7 @@ const commands = [
 ];
 
 // ============================================
-// VALIDATION & REGISTRATION
+// VALIDATION
 // ============================================
 
 function validateConfig() {
@@ -176,6 +130,7 @@ function validateConfig() {
     errors.push("❌ DISCORD_BOT_TOKEN tidak ditemukan di .env");
   }
 
+  // Validate format
   if (DISCORD_APP_ID && !/^\d+$/.test(DISCORD_APP_ID)) {
     errors.push("❌ DISCORD_APP_ID harus berisi angka saja");
   }
@@ -187,14 +142,46 @@ function validateConfig() {
   return errors;
 }
 
-async function registerCommands() {
-  console.log("🚀 Discord Bot Command Registration - Enhanced\n");
+function showSetupInstructions() {
+  console.log("\n📝 SETUP INSTRUCTIONS\n");
+  console.log("1️⃣  Install dependencies:");
+  console.log("   npm install dotenv\n");
 
+  console.log("2️⃣  Buat file .env di folder yang sama dengan script ini:");
+  console.log("   touch .env\n");
+
+  console.log("3️⃣  Isi file .env dengan format berikut:\n");
+  console.log("─────────────────────────────────────");
+  console.log("DISCORD_APP_ID=1234567890123456789");
+  console.log(
+    "DISCORD_BOT_TOKEN=MTIzNDU2Nzg5MDEyMzQ1Njc4OQ.GaBcDe.FgHiJkLmNoPqRsTuVwXyZ123456789"
+  );
+  console.log("─────────────────────────────────────\n");
+
+  console.log("4️⃣  Cara dapat credentials:\n");
+  console.log("   🔗 Buka: https://discord.com/developers/applications");
+  console.log("   📱 Pilih aplikasi bot kamu");
+  console.log('   🆔 Application ID → Tab "General Information"');
+  console.log('   🤖 Bot Token → Tab "Bot" → Click "Reset Token"\n');
+
+  console.log("5️⃣  Jalankan lagi script ini:");
+  console.log("   node register-commands.js\n");
+}
+
+// ============================================
+// REGISTER COMMANDS
+// ============================================
+
+async function registerCommands() {
+  console.log("🚀 Discord Bot Command Registration\n");
+
+  // Validate configuration
   const validationErrors = validateConfig();
 
   if (validationErrors.length > 0) {
     console.error("⚠️  CONFIGURATION ERROR\n");
     validationErrors.forEach((error) => console.error(error));
+    showSetupInstructions();
     process.exit(1);
   }
 
@@ -229,31 +216,18 @@ async function registerCommands() {
       console.log("\n🎉 Bot siap dipakai!\n");
       console.log("📝 Fitur utama:");
       console.log("   💬 /tanya - Tanya ke AI");
-      console.log("   🎓 /teach - Ajari bot Q&A");
-      console.log("   📚 /context - Ajari istilah/definisi (BARU!)");
-      console.log("   📖 /contexts - Lihat semua context (BARU!)");
+      console.log("   🎓 /teach - Ajari bot");
       console.log("   🔍 /cari - Cari Q&A dengan nomor");
       console.log("   ✏️  /edit - Edit Q&A (Admin)");
+      console.log("   📊 /stats - Lihat statistik (Admin)");
       console.log("   📋 /list - Lihat semua Q&A");
       console.log("   🗑️  /delete - Hapus Q&A (Admin)");
       console.log("   ❓ /help - Panduan\n");
 
-      console.log("💡 Contoh penggunaan Context:");
-      console.log(
-        '   /context istilah:ASPD definisi:"Attack Speed, kecepatan serangan karakter" kategori:stats'
-      );
-      console.log(
-        '   /context istilah:MTL definisi:"Metal, jenis material untuk crafting" kategori:umum'
-      );
-      console.log(
-        '   /context istilah:DPS definisi:"Damage Per Second, damage yang dihasilkan per detik" kategori:stats'
-      );
-      console.log("");
-      console.log("🎯 Kegunaan Context:");
-      console.log("   • AI akan menggunakan definisi yang kamu ajarkan");
-      console.log("   • Mencegah AI salah paham istilah game");
-      console.log("   • Semua user bisa mengajarkan context baru");
-      console.log("   • Context akan otomatis dipakai saat /tanya\n");
+      console.log("💡 Tips:");
+      console.log("   • Gunakan /cari untuk menemukan nomor Q&A");
+      console.log("   • Gunakan nomor tersebut untuk /edit atau /delete");
+      console.log('   • Admin perlu permission "Manage Messages"\n');
     } else {
       const errorText = await response.text();
       let errorData;
@@ -267,13 +241,21 @@ async function registerCommands() {
       console.error("❌ REGISTRATION FAILED\n");
       console.error("Status:", response.status, response.statusText);
       console.error("Error:", JSON.stringify(errorData, null, 2));
+      console.error("");
 
+      // Specific error messages
       if (response.status === 401) {
-        console.error("\n🔐 Authentication failed!");
+        console.error("🔐 Authentication failed!");
         console.error("   → Check DISCORD_BOT_TOKEN di .env");
+        console.error("   → Token mungkin expired atau invalid");
+        console.error("   → Generate token baru di Discord Developer Portal\n");
       } else if (response.status === 404) {
-        console.error("\n🔍 Application not found!");
+        console.error("🔍 Application not found!");
         console.error("   → Check DISCORD_APP_ID di .env");
+        console.error("   → Pastikan Application ID benar\n");
+      } else if (response.status === 429) {
+        console.error("⏱️  Rate limited!");
+        console.error("   → Tunggu beberapa menit sebelum mencoba lagi\n");
       }
 
       process.exit(1);
@@ -281,8 +263,20 @@ async function registerCommands() {
   } catch (error) {
     console.error("❌ UNEXPECTED ERROR\n");
     console.error("Error:", error.message);
+    console.error("");
+
+    if (error.message.includes("fetch")) {
+      console.error("🌐 Network error!");
+      console.error("   → Check koneksi internet");
+      console.error("   → Discord API mungkin sedang down\n");
+    }
+
     process.exit(1);
   }
 }
+
+// ============================================
+// RUN
+// ============================================
 
 registerCommands();
