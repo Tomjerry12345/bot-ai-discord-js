@@ -7,8 +7,8 @@
 // CONFIGURATION - ISI DULU!
 // ============================================
 
-const DISCORD_APP_ID = "YOUR_APP_ID_HERE"; // Dari Discord Developer Portal
-const DISCORD_BOT_TOKEN = "YOUR_BOT_TOKEN_HERE"; // Bot token
+const DISCORD_APP_ID = ""; // Dari Discord Developer Portal
+const DISCORD_BOT_TOKEN = ""; // Bot token
 
 // ============================================
 // SLASH COMMANDS DEFINITION
@@ -42,6 +42,42 @@ const commands = [
         description: "Jawaban",
         type: 3, // STRING
         required: true,
+      },
+    ],
+  },
+  {
+    name: "cari",
+    description: "Cari Q&A berdasarkan kata kunci (dengan nomor urut)",
+    options: [
+      {
+        name: "kata_kunci",
+        description: "Kata kunci yang ingin dicari",
+        type: 3, // STRING
+        required: true,
+      },
+    ],
+  },
+  {
+    name: "edit",
+    description: "Edit Q&A yang sudah ada (Admin only)",
+    options: [
+      {
+        name: "nomor",
+        description: "Nomor Q&A yang mau diedit (lihat di /cari atau /list)",
+        type: 4, // INTEGER
+        required: true,
+      },
+      {
+        name: "pertanyaan_baru",
+        description: "Pertanyaan baru (opsional)",
+        type: 3, // STRING
+        required: false,
+      },
+      {
+        name: "jawaban_baru",
+        description: "Jawaban baru (opsional)",
+        type: 3, // STRING
+        required: false,
       },
     ],
   },
@@ -80,10 +116,7 @@ const commands = [
 // ============================================
 
 async function registerCommands() {
-  if (
-    DISCORD_APP_ID === "YOUR_APP_ID_HERE" ||
-    DISCORD_BOT_TOKEN === "YOUR_BOT_TOKEN_HERE"
-  ) {
+  if (DISCORD_APP_ID === "" || DISCORD_BOT_TOKEN === "") {
     console.error("❌ Error: Isi dulu DISCORD_APP_ID dan DISCORD_BOT_TOKEN!");
     console.log("\n📝 Cara dapat credentials:");
     console.log("1. Buka https://discord.com/developers/applications");
@@ -115,6 +148,13 @@ async function registerCommands() {
         console.log(`   - /${cmd.name}`);
       });
       console.log("\n🎉 Bot siap dipakai!\n");
+      console.log("📝 Fitur baru:");
+      console.log("   ✨ /cari - Cari Q&A dan lihat nomornya");
+      console.log("   ✏️ /edit - Edit pertanyaan/jawaban");
+      console.log("\n💡 Workflow:");
+      console.log("   1. /cari kata_kunci:blacksmith");
+      console.log("   2. Lihat nomor hasil (misal: #5)");
+      console.log("   3. /edit nomor:5 jawaban_baru:...\n");
     } else {
       const error = await response.text();
       console.error("❌ Error:", error);

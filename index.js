@@ -1,6 +1,6 @@
 /**
  * Toram AI Discord Bot - Cloudflare Workers Edition
- * Fixed Version - Proper Error Handling
+ * With Edit & Search Feature
  */
 
 import { verifyKey } from "discord-interactions";
@@ -62,6 +62,10 @@ async function handleCommand(interaction, env, ctx) {
       return handleTanya(interaction, env, ctx);
     case "teach":
       return handleTeach(interaction, env);
+    case "cari":
+      return handleCari(interaction, env);
+    case "edit":
+      return handleEdit(interaction, env);
     case "list":
       return handleList(interaction, env);
     case "delete":
@@ -216,6 +220,197 @@ async function handleTeach(interaction, env) {
 }
 
 // ============================================
+// COMMAND: /cari (NEW)
+// ============================================
+
+async function handleCari(interaction, env) {
+  const keyword = getOptionValue(interaction.data.options, "kata_kunci");
+
+  if (!keyword || keyword.length < 2) {
+    return jsonResponse({
+      type: 4,
+      data: { content: "❌ Kata kunci terlalu pendek! Minimal 2 karakter." },
+    });
+  }
+
+  try {
+    const knowledge = await getKnowledge(env);
+    const results = searchKnowledgeWithIndex(knowledge, keyword);
+
+    if (results.length === 0) {
+      return jsonResponse({
+        type: 4,
+        data: {
+          content: `🔍 Tidak ditemukan Q&A dengan kata kunci: **${keyword}**`,
+        },
+      });
+    }
+
+    // Limit to 10 results
+    const displayResults = results.slice(0, 10);
+
+    const fields = displayResults.map((item) => {
+      const editIcon = item.qa.edited_by ? " ✏️" : "";
+      return {
+        name: `#${item.index} - ${item.qa.question.substring(
+          0,
+          80
+        )}${editIcon}`,
+        value:
+          `${item.qa.answer.substring(0, 150)}${
+            item.qa.answer.length > 150 ? "..." : ""
+          }\n` + `📊 Relevance: ${item.score}`,
+        inline: false,
+      };
+    });
+
+    return jsonResponse({
+      type: 4,
+      data: {
+        embeds: [
+          {
+            title: `🔍 Hasil Pencarian: "${keyword}"`,
+            description: `Ditemukan ${results.length} Q&A yang relevan`,
+            fields: fields,
+            color: 0x5865f2,
+            footer: {
+              text:
+                results.length > 10
+                  ? `Menampilkan 10 dari ${results.length} hasil | Gunakan nomor (#) untuk /edit atau /delete`
+                  : `Gunakan nomor (#) untuk /edit atau /delete`,
+            },
+          },
+        ],
+      },
+    });
+  } catch (error) {
+    console.error("❌ Error in cari:", error);
+    return jsonResponse({
+      type: 4,
+      data: { content: `❌ Error: ${error.message}` },
+    });
+  }
+}
+
+// ============================================
+// COMMAND: /edit
+// ============================================
+
+async function handleEdit(interaction, env) {
+  // Check if user has manage_messages permission
+  const permissions = BigInt(interaction.member.permissions);
+  const MANAGE_MESSAGES = 1n << 13n;
+
+  if (!(permissions & MANAGE_MESSAGES)) {
+    return jsonResponse({
+      type: 4,
+      data: { content: "❌ Kamu tidak punya izin untuk edit Q&A!" },
+    });
+  }
+
+  const index = getOptionValue(interaction.data.options, "nomor");
+  const pertanyaanBaru = getOptionValue(
+    interaction.data.options,
+    "pertanyaan_baru"
+  );
+  const jawabanBaru = getOptionValue(interaction.data.options, "jawaban_baru");
+
+  if (!pertanyaanBaru && !jawabanBaru) {
+    return jsonResponse({
+      type: 4,
+      data: { content: "❌ Minimal isi pertanyaan_baru atau jawaban_baru!" },
+    });
+  }
+
+  try {
+    const knowledge = await getKnowledge(env);
+
+    if (index < 1 || index > knowledge.qa_pairs.length) {
+      return jsonResponse({
+        type: 4,
+        data: {
+          content: `❌ Nomor ${index} tidak valid! Gunakan \`/cari\` atau \`/list\` untuk cek nomor.`,
+        },
+      });
+    }
+
+    const oldQA = { ...knowledge.qa_pairs[index - 1] };
+
+    // Update question if provided
+    if (pertanyaanBaru) {
+      knowledge.qa_pairs[index - 1].question = pertanyaanBaru;
+    }
+
+    // Update answer if provided
+    if (jawabanBaru) {
+      knowledge.qa_pairs[index - 1].answer = jawabanBaru;
+    }
+
+    // Add edit metadata
+    knowledge.qa_pairs[index - 1].edited_by = interaction.member.user.username;
+    knowledge.qa_pairs[index - 1].edited_at = new Date().toISOString();
+
+    await env.TORAM_KV.put("knowledge", JSON.stringify(knowledge));
+
+    // Build response fields
+    const fields = [];
+
+    if (pertanyaanBaru) {
+      fields.push(
+        {
+          name: "📝 Pertanyaan Lama",
+          value: oldQA.question.substring(0, 1000),
+          inline: false,
+        },
+        {
+          name: "✨ Pertanyaan Baru",
+          value: pertanyaanBaru.substring(0, 1000),
+          inline: false,
+        }
+      );
+    }
+
+    if (jawabanBaru) {
+      fields.push(
+        {
+          name: "📝 Jawaban Lama",
+          value: oldQA.answer.substring(0, 1000),
+          inline: false,
+        },
+        {
+          name: "✨ Jawaban Baru",
+          value: jawabanBaru.substring(0, 1000),
+          inline: false,
+        }
+      );
+    }
+
+    return jsonResponse({
+      type: 4,
+      data: {
+        embeds: [
+          {
+            title: `✅ Q&A #${index} Berhasil Diedit!`,
+            fields: fields,
+            color: 0xfee75c,
+            footer: {
+              text: `Diedit oleh ${interaction.member.user.username}`,
+            },
+            timestamp: new Date().toISOString(),
+          },
+        ],
+      },
+    });
+  } catch (error) {
+    console.error("❌ Error in edit:", error);
+    return jsonResponse({
+      type: 4,
+      data: { content: `❌ Error: ${error.message}` },
+    });
+  }
+}
+
+// ============================================
 // COMMAND: /list
 // ============================================
 
@@ -240,12 +435,15 @@ async function handleList(interaction, env) {
     const end = start + perPage;
     const qaList = knowledge.qa_pairs.slice(start, end);
 
-    const fields = qaList.map((qa, idx) => ({
-      name: `${start + idx + 1}. ${qa.question.substring(0, 60)}`,
-      value:
-        qa.answer.substring(0, 100) + (qa.answer.length > 100 ? "..." : ""),
-      inline: false,
-    }));
+    const fields = qaList.map((qa, idx) => {
+      const editIcon = qa.edited_by ? " ✏️" : "";
+      return {
+        name: `${start + idx + 1}. ${qa.question.substring(0, 60)}${editIcon}`,
+        value:
+          qa.answer.substring(0, 100) + (qa.answer.length > 100 ? "..." : ""),
+        inline: false,
+      };
+    });
 
     return jsonResponse({
       type: 4,
@@ -256,7 +454,7 @@ async function handleList(interaction, env) {
             fields: fields,
             color: 0x5865f2,
             footer: {
-              text: `Total: ${total} Q&A | Gunakan /list page:<nomor>`,
+              text: `Total: ${total} Q&A | ✏️ = Diedit | Gunakan /cari untuk pencarian cepat`,
             },
           },
         ],
@@ -296,7 +494,7 @@ async function handleDelete(interaction, env) {
       return jsonResponse({
         type: 4,
         data: {
-          content: `❌ Nomor ${index} tidak valid! Lihat pakai \`/list\``,
+          content: `❌ Nomor ${index} tidak valid! Gunakan \`/cari\` atau \`/list\` untuk cek nomor.`,
         },
       });
     }
@@ -333,7 +531,9 @@ async function handleHelp(interaction) {
             {
               name: "💬 Bertanya",
               value:
-                "`/tanya pertanyaan:<text>` - Tanya ke AI\n`/list [page]` - Lihat semua data",
+                "`/tanya pertanyaan:<text>` - Tanya ke AI\n" +
+                "`/cari kata_kunci:<text>` - Cari Q&A dengan nomor\n" +
+                "`/list [page]` - Lihat semua data",
               inline: false,
             },
             {
@@ -342,8 +542,17 @@ async function handleHelp(interaction) {
               inline: false,
             },
             {
-              name: "📊 Database",
-              value: "`/delete nomor:<number>` - Hapus data (Admin)",
+              name: "📊 Database Management (Admin)",
+              value:
+                "`/edit nomor:<number>` - Edit Q&A\n" +
+                "`/delete nomor:<number>` - Hapus data",
+              inline: false,
+            },
+            {
+              name: "💡 Tips",
+              value:
+                "• Gunakan `/cari` untuk menemukan nomor Q&A yang ingin diedit\n" +
+                "• Nomor Q&A ditampilkan dengan format **#1**, **#2**, dst",
               inline: false,
             },
           ],
@@ -472,6 +681,38 @@ function searchKnowledge(knowledge, query) {
     .sort((a, b) => b.score - a.score)
     .slice(0, 25)
     .map((item) => item.qa);
+}
+
+// Search with index numbers (for /cari command)
+function searchKnowledgeWithIndex(knowledge, query) {
+  const queryLower = query.toLowerCase();
+  const queryWords = queryLower.split(" ").filter((w) => w.length > 2);
+
+  const scored = knowledge.qa_pairs.map((qa, index) => {
+    const qLower = qa.question.toLowerCase();
+    const aLower = qa.answer.toLowerCase();
+    let score = 0;
+
+    // Exact phrase match in question gets highest score
+    if (qLower.includes(queryLower)) score += 10;
+    if (aLower.includes(queryLower)) score += 5;
+
+    // Word matching
+    queryWords.forEach((word) => {
+      if (qLower.includes(word)) score += 3;
+      if (aLower.includes(word)) score += 1;
+    });
+
+    return {
+      qa,
+      score,
+      index: index + 1, // Human-readable index (starts from 1)
+    };
+  });
+
+  return scored
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score);
 }
 
 async function saveConversation(env, question, answer, user) {
