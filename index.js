@@ -1,6 +1,6 @@
 /**
  * Toram AI Discord Bot - Cloudflare Workers Edition
- * Powered by Google Gemini AI
+ * Powered by Google Gemini AI (with Semantic Search)
  */
 
 import { verifyKey } from "discord-interactions";
@@ -101,8 +101,8 @@ async function followUpResponse(interaction, env, question) {
 
   try {
     const knowledge = await getKnowledge(env);
-    const results = searchKnowledge(knowledge, question);
-    const aiResponse = await getAIResponse(question, results, env);
+    // Kirim semua knowledge ke Gemini untuk semantic search + jawaban
+    const aiResponse = await getAIResponse(question, knowledge, env);
 
     await fetch(followUpUrl, {
       method: "POST",
@@ -114,7 +114,7 @@ async function followUpResponse(interaction, env, question) {
             description: aiResponse.substring(0, 4000),
             color: 0x5865f2,
             footer: {
-              text: `Ditanya oleh ${interaction.member.user.username} | ${results.length} data ditemukan`,
+              text: `Ditanya oleh ${interaction.member.user.username}`,
             },
             timestamp: new Date().toISOString(),
           },
@@ -516,36 +516,103 @@ async function handleHelp(interaction) {
 }
 
 // ============================================
-// AI INTEGRATION - GEMINI
+// AI INTEGRATION - GEMINI (SEMANTIC SEARCH)
 // ============================================
 
-async function getAIResponse(question, data, env) {
+async function geminiCall(prompt, env, maxTokens = 1024) {
+  const response = await fetch(`${GEMINI_API_URL}?key=${env.GEMINI_API_KEY}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contents: [{ role: "user", parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0,
+        maxOutputTokens: maxTokens,
+      },
+    }),
+  });
+
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(`Gemini API error ${response.status}: ${err}`);
+  }
+
+  const result = await response.json();
+  return result?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+}
+
+async function getAIResponse(question, knowledge, env) {
   if (!env.GEMINI_API_KEY) {
-    if (data.length > 0) {
-      return `🤖 **Dari database:**\n\n${data[0].answer}`;
-    }
     return "⚠️ GEMINI_API_KEY belum diset! Set di Cloudflare Dashboard → Settings → Variables";
   }
 
-  // Gabungkan semua hasil pencarian jadi context
-  const context = data
-    .slice(0, 8)
-    .map((item) => `PERTANYAAN: ${item.question}\nJAWABAN: ${item.answer}`)
-    .join("\n\n---\n\n");
+  const qaPairs = knowledge.qa_pairs;
 
+  if (qaPairs.length === 0) {
+    return "📭 Database masih kosong. Ajari bot dulu pakai `/teach`!";
+  }
+
+  // ── TAHAP 1: Gemini pilih index yang relevan ──
+  // Kirim hanya question-nya (hemat token) untuk pemilihan
+  const qaListForSearch = qaPairs
+    .map((qa, i) => `[${i}] ${qa.question}`)
+    .join("\n");
+
+  const selectPrompt = `Kamu adalah search engine untuk game Toram Online.
+Dari daftar pertanyaan berikut, pilih SEMUA nomor index yang relevan dengan query user.
+Balas HANYA dengan array JSON berisi nomor index. Contoh: [0, 3, 7]
+Jika tidak ada yang relevan sama sekali, balas: []
+
+Aturan pemilihan:
+- Pilih semua entri yang topiknya berhubungan, meski kata-katanya berbeda
+- Contoh: query "leveling 1-310" → pilih semua entri leveling (1-199, 199-310, dll)
+- Contoh: query "semua kode buff" → pilih semua entri kode buff
+- Contoh: query "build tank" → pilih semua entri build yang ada unsur tank/vit
+
+DAFTAR PERTANYAAN DI DATABASE:
+${qaListForSearch}
+
+QUERY USER: ${question}`;
+
+  let selectedData = [];
+
+  try {
+    const rawText = await geminiCall(selectPrompt, env, 256);
+    const match = rawText.match(/\[[\d,\s]*\]/);
+    if (match) {
+      const indices = JSON.parse(match[0]);
+      selectedData = indices
+        .filter((i) => i >= 0 && i < qaPairs.length)
+        .map((i) => qaPairs[i]);
+    }
+  } catch (e) {
+    console.error("❌ Semantic search error:", e);
+    // Fallback ke keyword search lama jika Gemini gagal
+    selectedData = searchKnowledge(knowledge, question);
+  }
+
+  // ── TAHAP 2: Gemini jawab pakai data terpilih ──
   const systemPrompt = `Kamu adalah AI helper untuk game Toram Online.
 
 ATURAN:
-1. Jawab HANYA berdasarkan data di database.
-2. Jika pertanyaan tentang KODE BUFF, tampilkan SEMUA kodenya.
-3. Jika jawaban dari database terlalu panjang, RINGKAS jadi poin-poin penting.
+1. Jawab HANYA berdasarkan data di database yang diberikan.
+2. Jika pertanyaan tentang KODE BUFF, tampilkan SEMUA kodenya tanpa terkecuali.
+3. Jika jawaban dari database terlalu panjang, ringkas jadi poin-poin penting.
 4. Jika pertanyaan mencakup range besar (contoh: "leveling 1 sampai cap"), 
-   tampilkan ringkasan per range saja, jangan copy paste semua data mentah.
+   tampilkan ringkasan per range, jangan copy paste semua data mentah.
 5. Gunakan bahasa Indonesia singkat dan jelas.
-6. Jawab selengkap mungkin, maksimal 4000 karakter. Jangan potong jawaban di tengah.`;
+6. Jawab selengkap mungkin, maksimal 4000 karakter.
+7. Jika tidak ada data yang relevan di database, katakan dengan jelas bahwa data tidak tersedia.`;
+
+  const context =
+    selectedData.length > 0
+      ? selectedData
+          .map((qa) => `PERTANYAAN: ${qa.question}\nJAWABAN: ${qa.answer}`)
+          .join("\n\n---\n\n")
+      : null;
 
   const userPrompt = context
-    ? `DATABASE:\n${context}\n\n---\n\nPERTANYAAN PEMAIN: ${question}\n\nJawab berdasarkan database di atas. Jika kode buff, tampilkan SEMUA kodenya.`
+    ? `DATABASE YANG RELEVAN:\n${context}\n\n---\n\nPERTANYAAN PEMAIN: ${question}\n\nJawab berdasarkan database di atas.`
     : `PERTANYAAN PEMAIN: ${question}\n\nData tidak ditemukan di database untuk pertanyaan ini.`;
 
   try {
@@ -565,7 +632,7 @@ ATURAN:
             },
           ],
           generationConfig: {
-            temperature: 0.1, // Rendah = lebih akurat, tidak mengarang
+            temperature: 0.1,
             maxOutputTokens: 2048,
             topP: 0.8,
           },
@@ -577,27 +644,27 @@ ATURAN:
       const errorText = await response.text();
       console.error("❌ Gemini API Error:", errorText);
 
-      if (data.length > 0) {
-        return `🤖 **Dari database:**\n\n${data[0].answer}`;
+      if (selectedData.length > 0) {
+        return `🤖 **Dari database:**\n\n${selectedData[0].answer}`;
       }
       return `❌ API Error: ${response.status}`;
     }
 
     const result = await response.json();
-
-    // Format response Gemini berbeda dari OpenAI/Groq
     const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
 
     if (!text) {
-      if (data.length > 0) return `🤖 **Dari database:**\n\n${data[0].answer}`;
+      if (selectedData.length > 0) {
+        return `🤖 **Dari database:**\n\n${selectedData[0].answer}`;
+      }
       return "❌ Tidak ada jawaban dari AI.";
     }
 
     return text;
   } catch (error) {
     console.error("❌ AI Response Error:", error);
-    if (data.length > 0) {
-      return `🤖 **Dari database:**\n\n${data[0].answer}`;
+    if (selectedData.length > 0) {
+      return `🤖 **Dari database:**\n\n${selectedData[0].answer}`;
     }
     return `❌ Error: ${error.message}`;
   }
@@ -617,6 +684,7 @@ async function getKnowledge(env) {
   return { qa_pairs: [], conversations: [] };
 }
 
+// Keyword search — masih dipakai sebagai fallback di /cari dan jika Gemini gagal
 function searchKnowledge(knowledge, query) {
   const queryLower = query.toLowerCase();
   const queryWords = queryLower.split(/\s+/).filter((w) => w.length > 1);
@@ -624,7 +692,6 @@ function searchKnowledge(knowledge, query) {
   if (queryWords.length === 0) return knowledge.qa_pairs.slice(0, 10);
 
   const scored = knowledge.qa_pairs.map((qa) => {
-    // Pisahkan sinonim dari pipe
     const questionVariants = qa.question
       .toLowerCase()
       .split("|")
@@ -632,7 +699,6 @@ function searchKnowledge(knowledge, query) {
     const aLower = qa.answer.toLowerCase();
     let score = 0;
 
-    // Cek exact match di salah satu varian
     for (const variant of questionVariants) {
       if (variant.includes(queryLower)) score += 15;
       if (queryLower.includes(variant)) score += 10;
@@ -640,7 +706,6 @@ function searchKnowledge(knowledge, query) {
 
     if (aLower.includes(queryLower)) score += 5;
 
-    // Word matching
     queryWords.forEach((word) => {
       for (const variant of questionVariants) {
         if (variant.includes(word)) score += 4;
@@ -651,8 +716,23 @@ function searchKnowledge(knowledge, query) {
     return { qa, score };
   });
 
-  return scored
-    .filter((item) => item.score > 0)
+  // Fallback: jika semua score 0, kembalikan semua yang ada kata yang sama
+  const filtered = scored.filter((item) => item.score > 0);
+  if (filtered.length === 0) {
+    const relaxed = scored.filter((item) =>
+      queryWords.some(
+        (word) =>
+          item.qa.question.toLowerCase().includes(word) ||
+          item.qa.answer.toLowerCase().includes(word),
+      ),
+    );
+    return relaxed
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 8)
+      .map((item) => item.qa);
+  }
+
+  return filtered
     .sort((a, b) => b.score - a.score)
     .slice(0, 8)
     .map((item) => item.qa);
