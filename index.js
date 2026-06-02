@@ -543,7 +543,7 @@ ATURAN:
    tampilkan ringkasan per range saja, jangan copy paste semua data mentah.
 5. Jika data tidak ada, katakan "Data tidak tersedia di database".
 6. Gunakan bahasa Indonesia singkat dan jelas.
-7. Maksimal 400 kata.`;
+7. Jawab selengkap mungkin, maksimal 4000 karakter. Jangan potong jawaban di tengah.`;
 
   const userPrompt = context
     ? `DATABASE:\n${context}\n\n---\n\nPERTANYAAN PEMAIN: ${question}\n\nJawab berdasarkan database di atas. Jika kode buff, tampilkan SEMUA kodenya.`
