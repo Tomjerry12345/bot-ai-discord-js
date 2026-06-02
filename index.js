@@ -541,9 +541,8 @@ ATURAN:
 3. Jika jawaban dari database terlalu panjang, RINGKAS jadi poin-poin penting.
 4. Jika pertanyaan mencakup range besar (contoh: "leveling 1 sampai cap"), 
    tampilkan ringkasan per range saja, jangan copy paste semua data mentah.
-5. Jika data tidak ada, katakan "Data tidak tersedia di database".
-6. Gunakan bahasa Indonesia singkat dan jelas.
-7. Jawab selengkap mungkin, maksimal 4000 karakter. Jangan potong jawaban di tengah.`;
+5. Gunakan bahasa Indonesia singkat dan jelas.
+6. Jawab selengkap mungkin, maksimal 4000 karakter. Jangan potong jawaban di tengah.`;
 
   const userPrompt = context
     ? `DATABASE:\n${context}\n\n---\n\nPERTANYAAN PEMAIN: ${question}\n\nJawab berdasarkan database di atas. Jika kode buff, tampilkan SEMUA kodenya.`
@@ -567,7 +566,7 @@ ATURAN:
           ],
           generationConfig: {
             temperature: 0.1, // Rendah = lebih akurat, tidak mengarang
-            maxOutputTokens: 800,
+            maxOutputTokens: 2048,
             topP: 0.8,
           },
         }),
