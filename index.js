@@ -1,16 +1,132 @@
 /**
  * Toram AI Discord Bot - Cloudflare Workers Edition
  * With Edit & Search Feature
+ * Powered by Google Gemini API (multi-model, multi-key rotation)
  */
 
 import { verifyKey } from "discord-interactions";
 
 // ============================================
-// CONFIGURATION
+// CONFIGURATION - GEMINI MULTI-MODEL & MULTI-KEY
 // ============================================
 
-const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const GROQ_MODEL = "llama-3.3-70b-versatile";
+// Model priority list: jika model[0] limit, coba model[1], dst.
+const GEMINI_MODELS = [
+  "gemini-3.5-flash", // Terkuat, terbaru
+  "gemini-2.5-flash", // Stable, powerful
+  "gemini-2.5-flash-lite", // Hemat, cepat
+  "gemini-3.1-flash", // Paling hemat, fallback terakhir
+];
+
+// Cara pakai: di Cloudflare Workers → Settings → Variables → Secrets
+// Tambahkan: GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3
+// Rotasi: semua model di key[0] dicoba dulu → jika semua limit → pindah ke key[1], dst.
+
+const GEMINI_API_BASE =
+  "https://generativelanguage.googleapis.com/v1beta/models";
+
+// ============================================
+// GEMINI API CALLER WITH MODEL + KEY ROTATION
+// ============================================
+
+async function callGeminiWithRotation(prompt, env) {
+  // Ambil API keys dari environment (bisa 1-3 keys)
+  const apiKeys = [
+    env.GEMINI_API_KEY_1,
+    env.GEMINI_API_KEY_2,
+    env.GEMINI_API_KEY_3,
+  ].filter(Boolean); // hapus yang kosong/undefined
+
+  if (apiKeys.length === 0) {
+    throw new Error(
+      "Tidak ada GEMINI_API_KEY yang dikonfigurasi! Tambahkan GEMINI_API_KEY_1 di Cloudflare Workers Settings.",
+    );
+  }
+
+  // Unik model names untuk rotasi (hapus duplikat tapi pertahankan urutan)
+  const uniqueModels = [...new Set(GEMINI_MODELS)];
+
+  // Loop: tiap API key → coba semua model → jika semua limit → pindah key berikutnya
+  for (let keyIdx = 0; keyIdx < apiKeys.length; keyIdx++) {
+    const currentKey = apiKeys[keyIdx];
+    console.log(`🔑 Mencoba API Key ${keyIdx + 1}/${apiKeys.length}`);
+
+    for (let modelIdx = 0; modelIdx < uniqueModels.length; modelIdx++) {
+      const currentModel = uniqueModels[modelIdx];
+      console.log(`🤖 Mencoba model: ${currentModel}`);
+
+      try {
+        const url = `${GEMINI_API_BASE}/${currentModel}:generateContent?key=${currentKey}`;
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: {
+              temperature: 0.2,
+              maxOutputTokens: 600,
+            },
+          }),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+          if (text) {
+            console.log(
+              `✅ Berhasil dengan model: ${currentModel}, Key: ${keyIdx + 1}`,
+            );
+            return { text, model: currentModel, keyIndex: keyIdx + 1 };
+          }
+        }
+
+        // Cek apakah error karena rate limit / quota
+        const errorText = await response.text();
+        let errorData = {};
+        try {
+          errorData = JSON.parse(errorText);
+        } catch {}
+
+        const errorCode = response.status;
+        const isRateLimit =
+          errorCode === 429 ||
+          errorText.includes("RESOURCE_EXHAUSTED") ||
+          errorText.includes("quota") ||
+          errorText.includes("rate limit");
+
+        if (isRateLimit) {
+          console.warn(
+            `⚠️ Model ${currentModel} (Key ${keyIdx + 1}) rate limited, coba model berikutnya...`,
+          );
+          continue; // coba model berikutnya
+        }
+
+        // Error lain (bukan rate limit) - log tapi tetap coba model berikutnya
+        console.error(
+          `❌ Model ${currentModel} error ${errorCode}:`,
+          errorText.substring(0, 200),
+        );
+        continue;
+      } catch (fetchError) {
+        console.error(
+          `❌ Fetch error pada model ${currentModel}:`,
+          fetchError.message,
+        );
+        continue;
+      }
+    }
+
+    // Semua model di key ini limit/error → coba key berikutnya
+    console.warn(
+      `⚠️ Semua model habis di Key ${keyIdx + 1}, pindah ke Key ${keyIdx + 2}...`,
+    );
+  }
+
+  // Semua key dan model sudah dicoba, semua gagal
+  throw new Error(
+    "Semua API key dan model sedang rate limit atau error. Coba lagi nanti.",
+  );
+}
 
 // ============================================
 // MAIN WORKER
@@ -27,7 +143,7 @@ export default {
       body,
       signature,
       timestamp,
-      env.DISCORD_PUBLIC_KEY
+      env.DISCORD_PUBLIC_KEY,
     );
 
     if (!isValidRequest) {
@@ -138,7 +254,7 @@ async function followUpResponse(interaction, env, question) {
       env,
       question,
       aiResponse,
-      interaction.member.user.username
+      interaction.member.user.username,
     );
   } catch (error) {
     console.error("❌ Error in followUpResponse:", error);
@@ -254,7 +370,7 @@ async function handleCari(interaction, env) {
       return {
         name: `#${item.index} - ${item.qa.question.substring(
           0,
-          80
+          80,
         )}${editIcon}`,
         value:
           `${item.qa.answer.substring(0, 150)}${
@@ -311,7 +427,7 @@ async function handleEdit(interaction, env) {
   const index = getOptionValue(interaction.data.options, "nomor");
   const pertanyaanBaru = getOptionValue(
     interaction.data.options,
-    "pertanyaan_baru"
+    "pertanyaan_baru",
   );
   const jawabanBaru = getOptionValue(interaction.data.options, "jawaban_baru");
 
@@ -366,7 +482,7 @@ async function handleEdit(interaction, env) {
           name: "✨ Pertanyaan Baru",
           value: pertanyaanBaru.substring(0, 1000),
           inline: false,
-        }
+        },
       );
     }
 
@@ -381,7 +497,7 @@ async function handleEdit(interaction, env) {
           name: "✨ Jawaban Baru",
           value: jawabanBaru.substring(0, 1000),
           inline: false,
-        }
+        },
       );
     }
 
@@ -557,7 +673,7 @@ async function handleHelp(interaction) {
             },
           ],
           color: 0x5865f2,
-          footer: { text: "Powered by Groq AI & Cloudflare Workers" },
+          footer: { text: "Powered by Google Gemini AI & Cloudflare Workers" },
         },
       ],
     },
@@ -569,12 +685,15 @@ async function handleHelp(interaction) {
 // ============================================
 
 async function getAIResponse(question, data, env) {
-  // If no API key, use database only
-  if (!env.GROQ_API_KEY) {
+  // Cek apakah minimal ada 1 API key
+  const hasKey =
+    env.GEMINI_API_KEY_1 || env.GEMINI_API_KEY_2 || env.GEMINI_API_KEY_3;
+
+  if (!hasKey) {
     if (data.length > 0) {
       return `🤖 **Dari database:**\n\n${data[0].answer}`;
     }
-    return "⚠️ GROQ_API_KEY belum diset! Set di Cloudflare Dashboard → Settings → Variables";
+    return "⚠️ GEMINI_API_KEY_1 belum diset! Tambahkan di Cloudflare Workers → Settings → Variables & Secrets";
   }
 
   // Build context from search results
@@ -583,54 +702,21 @@ async function getAIResponse(question, data, env) {
     .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
     .join("\n\n");
 
+  const prompt = context
+    ? `Kamu adalah AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata dalam bahasa Indonesia.\n\nDATABASE:\n${context}\n\nPERTANYAAN: ${question}\n\nJawab berdasarkan database di atas.`
+    : `Kamu adalah AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata dalam bahasa Indonesia.\n\nPERTANYAAN: ${question}`;
+
   try {
-    const response = await fetch(GROQ_API_URL, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${env.GROQ_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        model: GROQ_MODEL,
-        messages: [
-          {
-            role: "system",
-            content:
-              "Kamu AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata. Gunakan bahasa Indonesia.",
-          },
-          {
-            role: "user",
-            content: context
-              ? `DATABASE:\n${context}\n\nPERTANYAAN: ${question}\n\nJawab berdasarkan database di atas.`
-              : `PERTANYAAN: ${question}`,
-          },
-        ],
-        temperature: 0.2,
-        max_tokens: 600,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("❌ Groq API Error:", errorText);
-
-      // Fallback to database
-      if (data.length > 0) {
-        return `🤖 **Dari database:**\n\n${data[0].answer}`;
-      }
-      return `❌ API Error: ${response.status} - Check GROQ_API_KEY`;
-    }
-
-    const result = await response.json();
-    return result.choices[0].message.content;
+    const result = await callGeminiWithRotation(prompt, env);
+    return result.text;
   } catch (error) {
-    console.error("❌ AI Response Error:", error);
+    console.error("❌ Gemini AI Error:", error.message);
 
-    // Fallback to database
+    // Fallback ke database jika semua API gagal
     if (data.length > 0) {
-      return `🤖 **Dari database:**\n\n${data[0].answer}`;
+      return `🤖 **Dari database (AI tidak tersedia):**\n\n${data[0].answer}`;
     }
-    return `❌ Error: ${error.message}`;
+    return `❌ ${error.message}`;
   }
 }
 
