@@ -73,7 +73,7 @@ async function callGeminiWithRotation(prompt, env, conversationHistory = []) {
             systemInstruction: {
               parts: [
                 {
-                  text: "Kamu adalah asisten game Toram Online. Jawab dalam bahasa Indonesia. Gunakan konteks percakapan sebelumnya untuk memahami pertanyaan lanjutan. Langsung berikan jawaban tanpa menulis proses berpikir, checklist, atau catatan internal.",
+                  text: "Kamu adalah asisten game Toram Online. Jawab singkat, padat, dan to the point dalam bahasa Indonesia. Maksimal 5-8 baris kecuali diminta lengkap. Gunakan konteks percakapan sebelumnya untuk pertanyaan lanjutan. Jangan tulis proses berpikir atau catatan internal.",
                 },
               ],
             },

@@ -106,6 +106,10 @@ const commands = [
     ],
   },
   {
+    name: "reset",
+    description: "Hapus memori percakapan kamu (mulai obrolan baru dengan AI)",
+  },
+  {
     name: "stats",
     description: "Lihat statistik bot (Admin only)",
   },
@@ -130,7 +134,6 @@ function validateConfig() {
     errors.push("❌ DISCORD_BOT_TOKEN tidak ditemukan di .env");
   }
 
-  // Validate format
   if (DISCORD_APP_ID && !/^\d+$/.test(DISCORD_APP_ID)) {
     errors.push("❌ DISCORD_APP_ID harus berisi angka saja");
   }
@@ -154,7 +157,7 @@ function showSetupInstructions() {
   console.log("─────────────────────────────────────");
   console.log("DISCORD_APP_ID=1234567890123456789");
   console.log(
-    "DISCORD_BOT_TOKEN=MTIzNDU2Nzg5MDEyMzQ1Njc4OQ.GaBcDe.FgHiJkLmNoPqRsTuVwXyZ123456789"
+    "DISCORD_BOT_TOKEN=MTIzNDU2Nzg5MDEyMzQ1Njc4OQ.GaBcDe.FgHiJkLmNoPqRsTuVwXyZ123456789",
   );
   console.log("─────────────────────────────────────\n");
 
@@ -175,7 +178,6 @@ function showSetupInstructions() {
 async function registerCommands() {
   console.log("🚀 Discord Bot Command Registration\n");
 
-  // Validate configuration
   const validationErrors = validateConfig();
 
   if (validationErrors.length > 0) {
@@ -219,6 +221,7 @@ async function registerCommands() {
       console.log("   🎓 /teach - Ajari bot");
       console.log("   🔍 /cari - Cari Q&A dengan nomor");
       console.log("   ✏️  /edit - Edit Q&A (Admin)");
+      console.log("   🔄 /reset - Reset memori percakapan");
       console.log("   📊 /stats - Lihat statistik (Admin)");
       console.log("   📋 /list - Lihat semua Q&A");
       console.log("   🗑️  /delete - Hapus Q&A (Admin)");
@@ -227,7 +230,8 @@ async function registerCommands() {
       console.log("💡 Tips:");
       console.log("   • Gunakan /cari untuk menemukan nomor Q&A");
       console.log("   • Gunakan nomor tersebut untuk /edit atau /delete");
-      console.log('   • Admin perlu permission "Manage Messages"\n');
+      console.log('   • Admin perlu permission "Manage Messages"');
+      console.log("   • Gunakan /reset jika AI salah mengingat konteks\n");
     } else {
       const errorText = await response.text();
       let errorData;
@@ -243,7 +247,6 @@ async function registerCommands() {
       console.error("Error:", JSON.stringify(errorData, null, 2));
       console.error("");
 
-      // Specific error messages
       if (response.status === 401) {
         console.error("🔐 Authentication failed!");
         console.error("   → Check DISCORD_BOT_TOKEN di .env");
