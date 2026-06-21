@@ -64,7 +64,7 @@ async function callGeminiWithRotation(prompt, env) {
             contents: [{ parts: [{ text: prompt }] }],
             generationConfig: {
               temperature: 0.2,
-              maxOutputTokens: 600,
+              maxOutputTokens: 2048,
             },
           }),
         });
@@ -703,8 +703,8 @@ async function getAIResponse(question, data, env) {
     .join("\n\n");
 
   const prompt = context
-    ? `Kamu adalah AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata dalam bahasa Indonesia.\n\nDATABASE:\n${context}\n\nPERTANYAAN: ${question}\n\nJawab berdasarkan database di atas.`
-    : `Kamu adalah AI helper Toram Online. Jawab singkat dan jelas maksimal 300 kata dalam bahasa Indonesia.\n\nPERTANYAAN: ${question}`;
+    ? `Kamu adalah AI helper Toram Online. Jawab LENGKAP dan jelas dalam bahasa Indonesia. Jangan potong jawaban di tengah.\n\nDATABASE:\n${context}\n\nPERTANYAAN: ${question}\n\nJawab berdasarkan database di atas secara lengkap.`
+    : `Kamu adalah AI helper Toram Online. Jawab LENGKAP dan jelas dalam bahasa Indonesia.\n\nPERTANYAAN: ${question}`;
 
   try {
     const result = await callGeminiWithRotation(prompt, env);
