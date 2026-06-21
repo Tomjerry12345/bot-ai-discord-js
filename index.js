@@ -73,7 +73,7 @@ async function callGeminiWithRotation(prompt, env, conversationHistory = []) {
             systemInstruction: {
               parts: [
                 {
-                  text: "Kamu adalah asisten game Toram Online. Jawab singkat, padat, dan to the point dalam bahasa Indonesia. Maksimal 5-8 baris kecuali diminta lengkap. Gunakan konteks percakapan sebelumnya untuk pertanyaan lanjutan. Jangan tulis proses berpikir atau catatan internal.",
+                  text: "Kamu adalah asisten game Toram Online. Jawab dalam bahasa Indonesia. Gunakan konteks percakapan sebelumnya untuk memahami pertanyaan lanjutan. Langsung berikan jawaban tanpa menulis proses berpikir, checklist, atau catatan internal.",
                 },
               ],
             },
@@ -763,22 +763,24 @@ async function getAIResponse(question, data, env, conversationHistory = []) {
     return "⚠️ GEMINI_API_KEY_1 belum diset! Tambahkan di Cloudflare Workers → Settings → Variables & Secrets";
   }
 
-  // Build context dari knowledge base
-  const context = data
-    .slice(0, 10)
-    .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
-    .join("\n\n");
-
-  const prompt = context
-    ? `Berikut data dari database Toram Online:
-
-${context}
-
----
-Pertanyaan: ${question}`
-    : `Pertanyaan: ${question}`;
-
   try {
+    // LANGKAH 1: AI pilih data yang relevan berdasarkan makna
+    const selectedData = await selectRelevantData(
+      question,
+      data,
+      env,
+      conversationHistory,
+    );
+
+    // LANGKAH 2: AI jawab berdasarkan data yang dipilih
+    const context = selectedData
+      .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
+      .join("\n\n");
+
+    const prompt = context
+      ? `Berikut data dari database Toram Online:\n\n${context}\n\n---\nPertanyaan: ${question}`
+      : `Pertanyaan: ${question}`;
+
     const result = await callGeminiWithRotation(
       prompt,
       env,
@@ -787,11 +789,72 @@ Pertanyaan: ${question}`
     return result.text;
   } catch (error) {
     console.error("❌ Gemini AI Error:", error.message);
-
     if (data.length > 0) {
       return `🤖 **Dari database (AI tidak tersedia):**\n\n${data[0].answer}`;
     }
     return `❌ ${error.message}`;
+  }
+}
+
+// AI memilih Q&A yang relevan berdasarkan makna, bukan hanya keyword
+async function selectRelevantData(
+  question,
+  keywordResults,
+  env,
+  conversationHistory = [],
+) {
+  try {
+    const knowledge = await getKnowledge(env);
+    const allQA = knowledge.qa_pairs;
+
+    if (allQA.length === 0) return keywordResults;
+
+    // Buat daftar semua judul Q&A
+    const qaIndex = allQA
+      .map((qa, idx) => `[${idx}] ${qa.question}`)
+      .join("\n");
+
+    // Ringkas konteks percakapan sebelumnya
+    const contextSummary =
+      conversationHistory.length > 0
+        ? `\nKonteks sebelumnya:\n${conversationHistory.map((m) => `${m.role === "user" ? "User" : "Bot"}: ${m.text.substring(0, 80)}`).join("\n")}\n`
+        : "";
+
+    const selectionPrompt = `Kamu adalah sistem pemilih data untuk bot Toram Online.${contextSummary}
+Pertanyaan user: "${question}"
+
+Daftar Q&A di database:
+${qaIndex}
+
+Pilih nomor Q&A yang PALING RELEVAN (maksimal 5). Pertimbangkan makna, sinonim, dan konteks.
+Contoh sinonim: pemula=mudah=ramai, veteran=susah=bestexp, cap=level maksimal.
+
+Balas HANYA nomor dipisah koma, contoh: 3,7,12
+Jika tidak ada relevan, balas: none`;
+
+    const result = await callGeminiWithRotation(selectionPrompt, env, []);
+    const raw = result.text.trim();
+
+    if (raw === "none" || !raw) return keywordResults;
+
+    const indices = raw
+      .split(",")
+      .map((s) => parseInt(s.trim()))
+      .filter((n) => !isNaN(n) && n >= 0 && n < allQA.length);
+
+    if (indices.length === 0) return keywordResults;
+
+    const selected = indices.map((i) => allQA[i]);
+    console.log(
+      `🎯 AI memilih ${selected.length} Q&A: indices ${indices.join(",")}`,
+    );
+    return selected;
+  } catch (err) {
+    console.error(
+      "❌ Error in selectRelevantData, fallback ke keyword:",
+      err.message,
+    );
+    return keywordResults;
   }
 }
 
