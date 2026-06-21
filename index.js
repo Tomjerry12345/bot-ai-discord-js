@@ -1,6 +1,6 @@
 /**
  * Toram AI Discord Bot - Cloudflare Workers Edition
- * With Edit & Search Feature
+ * With Edit & Search Feature + Conversation Context Per User
  * Powered by Google Gemini API (multi-model, multi-key rotation)
  */
 
@@ -10,7 +10,6 @@ import { verifyKey } from "discord-interactions";
 // CONFIGURATION - GEMINI MULTI-MODEL & MULTI-KEY
 // ============================================
 
-// Model priority list: jika model[0] limit, coba model[1], dst.
 const GEMINI_MODELS = [
   "gemini-3.5-flash", // Terkuat, terbaru
   "gemini-2.5-flash", // Stable, powerful
@@ -18,24 +17,24 @@ const GEMINI_MODELS = [
   "gemini-3.1-flash", // Paling hemat, fallback terakhir
 ];
 
-// Cara pakai: di Cloudflare Workers → Settings → Variables → Secrets
-// Tambahkan: GEMINI_API_KEY_1, GEMINI_API_KEY_2, GEMINI_API_KEY_3
-// Rotasi: semua model di key[0] dicoba dulu → jika semua limit → pindah ke key[1], dst.
-
 const GEMINI_API_BASE =
   "https://generativelanguage.googleapis.com/v1beta/models";
+
+// Berapa pesan history yang disimpan per user
+const MAX_CONTEXT_MESSAGES = 6; // 3 pasang tanya-jawab
+// Berapa lama context disimpan (detik) - default 30 menit
+const CONTEXT_TTL = 60 * 30;
 
 // ============================================
 // GEMINI API CALLER WITH MODEL + KEY ROTATION
 // ============================================
 
-async function callGeminiWithRotation(prompt, env) {
-  // Ambil API keys dari environment (bisa 1-3 keys)
+async function callGeminiWithRotation(prompt, env, conversationHistory = []) {
   const apiKeys = [
     env.GEMINI_API_KEY_1,
     env.GEMINI_API_KEY_2,
     env.GEMINI_API_KEY_3,
-  ].filter(Boolean); // hapus yang kosong/undefined
+  ].filter(Boolean);
 
   if (apiKeys.length === 0) {
     throw new Error(
@@ -43,10 +42,19 @@ async function callGeminiWithRotation(prompt, env) {
     );
   }
 
-  // Unik model names untuk rotasi (hapus duplikat tapi pertahankan urutan)
   const uniqueModels = [...new Set(GEMINI_MODELS)];
 
-  // Loop: tiap API key → coba semua model → jika semua limit → pindah key berikutnya
+  // Build contents array dengan conversation history
+  const contents = [];
+
+  // Tambahkan history sebelumnya
+  for (const msg of conversationHistory) {
+    contents.push({ role: msg.role, parts: [{ text: msg.text }] });
+  }
+
+  // Tambahkan prompt baru sebagai user message
+  contents.push({ role: "user", parts: [{ text: prompt }] });
+
   for (let keyIdx = 0; keyIdx < apiKeys.length; keyIdx++) {
     const currentKey = apiKeys[keyIdx];
     console.log(`🔑 Mencoba API Key ${keyIdx + 1}/${apiKeys.length}`);
@@ -61,7 +69,14 @@ async function callGeminiWithRotation(prompt, env) {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
+            contents: contents,
+            systemInstruction: {
+              parts: [
+                {
+                  text: "Kamu adalah AI helper Toram Online. Jawab LENGKAP dan jelas dalam bahasa Indonesia. Jangan potong jawaban di tengah. Ingat konteks percakapan sebelumnya dan gunakan untuk menjawab pertanyaan lanjutan.",
+                },
+              ],
+            },
             generationConfig: {
               temperature: 0.2,
               maxOutputTokens: 2048,
@@ -80,13 +95,7 @@ async function callGeminiWithRotation(prompt, env) {
           }
         }
 
-        // Cek apakah error karena rate limit / quota
         const errorText = await response.text();
-        let errorData = {};
-        try {
-          errorData = JSON.parse(errorText);
-        } catch {}
-
         const errorCode = response.status;
         const isRateLimit =
           errorCode === 429 ||
@@ -98,10 +107,9 @@ async function callGeminiWithRotation(prompt, env) {
           console.warn(
             `⚠️ Model ${currentModel} (Key ${keyIdx + 1}) rate limited, coba model berikutnya...`,
           );
-          continue; // coba model berikutnya
+          continue;
         }
 
-        // Error lain (bukan rate limit) - log tapi tetap coba model berikutnya
         console.error(
           `❌ Model ${currentModel} error ${errorCode}:`,
           errorText.substring(0, 200),
@@ -116,16 +124,49 @@ async function callGeminiWithRotation(prompt, env) {
       }
     }
 
-    // Semua model di key ini limit/error → coba key berikutnya
     console.warn(
       `⚠️ Semua model habis di Key ${keyIdx + 1}, pindah ke Key ${keyIdx + 2}...`,
     );
   }
 
-  // Semua key dan model sudah dicoba, semua gagal
   throw new Error(
     "Semua API key dan model sedang rate limit atau error. Coba lagi nanti.",
   );
+}
+
+// ============================================
+// CONVERSATION CONTEXT HELPERS
+// ============================================
+
+// Key KV: "ctx:{userId}" → array of {role, text}
+async function getUserContext(env, userId) {
+  try {
+    const data = await env.TORAM_KV.get(`ctx:${userId}`);
+    if (data) return JSON.parse(data);
+  } catch (e) {
+    console.error("❌ Error get context:", e);
+  }
+  return [];
+}
+
+async function saveUserContext(env, userId, history) {
+  try {
+    // Simpan hanya MAX_CONTEXT_MESSAGES pesan terakhir
+    const trimmed = history.slice(-MAX_CONTEXT_MESSAGES);
+    await env.TORAM_KV.put(`ctx:${userId}`, JSON.stringify(trimmed), {
+      expirationTtl: CONTEXT_TTL,
+    });
+  } catch (e) {
+    console.error("❌ Error save context:", e);
+  }
+}
+
+async function clearUserContext(env, userId) {
+  try {
+    await env.TORAM_KV.delete(`ctx:${userId}`);
+  } catch (e) {
+    console.error("❌ Error clear context:", e);
+  }
 }
 
 // ============================================
@@ -134,7 +175,6 @@ async function callGeminiWithRotation(prompt, env) {
 
 export default {
   async fetch(request, env, ctx) {
-    // Verify Discord signature
     const signature = request.headers.get("x-signature-ed25519");
     const timestamp = request.headers.get("x-signature-timestamp");
     const body = await request.clone().text();
@@ -152,12 +192,10 @@ export default {
 
     const interaction = JSON.parse(body);
 
-    // Handle Discord PING
     if (interaction.type === 1) {
       return jsonResponse({ type: 1 });
     }
 
-    // Handle Slash Commands
     if (interaction.type === 2) {
       return handleCommand(interaction, env, ctx);
     }
@@ -186,6 +224,8 @@ async function handleCommand(interaction, env, ctx) {
       return handleList(interaction, env);
     case "delete":
       return handleDelete(interaction, env);
+    case "reset":
+      return handleReset(interaction, env);
     case "help":
       return handleHelp(interaction);
     default:
@@ -210,10 +250,8 @@ async function handleTanya(interaction, env, ctx) {
     });
   }
 
-  // Use waitUntil to process response asynchronously
   ctx.waitUntil(followUpResponse(interaction, env, question));
 
-  // Defer reply immediately
   return jsonResponse({
     type: 5, // DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE
   });
@@ -221,16 +259,33 @@ async function handleTanya(interaction, env, ctx) {
 
 async function followUpResponse(interaction, env, question) {
   const followUpUrl = `https://discord.com/api/v10/webhooks/${env.DISCORD_APP_ID}/${interaction.token}`;
+  const userId = interaction.member.user.id;
+  const username = interaction.member.user.username;
 
   try {
+    // Ambil context percakapan user ini
+    const userContext = await getUserContext(env, userId);
+
     // Search knowledge base
     const knowledge = await getKnowledge(env);
     const results = searchKnowledge(knowledge, question);
 
-    // Get AI response
-    const aiResponse = await getAIResponse(question, results, env);
+    // Get AI response dengan context
+    const aiResponse = await getAIResponse(question, results, env, userContext);
 
-    // Send follow-up message
+    // Update context: tambah pertanyaan user dan jawaban AI
+    const updatedContext = [
+      ...userContext,
+      { role: "user", text: question },
+      { role: "model", text: aiResponse },
+    ];
+    await saveUserContext(env, userId, updatedContext);
+
+    // Hitung berapa "giliran" percakapan sudah berlangsung
+    const turnCount = Math.floor(updatedContext.length / 2);
+    const contextInfo =
+      turnCount > 1 ? ` | 🧠 Konteks: ${turnCount} pesan` : "";
+
     await fetch(followUpUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -241,7 +296,7 @@ async function followUpResponse(interaction, env, question) {
             description: aiResponse.substring(0, 4000),
             color: 0x5865f2,
             footer: {
-              text: `Ditanya oleh ${interaction.member.user.username} | ${results.length} data ditemukan`,
+              text: `Ditanya oleh ${username} | ${results.length} data ditemukan${contextInfo} | /reset untuk mulai baru`,
             },
             timestamp: new Date().toISOString(),
           },
@@ -249,17 +304,10 @@ async function followUpResponse(interaction, env, question) {
       }),
     });
 
-    // Save conversation
-    await saveConversation(
-      env,
-      question,
-      aiResponse,
-      interaction.member.user.username,
-    );
+    // Save to global conversation log
+    await saveConversation(env, question, aiResponse, username);
   } catch (error) {
     console.error("❌ Error in followUpResponse:", error);
-
-    // Send error message to Discord
     try {
       await fetch(followUpUrl, {
         method: "POST",
@@ -272,6 +320,31 @@ async function followUpResponse(interaction, env, question) {
       console.error("❌ Failed to send error message:", webhookError);
     }
   }
+}
+
+// ============================================
+// COMMAND: /reset (NEW - hapus context percakapan)
+// ============================================
+
+async function handleReset(interaction, env) {
+  const userId = interaction.member.user.id;
+  await clearUserContext(env, userId);
+
+  return jsonResponse({
+    type: 4,
+    data: {
+      embeds: [
+        {
+          title: "🔄 Konteks Dihapus",
+          description:
+            "Percakapan kamu direset! Saya sudah lupa obrolan sebelumnya.\n\nGunakan `/tanya` untuk mulai percakapan baru.",
+          color: 0xfee75c,
+          footer: { text: `Reset oleh ${interaction.member.user.username}` },
+        },
+      ],
+      flags: 64, // Ephemeral - hanya user yang bisa lihat
+    },
+  });
 }
 
 // ============================================
@@ -290,10 +363,8 @@ async function handleTeach(interaction, env) {
   }
 
   try {
-    // Get existing knowledge
     const knowledge = await getKnowledge(env);
 
-    // Add new Q&A
     knowledge.qa_pairs.push({
       question: pertanyaan,
       answer: jawaban,
@@ -301,7 +372,6 @@ async function handleTeach(interaction, env) {
       timestamp: new Date().toISOString(),
     });
 
-    // Save to KV
     await env.TORAM_KV.put("knowledge", JSON.stringify(knowledge));
 
     return jsonResponse({
@@ -336,7 +406,7 @@ async function handleTeach(interaction, env) {
 }
 
 // ============================================
-// COMMAND: /cari (NEW)
+// COMMAND: /cari
 // ============================================
 
 async function handleCari(interaction, env) {
@@ -362,20 +432,15 @@ async function handleCari(interaction, env) {
       });
     }
 
-    // Limit to 10 results
     const displayResults = results.slice(0, 10);
 
     const fields = displayResults.map((item) => {
       const editIcon = item.qa.edited_by ? " ✏️" : "";
       return {
-        name: `#${item.index} - ${item.qa.question.substring(
-          0,
-          80,
-        )}${editIcon}`,
+        name: `#${item.index} - ${item.qa.question.substring(0, 80)}${editIcon}`,
         value:
-          `${item.qa.answer.substring(0, 150)}${
-            item.qa.answer.length > 150 ? "..." : ""
-          }\n` + `📊 Relevance: ${item.score}`,
+          `${item.qa.answer.substring(0, 150)}${item.qa.answer.length > 150 ? "..." : ""}\n` +
+          `📊 Relevance: ${item.score}`,
         inline: false,
       };
     });
@@ -413,7 +478,6 @@ async function handleCari(interaction, env) {
 // ============================================
 
 async function handleEdit(interaction, env) {
-  // Check if user has manage_messages permission
   const permissions = BigInt(interaction.member.permissions);
   const MANAGE_MESSAGES = 1n << 13n;
 
@@ -452,23 +516,19 @@ async function handleEdit(interaction, env) {
 
     const oldQA = { ...knowledge.qa_pairs[index - 1] };
 
-    // Update question if provided
     if (pertanyaanBaru) {
       knowledge.qa_pairs[index - 1].question = pertanyaanBaru;
     }
 
-    // Update answer if provided
     if (jawabanBaru) {
       knowledge.qa_pairs[index - 1].answer = jawabanBaru;
     }
 
-    // Add edit metadata
     knowledge.qa_pairs[index - 1].edited_by = interaction.member.user.username;
     knowledge.qa_pairs[index - 1].edited_at = new Date().toISOString();
 
     await env.TORAM_KV.put("knowledge", JSON.stringify(knowledge));
 
-    // Build response fields
     const fields = [];
 
     if (pertanyaanBaru) {
@@ -590,7 +650,6 @@ async function handleList(interaction, env) {
 // ============================================
 
 async function handleDelete(interaction, env) {
-  // Check if user has manage_messages permission
   const permissions = BigInt(interaction.member.permissions);
   const MANAGE_MESSAGES = 1n << 13n;
 
@@ -647,9 +706,17 @@ async function handleHelp(interaction) {
             {
               name: "💬 Bertanya",
               value:
-                "`/tanya pertanyaan:<text>` - Tanya ke AI\n" +
+                "`/tanya pertanyaan:<text>` - Tanya ke AI (ingat konteks)\n" +
                 "`/cari kata_kunci:<text>` - Cari Q&A dengan nomor\n" +
                 "`/list [page]` - Lihat semua data",
+              inline: false,
+            },
+            {
+              name: "🧠 Konteks Percakapan",
+              value:
+                "`/reset` - Hapus memori percakapan kamu\n" +
+                "Bot mengingat **3 pertanyaan terakhir** kamu selama **30 menit**.\n" +
+                "Jadi kamu bisa tanya lanjutan tanpa perlu jelaskan ulang!",
               inline: false,
             },
             {
@@ -667,8 +734,9 @@ async function handleHelp(interaction) {
             {
               name: "💡 Tips",
               value:
-                "• Gunakan `/cari` untuk menemukan nomor Q&A yang ingin diedit\n" +
-                "• Nomor Q&A ditampilkan dengan format **#1**, **#2**, dst",
+                "• Tanya lanjutan langsung tanpa jelaskan ulang konteks\n" +
+                "• Gunakan `/reset` kalau mau ganti topik\n" +
+                "• Konteks otomatis hilang setelah 30 menit tidak aktif",
               inline: false,
             },
           ],
@@ -684,8 +752,7 @@ async function handleHelp(interaction) {
 // AI INTEGRATION
 // ============================================
 
-async function getAIResponse(question, data, env) {
-  // Cek apakah minimal ada 1 API key
+async function getAIResponse(question, data, env, conversationHistory = []) {
   const hasKey =
     env.GEMINI_API_KEY_1 || env.GEMINI_API_KEY_2 || env.GEMINI_API_KEY_3;
 
@@ -696,23 +763,26 @@ async function getAIResponse(question, data, env) {
     return "⚠️ GEMINI_API_KEY_1 belum diset! Tambahkan di Cloudflare Workers → Settings → Variables & Secrets";
   }
 
-  // Build context from search results
+  // Build context dari knowledge base
   const context = data
     .slice(0, 10)
     .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
     .join("\n\n");
 
   const prompt = context
-    ? `Kamu adalah AI helper Toram Online. Jawab LENGKAP dan jelas dalam bahasa Indonesia. Jangan potong jawaban di tengah.\n\nDATABASE:\n${context}\n\nPERTANYAAN: ${question}\n\nJawab berdasarkan database di atas secara lengkap.`
-    : `Kamu adalah AI helper Toram Online. Jawab LENGKAP dan jelas dalam bahasa Indonesia.\n\nPERTANYAAN: ${question}`;
+    ? `DATABASE TORAM ONLINE:\n${context}\n\nPERTANYAAN BARU: ${question}\n\nJawab berdasarkan database di atas secara LENGKAP. Jika ada konteks percakapan sebelumnya, gunakan untuk memahami pertanyaan lanjutan.`
+    : `PERTANYAAN: ${question}\n\nJawab secara LENGKAP berdasarkan pengetahuan Toram Online kamu.`;
 
   try {
-    const result = await callGeminiWithRotation(prompt, env);
+    const result = await callGeminiWithRotation(
+      prompt,
+      env,
+      conversationHistory,
+    );
     return result.text;
   } catch (error) {
     console.error("❌ Gemini AI Error:", error.message);
 
-    // Fallback ke database jika semua API gagal
     if (data.length > 0) {
       return `🤖 **Dari database (AI tidak tersedia):**\n\n${data[0].answer}`;
     }
@@ -733,8 +803,6 @@ async function getKnowledge(env) {
   } catch (error) {
     console.error("❌ KV Get Error:", error);
   }
-
-  // Return empty structure if no data or error
   return { qa_pairs: [], conversations: [] };
 }
 
@@ -769,7 +837,6 @@ function searchKnowledge(knowledge, query) {
     .map((item) => item.qa);
 }
 
-// Search with index numbers (for /cari command)
 function searchKnowledgeWithIndex(knowledge, query) {
   const queryLower = query.toLowerCase();
   const queryWords = queryLower.split(" ").filter((w) => w.length > 2);
@@ -779,21 +846,15 @@ function searchKnowledgeWithIndex(knowledge, query) {
     const aLower = qa.answer.toLowerCase();
     let score = 0;
 
-    // Exact phrase match in question gets highest score
     if (qLower.includes(queryLower)) score += 10;
     if (aLower.includes(queryLower)) score += 5;
 
-    // Word matching
     queryWords.forEach((word) => {
       if (qLower.includes(word)) score += 3;
       if (aLower.includes(word)) score += 1;
     });
 
-    return {
-      qa,
-      score,
-      index: index + 1, // Human-readable index (starts from 1)
-    };
+    return { qa, score, index: index + 1 };
   });
 
   return scored
@@ -812,7 +873,6 @@ async function saveConversation(env, question, answer, user) {
       timestamp: new Date().toISOString(),
     });
 
-    // Keep only last 100 conversations
     if (knowledge.conversations.length > 100) {
       knowledge.conversations = knowledge.conversations.slice(-100);
     }
