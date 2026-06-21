@@ -73,13 +73,13 @@ async function callGeminiWithRotation(prompt, env, conversationHistory = []) {
             systemInstruction: {
               parts: [
                 {
-                  text: "Kamu adalah AI helper Toram Online. Jawab LENGKAP dan jelas dalam bahasa Indonesia. Jangan potong jawaban di tengah. Ingat konteks percakapan sebelumnya dan gunakan untuk menjawab pertanyaan lanjutan.",
+                  text: "Kamu adalah asisten game Toram Online. Jawab dalam bahasa Indonesia. Gunakan konteks percakapan sebelumnya untuk memahami pertanyaan lanjutan. Langsung berikan jawaban tanpa menulis proses berpikir, checklist, atau catatan internal.",
                 },
               ],
             },
             generationConfig: {
               temperature: 0.2,
-              maxOutputTokens: 2048,
+              maxOutputTokens: 4096,
             },
           }),
         });
@@ -770,8 +770,13 @@ async function getAIResponse(question, data, env, conversationHistory = []) {
     .join("\n\n");
 
   const prompt = context
-    ? `DATABASE TORAM ONLINE:\n${context}\n\nPERTANYAAN BARU: ${question}\n\nJawab berdasarkan database di atas secara LENGKAP. Jika ada konteks percakapan sebelumnya, gunakan untuk memahami pertanyaan lanjutan.`
-    : `PERTANYAAN: ${question}\n\nJawab secara LENGKAP berdasarkan pengetahuan Toram Online kamu.`;
+    ? `Berikut data dari database Toram Online:
+
+${context}
+
+---
+Pertanyaan: ${question}`
+    : `Pertanyaan: ${question}`;
 
   try {
     const result = await callGeminiWithRotation(
