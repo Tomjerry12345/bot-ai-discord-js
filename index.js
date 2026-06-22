@@ -963,6 +963,7 @@ async function fetchXtallData(env, question) {
       categoriesToFetch.map(async (cat) => {
         try {
           const url = `${env.GITHUB_RAW_BASE}/${cat}.json`;
+          console.log(`🔗 Loop URL for ${cat}:`, url);
           const res = await fetch(url, {
             headers: {
               Authorization: `token ${env.GITHUB_TOKEN}`,
