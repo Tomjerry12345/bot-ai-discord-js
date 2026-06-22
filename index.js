@@ -959,30 +959,26 @@ async function fetchXtallData(env, question) {
     console.log(`📦 Fetching xtall kategori: ${categoriesToFetch.join(", ")}`);
 
     // Fetch semua kategori yang dipilih secara paralel
-    const fetched = await Promise.all(
-      categoriesToFetch.map(async (cat) => {
-        try {
-          const url = `${env.GITHUB_RAW_BASE}/${cat}.json`;
-          console.log(`🔗 Loop URL for ${cat}:`, url);
-          const res = await fetch(url, {
-            headers: {
-              Authorization: `token ${env.GITHUB_TOKEN}`,
-              Accept: "application/vnd.github.v3.raw",
-            },
-          });
-          if (!res.ok) {
-            console.warn(`⚠️ Gagal fetch ${cat}.json: ${res.status}`);
-            return [];
-          }
-          const data = await res.json();
-          // Tambah field category ke setiap item
-          return data.map((item) => ({ ...item, category: cat }));
-        } catch (err) {
-          console.error(`❌ Error fetch ${cat}.json:`, err.message);
-          return [];
+    const fetched = [];
+    for (const cat of categoriesToFetch) {
+      try {
+        const url = `${env.GITHUB_RAW_BASE}/${cat}.json`;
+        console.log(`🔗 Fetching ${cat}...`);
+        const res = await fetch(url, {
+          headers: { Accept: "application/json" },
+        });
+        if (!res.ok) {
+          console.warn(`⚠️ Gagal fetch ${cat}.json: ${res.status}`);
+          fetched.push([]);
+          continue;
         }
-      }),
-    );
+        const data = await res.json();
+        fetched.push(data.map((item) => ({ ...item, category: cat })));
+      } catch (err) {
+        console.error(`❌ Error fetch ${cat}.json:`, err.message);
+        fetched.push([]);
+      }
+    }
 
     const allXtall = fetched.flat();
     console.log(`✅ Total xtall loaded: ${allXtall.length}`);
