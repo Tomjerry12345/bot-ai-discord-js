@@ -943,8 +943,8 @@ async function getAIResponse(
  * bukan API call ke Gemini. Hemat 1 API call per pertanyaan xtall.
  */
 async function fetchXtallData(env, question) {
-  if (!env.GITHUB_RAW_BASE || !env.GITHUB_TOKEN) {
-    console.warn("⚠️ GITHUB_RAW_BASE atau GITHUB_TOKEN belum diset");
+  if (!env.GITHUB_RAW_BASE) {
+    console.warn("⚠️ GITHUB_RAW_BASE  belum diset");
     return null;
   }
 
