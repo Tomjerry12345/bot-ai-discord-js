@@ -26,6 +26,32 @@ const MAX_CONTEXT_MESSAGES = 6; // 3 pasang tanya-jawab
 const CONTEXT_TTL = 60 * 30;
 
 // ============================================
+// XTALL CONFIG
+// ============================================
+
+const XTALL_CATEGORIES = ["weapon", "armor", "additional", "special", "normal"];
+
+// Keyword yang mengindikasikan pertanyaan tentang xtall/crysta
+const XTALL_KEYWORDS = [
+  "xtall",
+  "crysta",
+  "crystal",
+  "xtal",
+  "rekomendasi crysta",
+  "crysta apa",
+  "xtall apa",
+  "upgrade",
+  "usedfor",
+  "drop dari",
+  "monster drop",
+];
+
+function isXtallQuestion(question) {
+  const q = question.toLowerCase();
+  return XTALL_KEYWORDS.some((kw) => q.includes(kw));
+}
+
+// ============================================
 // GEMINI API CALLER WITH MODEL + KEY ROTATION
 // ============================================
 
@@ -270,8 +296,20 @@ async function followUpResponse(interaction, env, question) {
     const knowledge = await getKnowledge(env);
     const results = searchKnowledge(knowledge, question);
 
-    // Get AI response dengan context
-    const aiResponse = await getAIResponse(question, results, env, userContext);
+    // Fetch xtall data jika pertanyaan tentang xtall/crysta
+    let xtallData = null;
+    if (isXtallQuestion(question)) {
+      xtallData = await fetchXtallData(env, question);
+    }
+
+    // Get AI response dengan context + xtall data
+    const aiResponse = await getAIResponse(
+      question,
+      results,
+      env,
+      userContext,
+      xtallData,
+    );
 
     // Update context: tambah pertanyaan user dan jawaban AI
     const updatedContext = [
@@ -752,7 +790,13 @@ async function handleHelp(interaction) {
 // AI INTEGRATION
 // ============================================
 
-async function getAIResponse(question, data, env, conversationHistory = []) {
+async function getAIResponse(
+  question,
+  data,
+  env,
+  conversationHistory = [],
+  xtallData = null,
+) {
   const hasKey =
     env.GEMINI_API_KEY_1 || env.GEMINI_API_KEY_2 || env.GEMINI_API_KEY_3;
 
@@ -764,7 +808,7 @@ async function getAIResponse(question, data, env, conversationHistory = []) {
   }
 
   try {
-    // LANGKAH 1: AI pilih data yang relevan berdasarkan makna
+    // LANGKAH 1: AI pilih data knowledge base yang relevan
     const selectedData = await selectRelevantData(
       question,
       data,
@@ -772,13 +816,42 @@ async function getAIResponse(question, data, env, conversationHistory = []) {
       conversationHistory,
     );
 
-    // LANGKAH 2: AI jawab berdasarkan data yang dipilih
-    const context = selectedData
+    // Build context dari knowledge base
+    const kbContext = selectedData
       .map((item) => `Q: ${item.question}\nA: ${item.answer}`)
       .join("\n\n");
 
-    const prompt = context
-      ? `Berikut data dari database Toram Online:\n\n${context}\n\n---\nPertanyaan: ${question}`
+    // Build context dari xtall data jika ada
+    let xtallContext = "";
+    if (xtallData && xtallData.length > 0) {
+      xtallContext =
+        "\n\n=== DATA XTALL/CRYSTA ===\n" +
+        xtallData
+          .map((x) => {
+            const stats = x.stats
+              .map(
+                (s) =>
+                  `${s.stat}${s.amount !== undefined ? ": " + s.amount : ""}`,
+              )
+              .join(", ");
+            const sources = x.sources
+              ? x.sources.map((s) => `${s.monster} @ ${s.map}`).join(" | ")
+              : "-";
+            const upgradeFor = x.usedFor?.upgradeFor
+              ? `Upgrade dari: ${x.usedFor.upgradeFor.join(", ")}`
+              : "";
+            const upgradeInto = x.usedFor?.upgradeInto
+              ? `Upgrade ke: ${x.usedFor.upgradeInto.join(", ")}`
+              : "";
+            return `[${x.category?.toUpperCase() || x.type}] ${x.name}\nStats: ${stats}\nDrop: ${sources}\n${upgradeFor}${upgradeInto ? "\n" + upgradeInto : ""}`;
+          })
+          .join("\n\n");
+    }
+
+    const fullContext = kbContext + xtallContext;
+
+    const prompt = fullContext
+      ? `Berikut data dari database Toram Online:\n\n${fullContext}\n\n---\nPertanyaan: ${question}`
       : `Pertanyaan: ${question}`;
 
     const result = await callGeminiWithRotation(
@@ -855,6 +928,123 @@ Jika tidak ada relevan, balas: none`;
       err.message,
     );
     return keywordResults;
+  }
+}
+
+// ============================================
+// XTALL DATA FETCHER (GitHub Private Repo)
+// ============================================
+
+async function fetchXtallData(env, question) {
+  if (!env.GITHUB_RAW_BASE || !env.GITHUB_TOKEN) {
+    console.warn("⚠️ GITHUB_RAW_BASE atau GITHUB_TOKEN belum diset");
+    return null;
+  }
+
+  try {
+    // Minta AI tentukan kategori xtall mana yang relevan
+    const categoryPrompt = `Pertanyaan user tentang xtall/crysta Toram Online: "${question}"
+
+Kategori xtall yang tersedia: weapon, armor, additional, special, normal
+
+Mana kategori yang paling relevan? Jika tidak spesifik atau tidak tahu, pilih semua.
+Balas HANYA nama kategori dipisah koma. Contoh: weapon,armor
+Jika semua relevan atau tidak spesifik: all`;
+
+    const catResult = await callGeminiWithRotation(categoryPrompt, env, []);
+    const catRaw = catResult.text.trim().toLowerCase();
+
+    let categoriesToFetch;
+    if (catRaw === "all" || catRaw === "") {
+      categoriesToFetch = XTALL_CATEGORIES;
+    } else {
+      categoriesToFetch = catRaw
+        .split(",")
+        .map((c) => c.trim())
+        .filter((c) => XTALL_CATEGORIES.includes(c));
+      if (categoriesToFetch.length === 0) categoriesToFetch = XTALL_CATEGORIES;
+    }
+
+    console.log(`📦 Fetching xtall kategori: ${categoriesToFetch.join(", ")}`);
+
+    // Fetch semua kategori yang dipilih secara paralel
+    const fetched = await Promise.all(
+      categoriesToFetch.map(async (cat) => {
+        try {
+          const url = `${env.GITHUB_RAW_BASE}/${cat}.json`;
+          const res = await fetch(url, {
+            headers: {
+              Authorization: `token ${env.GITHUB_TOKEN}`,
+              Accept: "application/vnd.github.v3.raw",
+            },
+          });
+          if (!res.ok) {
+            console.warn(`⚠️ Gagal fetch ${cat}.json: ${res.status}`);
+            return [];
+          }
+          const data = await res.json();
+          // Tambah field category ke setiap item
+          return data.map((item) => ({ ...item, category: cat }));
+        } catch (err) {
+          console.error(`❌ Error fetch ${cat}.json:`, err.message);
+          return [];
+        }
+      }),
+    );
+
+    const allXtall = fetched.flat();
+    console.log(`✅ Total xtall loaded: ${allXtall.length}`);
+
+    // Filter xtall yang relevan dengan pertanyaan menggunakan AI
+    return await filterRelevantXtall(allXtall, question, env);
+  } catch (err) {
+    console.error("❌ fetchXtallData error:", err.message);
+    return null;
+  }
+}
+
+async function filterRelevantXtall(allXtall, question, env) {
+  if (allXtall.length === 0) return [];
+
+  // Buat index ringkas untuk AI pilih
+  const xtallIndex = allXtall
+    .map((x, i) => {
+      const stats = x.stats
+        .slice(0, 3)
+        .map((s) => s.stat)
+        .join(", ");
+      return `[${i}] ${x.name} (${x.category}) - ${stats}`;
+    })
+    .join("\n");
+
+  const filterPrompt = `Pertanyaan user: "${question}"
+
+Daftar xtall/crysta yang tersedia:
+${xtallIndex}
+
+Pilih nomor xtall yang PALING RELEVAN untuk menjawab pertanyaan (maksimal 10).
+Pertimbangkan stats, tipe, dan kegunaan berdasarkan konteks pertanyaan.
+Balas HANYA nomor dipisah koma. Contoh: 0,3,7,12
+Jika tidak ada yang relevan: none`;
+
+  try {
+    const result = await callGeminiWithRotation(filterPrompt, env, []);
+    const raw = result.text.trim();
+
+    if (raw === "none" || !raw) return [];
+
+    const indices = raw
+      .split(",")
+      .map((s) => parseInt(s.trim()))
+      .filter((n) => !isNaN(n) && n >= 0 && n < allXtall.length);
+
+    const selected = indices.map((i) => allXtall[i]);
+    console.log(`🎯 AI pilih ${selected.length} xtall relevan`);
+    return selected;
+  } catch (err) {
+    console.error("❌ filterRelevantXtall error:", err.message);
+    // Fallback: return semua (max 20)
+    return allXtall.slice(0, 20);
   }
 }
 

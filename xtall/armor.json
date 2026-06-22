@@ -1,0 +1,3327 @@
+[
+  {
+    "name": "Ghostfire Oni",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -10
+      },
+      {
+        "stat": "MaxMP",
+        "amount": -100
+      },
+      {
+        "stat": "Accuracy",
+        "amount": 100
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 10
+      },
+      {
+        "stat": "Heavy Armor only:"
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 1
+      }
+    ]
+  },
+  {
+    "name": "Mari",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 70
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": -3
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": -3
+      },
+      {
+        "stat": "1-Handed Sword only:"
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 20
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Doy & Mari (Lv 353)",
+        "map": "Wizka Forest : Depths"
+      }
+    ]
+  },
+  {
+    "name": "Black Peach Ninja",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 10000
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 9
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 6
+      },
+      {
+        "stat": "Ninjutsu Scroll only:"
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -25
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Black Peach Ninja (Lv 240)",
+        "map": "Mt. Black Peach: Depth"
+      },
+      {
+        "monster": "Black Peach Ninja (Lv 260)",
+        "map": "Mt. Black Peach: Depth"
+      },
+      {
+        "monster": "Black Peach Ninja (Lv 280)",
+        "map": "Mt. Black Peach: Depth"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Baavgai"]
+    }
+  },
+  {
+    "name": "Puiet",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": -800
+      },
+      {
+        "stat": "MaxMP",
+        "amount": -400
+      },
+      {
+        "stat": "ATK %",
+        "amount": 12
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 12
+      },
+      {
+        "stat": "Shield only:"
+      },
+      {
+        "stat": "STR %",
+        "amount": 2
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 6
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zapo"]
+    }
+  },
+  {
+    "name": "Tulin Max",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -30
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 10
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 10
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 10
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Eroded Pilz"]
+    }
+  },
+  {
+    "name": "Merzehal",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 25
+      },
+      {
+        "stat": "MaxMP",
+        "amount": -200
+      },
+      {
+        "stat": "MATK %",
+        "amount": 13
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 10
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 15
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 25
+      }
+    ]
+  },
+  {
+    "name": "Dark Spinebore",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 26
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 18
+      },
+      {
+        "stat": "Guard Recharge %",
+        "amount": 10
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 5
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Capo Profundo"]
+    }
+  },
+  {
+    "name": "Glocke",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 4500
+      },
+      {
+        "stat": "MaxMP",
+        "amount": 500
+      },
+      {
+        "stat": "MATK %",
+        "amount": 12
+      },
+      {
+        "stat": "Evasion Recharge %",
+        "amount": -30
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Black Velly"]
+    }
+  },
+  {
+    "name": "Squirinja",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 10000
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 9
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 6
+      },
+      {
+        "stat": "Ninjutsu Scroll only"
+      },
+      {
+        "stat": "Evasion Recharge %",
+        "amount": 25
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Squirinja (Lv 240)",
+        "map": "Mt. White Peach: Depth"
+      },
+      {
+        "monster": "Squirinja (Lv 260)",
+        "map": "Mt. White Peach: Depth"
+      },
+      {
+        "monster": "Squirinja (Lv 280)",
+        "map": "Mt. White Peach: Depth"
+      },
+      {
+        "monster": "Squirinja (Lv 300)",
+        "map": "Mt. White Peach: Depth"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Baavgai"]
+    }
+  },
+  {
+    "name": "Skelerow",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "Water resistance %",
+        "amount": 10
+      },
+      {
+        "stat": "Dark resistance %",
+        "amount": 10
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 15
+      },
+      {
+        "stat": "Barrier Cooldown %",
+        "amount": 20
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Canemofish"]
+    }
+  },
+  {
+    "name": "Biskyva",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 900
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 7
+      },
+      {
+        "stat": "Critical Damage %",
+        "amount": 2
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 19
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Biskyva (Lv 273)",
+        "map": "Aquastida Central"
+      },
+      {
+        "monster": "Biskyva (Lv 283)",
+        "map": "Aquastida Central"
+      },
+      {
+        "monster": "Biskyva (Lv 293)",
+        "map": "Aquastida Central"
+      },
+      {
+        "monster": "Biskyva (Lv 303)",
+        "map": "Aquastida Central"
+      },
+      {
+        "monster": "Biskyva (Lv 323)",
+        "map": "Aquastida Central"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Gordel"]
+    }
+  },
+  {
+    "name": "Dandolion",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 500
+      },
+      {
+        "stat": "CSPD",
+        "amount": 300
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 4
+      },
+      {
+        "stat": "Light Armor only:"
+      },
+      {
+        "stat": "Stability %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Dandolion (Lv 308)",
+        "map": "Umidus Valley: Cliff Path"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Super Death Mushroom"]
+    }
+  },
+  {
+    "name": "Bemoz",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": -150
+      },
+      {
+        "stat": "ATK %",
+        "amount": 6
+      },
+      {
+        "stat": "MATK %",
+        "amount": 6
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 8
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 8
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 17
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Bemoz (Lv 225)",
+        "map": "Deusania's Lab Innermost Chambers"
+      },
+      {
+        "monster": "Bemoz (Lv 250)",
+        "map": "Deusania's Lab Innermost Chambers"
+      },
+      {
+        "monster": "Bemoz (Lv 275)",
+        "map": "Deusania's Lab Innermost Chambers"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Sibylares"]
+    }
+  },
+  {
+    "name": "Mulgoon's Hand",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 10000
+      },
+      {
+        "stat": "MaxMP",
+        "amount": -100
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 5
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 6
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 4
+      }
+    ]
+  },
+  {
+    "name": "Meteora",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "Physical Pierce %",
+        "amount": 5
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 7
+      },
+      {
+        "stat": "Unsheathe Attack %",
+        "amount": 9
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Meteora (Lv 302)",
+        "map": "Menabra Plains"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Gemma"]
+    }
+  },
+  {
+    "name": "Bangrudom",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -20
+      },
+      {
+        "stat": "ATK %",
+        "amount": 10
+      },
+      {
+        "stat": "MATK %",
+        "amount": 10
+      },
+      {
+        "stat": "ASPD %",
+        "amount": 10
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 10
+      },
+      {
+        "stat": "Shield only:"
+      },
+      {
+        "stat": "DEX %",
+        "amount": 5
+      },
+      {
+        "stat": "Light Armor only:"
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Bangrudom (Coffee) (Lv 290)",
+        "map": "El Scaro: Back Alley"
+      },
+      {
+        "monster": "Bangrudom (Choco) (Lv 260)",
+        "map": "El Scaro: Back Alley"
+      },
+      {
+        "monster": "Bangrudom (Cocoa) (Lv 230)",
+        "map": "El Scaro: Back Alley"
+      },
+      {
+        "monster": "Bangrudom (Plain) (Lv 200)",
+        "map": "El Scaro: Back Alley"
+      }
+    ]
+  },
+  {
+    "name": "Capo Profundo",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 16
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 12
+      },
+      {
+        "stat": "Guard Recharge %",
+        "amount": 8
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Capo Profundo (Lv 287)",
+        "map": "Abandoned District: Area 3"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Daddy Finpen"],
+      "upgradeInto": ["Dark Spinebore"]
+    }
+  },
+  {
+    "name": "Altadar",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 6
+      },
+      {
+        "stat": "VIT %",
+        "amount": 6
+      },
+      {
+        "stat": "Stability %",
+        "amount": 11
+      },
+      {
+        "stat": "Heavy Armor only:"
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 11
+      },
+      {
+        "stat": "Light Armor only:"
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 11
+      },
+      {
+        "stat": "Heavy Armor,Light Armor only:"
+      },
+      {
+        "stat": "Stability %",
+        "amount": -5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Altadar (Lv 290)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      }
+    ]
+  },
+  {
+    "name": "Gegner",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "INT %",
+        "amount": 6
+      },
+      {
+        "stat": "MATK %",
+        "amount": 10
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 40
+      },
+      {
+        "stat": "Attack MP Recovery %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Gegner (Lv 210)",
+        "map": "Tower of Clamor: Rooftop"
+      },
+      {
+        "monster": "Gegner (Lv 230)",
+        "map": "Tower of Clamor: Rooftop"
+      },
+      {
+        "monster": "Gegner (Lv 250)",
+        "map": "Tower of Clamor: Rooftop"
+      },
+      {
+        "monster": "Gegner (Lv 400)",
+        "map": "Tower of Clamor: Rooftop"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Yule Cat"]
+    }
+  },
+  {
+    "name": "Aubermight",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 15
+      },
+      {
+        "stat": "DEF",
+        "amount": 45
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 30
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Aubergine Dragon Auvio (Lv 235)",
+        "map": "Rakau Plains"
+      },
+      {
+        "monster": "Aubergine Dragon Auvio (Lv 245)",
+        "map": "Rakau Plains"
+      },
+      {
+        "monster": "Aubergine Dragon Auvio (Lv 255)",
+        "map": "Rakau Plains"
+      },
+      {
+        "monster": "Aubergine Dragon Auvio (Lv 275)",
+        "map": "Rakau Plains"
+      }
+    ]
+  },
+  {
+    "name": "Zapo",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": -400
+      },
+      {
+        "stat": "MaxMP",
+        "amount": -400
+      },
+      {
+        "stat": "ATK %",
+        "amount": 10
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 10
+      },
+      {
+        "stat": "Shield only:"
+      },
+      {
+        "stat": "STR %",
+        "amount": 1
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zapo (Lv 256)",
+        "map": "Puerta Islands: Adit"
+      },
+      {
+        "monster": "Zapo (Lv 266)",
+        "map": "Puerta Islands: Adit"
+      },
+      {
+        "monster": "Zapo (Lv 276)",
+        "map": "Puerta Islands: Adit"
+      },
+      {
+        "monster": "Zapo (Lv 296)",
+        "map": "Puerta Islands: Adit"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Arachnidemon"],
+      "upgradeInto": ["Puiet"]
+    }
+  },
+  {
+    "name": "DX Fighter II",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 6000
+      },
+      {
+        "stat": "ATK %",
+        "amount": 3
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 15
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 6
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Dr. Leonardo (Subcontractor) (Lv 235)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Subcontractor) (Lv 245)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Subcontractor) (Lv 255)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Subcontractor) (Lv 275)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (DX Subcontractor) (Lv 285)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (DX Subcontractor) (Lv 295)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (DX Subcontractor) (Lv 305)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (DX Subcontractor) (Lv 325)",
+        "map": "Eagle Talon Collab Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["DX Fighter"]
+    }
+  },
+  {
+    "name": "Dr. Leonardo II",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 6000
+      },
+      {
+        "stat": "MATK %",
+        "amount": 3
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 20
+      },
+      {
+        "stat": "Ailment Resistance %",
+        "amount": 5
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Dr. Leonardo (Subcontractor) (Lv 235)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Subcontractor) (Lv 245)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Subcontractor) (Lv 255)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Subcontractor) (Lv 275)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (DX Subcontractor) (Lv 285)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (DX Subcontractor) (Lv 295)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (DX Subcontractor) (Lv 305)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (DX Subcontractor) (Lv 325)",
+        "map": "Eagle Talon Collab Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Dr. Leonardo"]
+    }
+  },
+  {
+    "name": "Walican",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 6000
+      },
+      {
+        "stat": "Weapon ATK %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Walican (Lv 247)",
+        "map": "Jabali Kubwa: Summit"
+      },
+      {
+        "monster": "Walican (Lv 257)",
+        "map": "Jabali Kubwa: Summit"
+      },
+      {
+        "monster": "Walican (Lv 267)",
+        "map": "Jabali Kubwa: Summit"
+      },
+      {
+        "monster": "Walican (Lv 287)",
+        "map": "Jabali Kubwa: Summit"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Ferzen the Rock Dragon"]
+    }
+  },
+  {
+    "name": "Baavgai",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 7000
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 7
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Baavgai (Easy) (Lv 200)",
+        "map": "Mt. Sakuraten: Summit"
+      },
+      {
+        "monster": "Baavgai (Normal) (Lv 220)",
+        "map": "Mt. Sakuraten: Summit"
+      },
+      {
+        "monster": "Baavgai (Hard) (Lv 240)",
+        "map": "Mt. Sakuraten: Summit"
+      },
+      {
+        "monster": "Baavgai (Nightmare) (Lv 260)",
+        "map": "Mt. Sakuraten: Summit"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Dreamy Scarlet Sakura"],
+      "upgradeInto": ["Squirinja", "Black Peach Ninja"]
+    }
+  },
+  {
+    "name": "Kruztor II",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 7
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 7
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 7
+      },
+      {
+        "stat": "Dodge %",
+        "amount": 7
+      },
+      {
+        "stat": "Neutral Resistance %",
+        "amount": 7
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Mage Filecia (Coffee) (Lv 280)",
+        "map": "El Scaro: Back Alley"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Kruztor"]
+    }
+  },
+  {
+    "name": "Black Velly",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 3000
+      },
+      {
+        "stat": "MaxMP",
+        "amount": 400
+      },
+      {
+        "stat": "MATK %",
+        "amount": 9
+      },
+      {
+        "stat": "Evasion Recharge %",
+        "amount": -20
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Black Velly (Easy) (Lv 190)",
+        "map": "Illuminare City: Central Square"
+      },
+      {
+        "monster": "Black Velly (Normal) (Lv 210)",
+        "map": "Illuminare City: Central Square"
+      },
+      {
+        "monster": "Black Velly (Hard) (Lv 230)",
+        "map": "Illuminare City: Central Square"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Evil Shadow"],
+      "upgradeInto": ["Glocke"]
+    }
+  },
+  {
+    "name": "Filrocas",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 60
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": -7
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": -7
+      },
+      {
+        "stat": "Knuckle only:"
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 15
+      },
+      {
+        "stat": "1-Handed Sword only:"
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 15
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Filrocas (Lv 241)",
+        "map": "Royal Dragon Cocoon Chamber"
+      },
+      {
+        "monster": "Filrocas (Lv 251)",
+        "map": "Royal Dragon Cocoon Chamber"
+      },
+      {
+        "monster": "Filrocas (Lv 261)",
+        "map": "Royal Dragon Cocoon Chamber"
+      },
+      {
+        "monster": "Filrocas (Lv 281)",
+        "map": "Royal Dragon Cocoon Chamber"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Eroded Pilz"]
+    }
+  },
+  {
+    "name": "Sibylares",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": -100
+      },
+      {
+        "stat": "ATK %",
+        "amount": 5
+      },
+      {
+        "stat": "MATK %",
+        "amount": 5
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 5
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 5
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 15
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Sibylares (Easy) (Lv 175)",
+        "map": "Phasma Forest: Area 3"
+      },
+      {
+        "monster": "Sibylares (Normal) (Lv 200)",
+        "map": "Phasma Forest: Area 3"
+      },
+      {
+        "monster": "Sibylares (Hard) (Lv 225)",
+        "map": "Phasma Forest: Area 3"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Bemoz"]
+    }
+  },
+  {
+    "name": "Galegon",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "CSPD %",
+        "amount": 20
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -30
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Galegon (Lv 260)",
+        "map": "Boma Moja: Area 3"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Thug Golem"]
+    }
+  },
+  {
+    "name": "Gordel",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 800
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 3
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 17
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Gordel (Lv 229)",
+        "map": "Milcaska Falls: Weredragon's Mouth"
+      },
+      {
+        "monster": "Gordel (Lv 239)",
+        "map": "Milcaska Falls: Weredragon's Mouth"
+      },
+      {
+        "monster": "Gordel (Lv 249)",
+        "map": "Milcaska Falls: Weredragon's Mouth"
+      },
+      {
+        "monster": "Gordel (Lv 269)",
+        "map": "Milcaska Falls: Weredragon's Mouth"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Mom Fluck"],
+      "upgradeInto": ["Biskyva"]
+    }
+  },
+  {
+    "name": "Glaucius",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 6
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Evasion Recharge %",
+        "amount": 15
+      },
+      {
+        "stat": "Light Armor only:"
+      },
+      {
+        "stat": "MATK UP (AGI %)",
+        "amount": 25
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Glaucius (Lv 248)",
+        "map": "Arstida: Area 2"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Forestia"]
+    }
+  },
+  {
+    "name": "DX Fighter",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 5000
+      },
+      {
+        "stat": "ATK %",
+        "amount": 2
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 10
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 6
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "DX Fighter (Anthony) (Lv 40)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Shostakovich) (Lv 210)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Shostakovich) (Lv 200)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Shostakovich) (Lv 190)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Deluxe) (Lv 180)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Deluxe) (Lv 160)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Deluxe) (Lv 150)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Deluxe) (Lv 140)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Fighter) (Lv 130)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Fighter) (Lv 110)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Fighter) (Lv 100)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Fighter) (Lv 90)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Anthony) (Lv 80)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Anthony) (Lv 60)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Anthony) (Lv 50)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "DX Fighter (Shostakovich) (Lv 230)",
+        "map": "Eagle Talon Collab Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["DX Fighter II"]
+    }
+  },
+  {
+    "name": "Dr. Leonardo",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 5000
+      },
+      {
+        "stat": "MATK %",
+        "amount": 2
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 10
+      },
+      {
+        "stat": "Ailment Resistance %",
+        "amount": 5
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Dr. Leonardo (Bachelor) (Lv 30)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Genius) (Lv 200)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Genius) (Lv 190)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Genius) (Lv 180)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Doctor) (Lv 170)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Doctor) (Lv 150)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Doctor) (Lv 140)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Doctor) (Lv 130)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Master) (Lv 120)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Master) (Lv 100)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Master) (Lv 90)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Master) (Lv 80)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Bachelor) (Lv 70)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Bachelor) (Lv 50)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Bachelor) (Lv 40)",
+        "map": "Eagle Talon Collab Venue"
+      },
+      {
+        "monster": "Dr. Leonardo (Genius) (Lv 220)",
+        "map": "Eagle Talon Collab Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Dr. Leonardo II"]
+    }
+  },
+  {
+    "name": "Usamochi",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 300
+      },
+      {
+        "stat": "ATK %",
+        "amount": 6
+      },
+      {
+        "stat": "Neutral Resistance %",
+        "amount": -10
+      },
+      {
+        "stat": "Unsheathe Attack %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Devil Dango (Lv 120)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      },
+      {
+        "monster": "Devil Dango (Lv 170)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      },
+      {
+        "monster": "Devil Dango (Lv 220)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Usami"]
+    }
+  },
+  {
+    "name": "Ferzen the Rock Dragon",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 5000
+      },
+      {
+        "stat": "Weapon ATK %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Ferzen the Rock Dragon (Lv 211)",
+        "map": "Guardian Forest: Giant Tree"
+      },
+      {
+        "monster": "Ferzen the Rock Dragon (Lv 221)",
+        "map": "Guardian Forest: Giant Tree"
+      },
+      {
+        "monster": "Ferzen the Rock Dragon (Lv 231)",
+        "map": "Guardian Forest: Giant Tree"
+      },
+      {
+        "monster": "Ferzen the Rock Dragon (Lv 251)",
+        "map": "Guardian Forest: Giant Tree"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Sapphire Roga"],
+      "upgradeInto": ["Walican"]
+    }
+  },
+  {
+    "name": "Yuveria",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 300
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -15
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Yuveria (Lv 185)",
+        "map": "Underwater Canyon: Depths"
+      },
+      {
+        "monster": "Yuveria (Lv 195)",
+        "map": "Underwater Canyon: Depths"
+      },
+      {
+        "monster": "Yuveria (Lv 205)",
+        "map": "Underwater Canyon: Depths"
+      },
+      {
+        "monster": "Yuveria (Lv 225)",
+        "map": "Underwater Canyon: Depths"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Gopherga"]
+    }
+  },
+  {
+    "name": "Gemma",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "Physical Pierce %",
+        "amount": 5
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 6
+      },
+      {
+        "stat": "Unsheathe Attack %",
+        "amount": 7
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Gemma (Lv 208)",
+        "map": "Fugitive Lake Swamp: Depths"
+      },
+      {
+        "monster": "Gemma (Lv 218)",
+        "map": "Fugitive Lake Swamp: Depths"
+      },
+      {
+        "monster": "Gemma (Lv 228)",
+        "map": "Fugitive Lake Swamp: Depths"
+      },
+      {
+        "monster": "Gemma (Lv 248)",
+        "map": "Fugitive Lake Swamp: Depths"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Pyxtica"],
+      "upgradeInto": ["Meteora"]
+    }
+  },
+  {
+    "name": "Doctor Pom Pom",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "Critical Rate %",
+        "amount": 7
+      },
+      {
+        "stat": "Ailment Resistance %",
+        "amount": 7
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 7
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 170)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 220)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 210)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 200)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 190)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 220)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 200)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 190)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 180)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 240)",
+        "map": "Archfiend's Throne"
+      }
+    ]
+  },
+  {
+    "name": "Dreamy Scarlet Sakura",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 4000
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 4
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 2
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Dreamy Scarlet Sakura (Nightmare) (Lv 220)",
+        "map": "Lush Falls : Upstream"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Mimesia"],
+      "upgradeInto": ["Baavgai"]
+    }
+  },
+  {
+    "name": "Kruztor",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 5
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 5
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 5
+      },
+      {
+        "stat": "Dodge %",
+        "amount": 5
+      },
+      {
+        "stat": "Neutral Resistance %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Kruztor (Lv 250)",
+        "map": "El Scaro"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Kruztor II"]
+    }
+  },
+  {
+    "name": "Grim Reaper Scarecrow",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -30
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -15
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Grim Reaper Scarecrow (Lv 224)",
+        "map": "Witch's Woods Area 2"
+      }
+    ]
+  },
+  {
+    "name": "Yule Cat",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "INT %",
+        "amount": 3
+      },
+      {
+        "stat": "MATK %",
+        "amount": 7
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 35
+      },
+      {
+        "stat": "Attack MP Recovery %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Yule Cat (Lv 197)",
+        "map": "Tomte Pavillion (170-190)"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Noeliel the Ice Statue"],
+      "upgradeInto": ["Gegner"]
+    }
+  },
+  {
+    "name": "Arachnidemon",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": -400
+      },
+      {
+        "stat": "MaxMP",
+        "amount": -400
+      },
+      {
+        "stat": "ATK %",
+        "amount": 8
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 8
+      },
+      {
+        "stat": "Shield only:"
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 4
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Arachnidemon (Lv 186)",
+        "map": "Arche Valley: Depths"
+      },
+      {
+        "monster": "Arachnidemon (Lv 196)",
+        "map": "Arche Valley: Depths"
+      },
+      {
+        "monster": "Arachnidemon (Lv 206)",
+        "map": "Arche Valley: Depths"
+      },
+      {
+        "monster": "Arachnidemon (Lv 216)",
+        "map": "Arche Valley: Depths"
+      },
+      {
+        "monster": "Arachnidemon (Lv 236)",
+        "map": "Arche Valley: Depths"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Zapo"]
+    }
+  },
+  {
+    "name": "Phantom Wisp",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "Accuracy %",
+        "amount": 20
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 10
+      },
+      {
+        "stat": "Evasion Recharge %",
+        "amount": 10
+      },
+      {
+        "stat": "Absolute Dodge %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Phantom Wisp (Lv 125)",
+        "map": "Phantom Wisp's Hideout: Theater"
+      },
+      {
+        "monster": "Phantom Wisp (Lv 150)",
+        "map": "Phantom Wisp's Hideout: Theater"
+      },
+      {
+        "monster": "Phantom Wisp (Lv 175)",
+        "map": "Phantom Wisp's Hideout: Theater"
+      },
+      {
+        "monster": "Phantom Wisp (Lv 200)",
+        "map": "Phantom Wisp's Hideout: Theater"
+      }
+    ]
+  },
+  {
+    "name": "Gopherga",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 3000
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 15
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Gopherga (Lv 207)",
+        "map": "Underwater Ruins"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Yuveria"]
+    }
+  },
+  {
+    "name": "Demonic Eye",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1000
+      },
+      {
+        "stat": "ASPD",
+        "amount": 300
+      },
+      {
+        "stat": "Tumble Unavailable",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Demonic Eye (Lv 212)",
+        "map": "Dea Ruinea"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Demonic Quasar"]
+    }
+  },
+  {
+    "name": "Demonic Quasar",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 1000
+      },
+      {
+        "stat": "CSPD",
+        "amount": 300
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Demonic Quasar (Lv 175)",
+        "map": "Morga Wasteland: Deepest Area"
+      },
+      {
+        "monster": "Demonic Quasar (Megiston 2021) (Lv 230)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Demonic Eye"]
+    }
+  },
+  {
+    "name": "Canemofish",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "Water resistance %",
+        "amount": 10
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 10
+      },
+      {
+        "stat": "Barrier Cooldown %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Canemofish (Lv 210)",
+        "map": "Recetacula Sector: Area 1"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Skelerow"]
+    }
+  },
+  {
+    "name": "Sapphire Roga",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 4000
+      },
+      {
+        "stat": "Weapon ATK %",
+        "amount": 4
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Sapphire Roga (Lv 181)",
+        "map": "Avant Plastida: Deepest Area"
+      },
+      {
+        "monster": "Sapphire Roga (Lv 191)",
+        "map": "Avant Plastida: Deepest Area"
+      },
+      {
+        "monster": "Sapphire Roga (Lv 201)",
+        "map": "Avant Plastida: Deepest Area"
+      },
+      {
+        "monster": "Sapphire Roga (Lv 221)",
+        "map": "Avant Plastida: Deepest Area"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Ornlarf"],
+      "upgradeInto": ["Ferzen the Rock Dragon"]
+    }
+  },
+  {
+    "name": "Evil Shadow",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1500
+      },
+      {
+        "stat": "MaxMP",
+        "amount": 300
+      },
+      {
+        "stat": "MATK %",
+        "amount": 6
+      },
+      {
+        "stat": "Evasion Recharge %",
+        "amount": -10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Evil Shadow (Lv 137)",
+        "map": "Reindeer Forest"
+      },
+      {
+        "monster": "Evil Shadow (Lv 157)",
+        "map": "Reindeer Forest"
+      },
+      {
+        "monster": "Evil Shadow (Lv 177)",
+        "map": "Reindeer Forest"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Black Velly"]
+    }
+  },
+  {
+    "name": "Pyxtica",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "Physical Pierce %",
+        "amount": 4
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 4
+      },
+      {
+        "stat": "Unsheathe Attack %",
+        "amount": 4
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Pyxtica (Lv 175)",
+        "map": "Fractum Sector: Area 3"
+      },
+      {
+        "monster": "Pyxtica (Lv 185)",
+        "map": "Fractum Sector: Area 3"
+      },
+      {
+        "monster": "Pyxtica (Lv 195)",
+        "map": "Fractum Sector: Area 3"
+      },
+      {
+        "monster": "Pyxtica (Lv 215)",
+        "map": "Fractum Sector: Area 3"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Cerberus"],
+      "upgradeInto": ["Gemma"]
+    }
+  },
+  {
+    "name": "Eroded Pilz",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 30
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": -10
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": -10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Eroded Pilz (Lv 172)",
+        "map": "Morthell Swell: Deep Area"
+      },
+      {
+        "monster": "Eroded Pilz (Lv 182)",
+        "map": "Morthell Swell: Deep Area"
+      },
+      {
+        "monster": "Eroded Pilz (Lv 192)",
+        "map": "Morthell Swell: Deep Area"
+      },
+      {
+        "monster": "Eroded Pilz (Lv 212)",
+        "map": "Morthell Swell: Deep Area"
+      },
+      {
+        "monster": "Eroded Pilz (Megiston 2020) (Lv 180)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Filrocas"]
+    }
+  },
+  {
+    "name": "Thug Golem",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "CSPD %",
+        "amount": 15
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -20
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Thug Golem (Lv 191)",
+        "map": "Dark Dragon Shrine: Middle"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Galegon"]
+    }
+  },
+  {
+    "name": "Iron Empress",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 20
+      },
+      {
+        "stat": "MaxMP",
+        "amount": -300
+      },
+      {
+        "stat": "MATK %",
+        "amount": 5
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 10
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 10
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 20
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Ancient Empress Mezzaluna (Hell) (Lv 180)",
+        "map": "Event"
+      }
+    ]
+  },
+  {
+    "name": "Mimesia",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 2000
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 2
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Mimesia (Easy) (Lv 120)",
+        "map": "Sakura Castle Donjon: Top"
+      },
+      {
+        "monster": "Mimesia (Normal) (Lv 140)",
+        "map": "Sakura Castle Donjon: Top"
+      },
+      {
+        "monster": "Mimesia (Hard) (Lv 160)",
+        "map": "Sakura Castle Donjon: Top"
+      },
+      {
+        "monster": "Mimesia (Nightmare) (Lv 180)",
+        "map": "Sakura Castle Donjon: Top"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Cerabes"],
+      "upgradeInto": ["Dreamy Scarlet Sakura"]
+    }
+  },
+  {
+    "name": "Noeliel the Ice Statue",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 5
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 30
+      },
+      {
+        "stat": "Attack MP Recovery %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 112)",
+        "map": "Noeliel Castle: Hall (80-100)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 182)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 172)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 162)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 152)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 182)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 162)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 152)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 142)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 132)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 162)",
+        "map": "Noeliel Castle: Hall (80-100)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 142)",
+        "map": "Noeliel Castle: Hall (80-100)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 132)",
+        "map": "Noeliel Castle: Hall (80-100)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 122)",
+        "map": "Noeliel Castle: Hall (80-100)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (raid) (Lv 202)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Noeliel"],
+      "upgradeInto": ["Yule Cat"]
+    }
+  },
+  {
+    "name": "Noeliel",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 5
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 3
+      },
+      {
+        "stat": "Attack MP Recovery %",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Noeliel the Ice Statue (Lv 141)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 152)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 142)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 132)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 122)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 152)",
+        "map": "Noeliel Castle: Hall (80-100)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 132)",
+        "map": "Noeliel Castle: Hall (80-100)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 122)",
+        "map": "Noeliel Castle: Hall (80-100)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 112)",
+        "map": "Noeliel Castle: Hall (80-100)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 191)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 171)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 161)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 151)",
+        "map": "Noeliel Castle: Hall (120-140)"
+      },
+      {
+        "monster": "Noeliel the Ice Statue (Lv 172)",
+        "map": "Noeliel Castle: Hall (100-120)"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Noeliel the Ice Statue"],
+      "crafting": ["Noeliel Talisman 1 pcs/craft"]
+    }
+  },
+  {
+    "name": "Mom Fluck",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 700
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 15
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Mom Fluck (Lv 151)",
+        "map": "Forgotten Cave"
+      },
+      {
+        "monster": "Mom Fluck (Lv 161)",
+        "map": "Forgotten Cave"
+      },
+      {
+        "monster": "Mom Fluck (Lv 171)",
+        "map": "Forgotten Cave"
+      },
+      {
+        "monster": "Mom Fluck (Lv 191)",
+        "map": "Forgotten Cave"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Ifrid"],
+      "upgradeInto": ["Gordel"]
+    }
+  },
+  {
+    "name": "The Great Witch of Crow",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "Stability %",
+        "amount": 4
+      },
+      {
+        "stat": "Ailment Resistance %",
+        "amount": -14
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 2
+      },
+      {
+        "stat": "Absolute Accuracy %",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zoe (Lv 150)",
+        "map": "Halloween Mansion Basement"
+      }
+    ]
+  },
+  {
+    "name": "Usami",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 300
+      },
+      {
+        "stat": "ATK %",
+        "amount": 3
+      },
+      {
+        "stat": "Neutral Resistance %",
+        "amount": -10
+      },
+      {
+        "stat": "Unsheathe Attack %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Usami (New Moon Lv30+) (Lv 30)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (Otsukimi 2019) (Lv 60)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      },
+      {
+        "monster": "Usami (Otsukimi 2019) (Lv 30)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      },
+      {
+        "monster": "Usami (Full Moon Lv90+) (Lv 130)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (Full Moon Lv90+) (Lv 110)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (Full Moon Lv90+) (Lv 100)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (Full Moon Lv90+) (Lv 90)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (Crescent Moon Lv60+) (Lv 100)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (Crescent Moon Lv60+) (Lv 80)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (Crescent Moon Lv60+) (Lv 70)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (Crescent Moon Lv60+) (Lv 60)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (New Moon Lv30+) (Lv 70)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (New Moon Lv30+) (Lv 50)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (New Moon Lv30+) (Lv 40)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usami (Otsukimi 2019) (Lv 90)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Usakichi"],
+      "upgradeInto": ["Usamochi"]
+    }
+  },
+  {
+    "name": "Usakichi",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 100
+      },
+      {
+        "stat": "ATK %",
+        "amount": 1
+      },
+      {
+        "stat": "Neutral Resistance %",
+        "amount": -1
+      },
+      {
+        "stat": "Unsheathe Attack %",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Usakichi (New Moon Lv30+) (Lv 30)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (Otsukimi 2019) (Lv 60)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      },
+      {
+        "monster": "Usakichi (Otsukimi 2019) (Lv 30)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      },
+      {
+        "monster": "Usakichi (Full Moon Lv90+) (Lv 130)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (Full Moon Lv90+) (Lv 110)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (Full Moon Lv90+) (Lv 100)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (Full Moon Lv90+) (Lv 90)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (Crescent Moon Lv60+) (Lv 100)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (Crescent Moon Lv60+) (Lv 80)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (Crescent Moon Lv60+) (Lv 70)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (Crescent Moon Lv60+) (Lv 60)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (New Moon Lv30+) (Lv 70)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (New Moon Lv30+) (Lv 50)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (New Moon Lv30+) (Lv 40)",
+        "map": "Otsukimi Event Venue"
+      },
+      {
+        "monster": "Usakichi (Otsukimi 2019) (Lv 90)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Usami"]
+    }
+  },
+  {
+    "name": "Maton Sword",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 3
+      },
+      {
+        "stat": "MaxHP",
+        "amount": -1000
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 5
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 4
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Maton Sword (Lv 143)",
+        "map": "Buried Tower: Entrance"
+      },
+      {
+        "monster": "Maton Sword (Lv 153)",
+        "map": "Buried Tower: Entrance"
+      },
+      {
+        "monster": "Maton Sword (Lv 163)",
+        "map": "Buried Tower: Entrance"
+      },
+      {
+        "monster": "Maton Sword (Lv 183)",
+        "map": "Buried Tower: Entrance"
+      }
+    ]
+  },
+  {
+    "name": "Goleps",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 750
+      },
+      {
+        "stat": "MaxMP",
+        "amount": 250
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Goleps (Lv 160)",
+        "map": "Yorl Highlands"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Colon Commander"]
+    }
+  },
+  {
+    "name": "Ornlarf",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 3000
+      },
+      {
+        "stat": "Weapon ATK %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Ornlarf (Lv 142)",
+        "map": "Ultimea Palace: Corridor"
+      },
+      {
+        "monster": "Ornlarf (Lv 152)",
+        "map": "Ultimea Palace: Corridor"
+      },
+      {
+        "monster": "Ornlarf (Lv 162)",
+        "map": "Ultimea Palace: Corridor"
+      },
+      {
+        "monster": "Ornlarf (Lv 182)",
+        "map": "Ultimea Palace: Corridor"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Iconos"],
+      "upgradeInto": ["Sapphire Roga"]
+    }
+  },
+  {
+    "name": "Super Death Mushroom",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 400
+      },
+      {
+        "stat": "CSPD",
+        "amount": 200
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Super Death Mushroom (Lv 150)",
+        "map": "Monster's Forest: Animal Trail"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Jade Raptor"],
+      "upgradeInto": ["Dandolion"],
+      "crafting": ["[Book of Darkness] 1 pcs/craft"]
+    }
+  },
+  {
+    "name": "Goldoon",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 3
+      },
+      {
+        "stat": "MATK %",
+        "amount": 3
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 3
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Goldoon (Fall 2017) (Lv 140)",
+        "map": "Gravel Terrace"
+      }
+    ]
+  },
+  {
+    "name": "Daddy Finpen",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 6
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Guard Recharge %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Daddy Finpen (Lv 123)",
+        "map": "Spring of Rebirth: Middle"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Tortuga"],
+      "upgradeInto": ["Capo Profundo"]
+    }
+  },
+  {
+    "name": "Ifrid",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 600
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 12
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Ifrid (Lv 112)",
+        "map": "Blazing Graben: Deepest Part"
+      },
+      {
+        "monster": "Ifrid (Lv 122)",
+        "map": "Blazing Graben: Deepest Part"
+      },
+      {
+        "monster": "Ifrid (Lv 132)",
+        "map": "Blazing Graben: Deepest Part"
+      },
+      {
+        "monster": "Ifrid (Lv 152)",
+        "map": "Blazing Graben: Deepest Part"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Mom Fluck"]
+    }
+  },
+  {
+    "name": "Iconos",
+    "type": "Enhancer Crysta (Green)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 2000
+      },
+      {
+        "stat": "Weapon ATK %",
+        "amount": 2
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Iconos (Lv 108)",
+        "map": "Artillery Defense Line"
+      },
+      {
+        "monster": "Iconos (Lv 118)",
+        "map": "Artillery Defense Line"
+      },
+      {
+        "monster": "Iconos (Lv 128)",
+        "map": "Artillery Defense Line"
+      },
+      {
+        "monster": "Iconos (Lv 148)",
+        "map": "Artillery Defense Line"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Boss Roga"],
+      "upgradeInto": ["Ornlarf"]
+    }
+  },
+  {
+    "name": "Cerabes",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1000
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Cerabes (Hanami 2017) (Lv 60)",
+        "map": "Hanami Venue: Summit"
+      },
+      {
+        "monster": "Cerabes (Hanami 2017) (Lv 80)",
+        "map": "Hanami Venue: Summit"
+      },
+      {
+        "monster": "Cerabes (Hanami 2017) (Lv 100)",
+        "map": "Hanami Venue: Summit"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Mimesia"],
+      "crafting": ["Prajna Charmstone 1 pcs/craft"]
+    }
+  },
+  {
+    "name": "Cerberus",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "Physical Pierce %",
+        "amount": 3
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 3
+      },
+      {
+        "stat": "Unsheathe Attack %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Cerberus (Lv 97)",
+        "map": "Spring of Rebirth: Top"
+      },
+      {
+        "monster": "Cerberus (Lv 107)",
+        "map": "Spring of Rebirth: Top"
+      },
+      {
+        "monster": "Cerberus (Lv 117)",
+        "map": "Spring of Rebirth: Top"
+      },
+      {
+        "monster": "Cerberus (Lv 137)",
+        "map": "Spring of Rebirth: Top"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Pyxtica"]
+    }
+  },
+  {
+    "name": "Jade Raptor",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 300
+      },
+      {
+        "stat": "CSPD",
+        "amount": 100
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Jade Raptor (Lv 79)",
+        "map": "Gravel Terrace"
+      },
+      {
+        "monster": "Jade Raptor (Lv 89)",
+        "map": "Gravel Terrace"
+      },
+      {
+        "monster": "Jade Raptor (Lv 99)",
+        "map": "Gravel Terrace"
+      },
+      {
+        "monster": "Jade Raptor (Lv 119)",
+        "map": "Gravel Terrace"
+      },
+      {
+        "monster": "Jade Raptor (Megiston 2017) (Lv 120)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Super Death Mushroom"]
+    }
+  },
+  {
+    "name": "Tortuga",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 1
+      },
+      {
+        "stat": "Physical Resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Guard Recharge %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Tortuga (Lv 40)",
+        "map": "Icule Lake"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Daddy Finpen"]
+    }
+  },
+  {
+    "name": "Forestia",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 1
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Evasion Recharge %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Forestia (Lv 49)",
+        "map": "Land Of Chaos"
+      },
+      {
+        "monster": "Forestia (Lv 59)",
+        "map": "Land Of Chaos"
+      },
+      {
+        "monster": "Forestia (Lv 69)",
+        "map": "Land Of Chaos"
+      },
+      {
+        "monster": "Forestia (Lv 89)",
+        "map": "Land Of Chaos"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Glaucius"]
+    }
+  },
+  {
+    "name": "Colon Commander",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 150
+      },
+      {
+        "stat": "MaxMP",
+        "amount": 50
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Colon Commander (Lv 33)",
+        "map": "Strum Road"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Goleps"]
+    }
+  },
+  {
+    "name": "Boss Roga",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1000
+      },
+      {
+        "stat": "Weapon ATK %",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Boss Roga (Lv 62)",
+        "map": "Saham Underground Cave - Deepest Part"
+      },
+      {
+        "monster": "Boss Roga (Lv 72)",
+        "map": "Saham Underground Cave - Deepest Part"
+      },
+      {
+        "monster": "Boss Roga (Lv 82)",
+        "map": "Saham Underground Cave - Deepest Part"
+      },
+      {
+        "monster": "Boss Roga (Lv 102)",
+        "map": "Saham Underground Cave - Deepest Part"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Iconos"]
+    }
+  },
+  {
+    "name": "Arcoiris",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "Natural HP Regen %",
+        "amount": 10
+      },
+      {
+        "stat": "MaxHP %",
+        "amount": 10
+      },
+      {
+        "stat": "DEF %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Arcoiris (Lv 70)",
+        "map": "Yorl Highlands"
+      }
+    ]
+  },
+  {
+    "name": "Arnold",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 5
+      },
+      {
+        "stat": "MATK %",
+        "amount": 5
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 5
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 15
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 15
+      },
+      {
+        "stat": "MaxHP",
+        "amount": 5000
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 10
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 2
+      },
+      {
+        "stat": "With Two-Handed Swords:"
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Arnold",
+        "map": "Event: Let This Grieving Soul Retire!"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Arnold II"]
+    },
+    "date_adding": "28/05/2026 19:00"
+  },
+  {
+    "name": "Arnold II",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 6
+      },
+      {
+        "stat": "MATK %",
+        "amount": 6
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 6
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 15
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 15
+      },
+      {
+        "stat": "MaxHP",
+        "amount": 6000
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 10
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 2
+      },
+      {
+        "stat": "With Two-Handed Swords:"
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Arnold",
+        "map": "Event: Let This Grieving Soul Retire!"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Crashing Lightning"],
+      "upgradeFor": ["Arnold"]
+    },
+    "date_adding": "28/05/2026 19:10"
+  },
+  {
+    "name": "Crashing Lightning",
+    "type": "Armor Crysta",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 7
+      },
+      {
+        "stat": "MATK %",
+        "amount": 7
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 7
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 15
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 15
+      },
+      {
+        "stat": "MaxHP",
+        "amount": 7000
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 10
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 2
+      },
+      {
+        "stat": "With Two-Handed Swords:"
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Arnold",
+        "map": "Event: Let This Grieving Soul Retire!"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Arnold II"]
+    },
+    "date_adding": "28/05/2026 19:20"
+  }
+]

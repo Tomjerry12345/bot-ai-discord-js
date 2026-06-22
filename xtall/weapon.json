@@ -1,0 +1,4078 @@
+[
+  {
+    "name": "Doy",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 8
+      },
+      {
+        "stat": "ATK %",
+        "amount": 12
+      },
+      {
+        "stat": "DEF %",
+        "amount": -33
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Doy & Mari (Lv 353)",
+        "map": "Wizka Forest : Depths"
+      }
+    ]
+  },
+  {
+    "name": "Zega IX",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1200
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 10
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 9
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 11
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zega VIII"],
+      "upgradeInto": ["Zega X"]
+    }
+  },
+  {
+    "name": "Zega VIII",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1100
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 9
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 8
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 10
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zega VII"],
+      "upgradeInto": ["Zega IX"]
+    }
+  },
+  {
+    "name": "Rondine",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 9
+      },
+      {
+        "stat": "MATK %",
+        "amount": 11
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 7
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Wicked Dragon Fazzino"]
+    }
+  },
+  {
+    "name": "Megiston the Champion VIII",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 2400
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 32
+      },
+      {
+        "stat": "Fire resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Wind resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Earth resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Light resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Dark resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Neutral Resistance %",
+        "amount": 3
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Megiston The Champion VII"]
+    }
+  },
+  {
+    "name": "Sakura Dango",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": -100
+      },
+      {
+        "stat": "ATK %",
+        "amount": 4
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 20
+      },
+      {
+        "stat": "Ailment Resistance %",
+        "amount": -5
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Devil Dango"]
+    }
+  },
+  {
+    "name": "Neo Mage Filecia",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "AGI %",
+        "amount": 4
+      },
+      {
+        "stat": "MaxHP %",
+        "amount": -12
+      },
+      {
+        "stat": "ATK %",
+        "amount": 13
+      },
+      {
+        "stat": "Ailment Resistance %",
+        "amount": 4
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 4
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Cat Claw Guardkissa"]
+    }
+  },
+  {
+    "name": "Zega X",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1300
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 11
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 10
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 12
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zega IX"]
+    }
+  },
+  {
+    "name": "Stormun",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 5
+      },
+      {
+        "stat": "MATK %",
+        "amount": 5
+      },
+      {
+        "stat": "ASPD %",
+        "amount": 5
+      },
+      {
+        "stat": "Wind resistance %",
+        "amount": 5
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 5
+      },
+      {
+        "stat": "Magic Device only:"
+      },
+      {
+        "stat": "INT %",
+        "amount": 5
+      },
+      {
+        "stat": "Dual Swords only:"
+      },
+      {
+        "stat": "MaxHP %",
+        "amount": -9
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "Phantom Melody Margrave",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 4
+      },
+      {
+        "stat": "INT %",
+        "amount": 4
+      },
+      {
+        "stat": "ATK %",
+        "amount": 12
+      },
+      {
+        "stat": "MATK %",
+        "amount": 12
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": -6
+      },
+      {
+        "stat": "Tumble Unavailable",
+        "amount": 0
+      },
+      {
+        "stat": "Shield only:"
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -50
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Xmas Princess in Black"]
+    }
+  },
+  {
+    "name": "Pomie Chan III",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "AGI %",
+        "amount": 10
+      },
+      {
+        "stat": "ATK %",
+        "amount": 12
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -20
+      },
+      {
+        "stat": "Knuckle only:"
+      },
+      {
+        "stat": "Absolute Dodge %",
+        "amount": 10
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Pomie Chan II"]
+    }
+  },
+  {
+    "name": "Ultra Potum",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Evasion Recharge %",
+        "amount": 15
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 10
+      },
+      {
+        "stat": "Additional Melee %",
+        "amount": 20
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Miracle Potum"]
+    }
+  },
+  {
+    "name": "Supreme Evil Crystal Beast",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 400
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 10
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 8
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Vlam the Flame Dragon"]
+    }
+  },
+  {
+    "name": "Supreme Evil Crystal Beast",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Physical Pierce %",
+        "amount": 10
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 8
+      },
+      {
+        "stat": "MP",
+        "amount": 400
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Vlam the Flame Dragon"]
+    }
+  },
+  {
+    "name": "Springtime Sakura",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 11
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 13
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -15
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Kuzto"]
+    }
+  },
+  {
+    "name": "Bakuzan",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 9
+      },
+      {
+        "stat": "ATK %",
+        "amount": 11
+      },
+      {
+        "stat": "ASPD %",
+        "amount": 7
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Trickster Dragon Mimyugon"]
+    }
+  },
+  {
+    "name": "Meduso",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Guard Power %",
+        "amount": 10
+      },
+      {
+        "stat": "Guard Recharge %",
+        "amount": 10
+      },
+      {
+        "stat": "Heavy Armor only:"
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 1
+      },
+      {
+        "stat": "Light Armor only:"
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 20
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Meduso (Lv 311)",
+        "map": "Aquastida Inner Ward"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Builder Golem"]
+    }
+  },
+  {
+    "name": "Queen Rosemee",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Magic Pierce %",
+        "amount": 5
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 5
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 5
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 5
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Clawed Iron Witch"]
+    }
+  },
+  {
+    "name": "Menti",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 300
+      },
+      {
+        "stat": "MATK %",
+        "amount": 11
+      },
+      {
+        "stat": "Guard Break %",
+        "amount": 14
+      },
+      {
+        "stat": "Shield only:"
+      },
+      {
+        "stat": "ASPD",
+        "amount": 250
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Oculasignio"]
+    }
+  },
+  {
+    "name": "Fubbit",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": -200
+      },
+      {
+        "stat": "ATK %",
+        "amount": 6
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 20
+      },
+      {
+        "stat": "Ailment Resistance %",
+        "amount": -15
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -15
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Devil Dango"]
+    }
+  },
+  {
+    "name": "Megiston The Champion VII",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 2200
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 29
+      },
+      {
+        "stat": "Fire resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Wind resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Earth resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Light resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Dark resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Neutral Resistance %",
+        "amount": 3
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Megiston the Champion VI"],
+      "upgradeInto": ["Megiston the Champion VIII"]
+    }
+  },
+  {
+    "name": "Hero Potum IV",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 13
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 19
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 22
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 16
+      }
+    ]
+  },
+  {
+    "name": "Deformis",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": -200
+      },
+      {
+        "stat": "ATK %",
+        "amount": 11
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 8
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 14
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Velum"]
+    }
+  },
+  {
+    "name": "Raging Dragon Bovinari",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 15
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 7
+      },
+      {
+        "stat": "Physical Barrier",
+        "amount": 3000
+      },
+      {
+        "stat": "Magic Barrier",
+        "amount": 3000
+      }
+    ]
+  },
+  {
+    "name": "Doridodi",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -25
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 17
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Doridodi (Lv 296)",
+        "map": "Marinatown: Area 2"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Arbogazella"]
+    }
+  },
+  {
+    "name": "Vatudo",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 10
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 7
+      },
+      {
+        "stat": "MDEF %",
+        "amount": -30
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -11
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Vatudo (Lv 255)",
+        "map": "Deep Sea: Deepest Zone"
+      },
+      {
+        "monster": "Vatudo (Lv 275)",
+        "map": "Deep Sea: Deepest Zone"
+      },
+      {
+        "monster": "Vatudo (Lv 285)",
+        "map": "Deep Sea: Deepest Zone"
+      },
+      {
+        "monster": "Vatudo (Lv 305)",
+        "map": "Deep Sea: Deepest Zone"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Irestida"],
+      "upgradeInto": ["Kipina"]
+    }
+  },
+  {
+    "name": "Don Profundo",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 7
+      },
+      {
+        "stat": "ATK %",
+        "amount": 10
+      },
+      {
+        "stat": "DEF %",
+        "amount": -27
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 8
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Don Profundo (Lv 262)",
+        "map": "Abandoned District: Ruins Summit"
+      },
+      {
+        "monster": "Don Profundo (Lv 272)",
+        "map": "Abandoned District: Ruins Summit"
+      },
+      {
+        "monster": "Don Profundo (Lv 282)",
+        "map": "Abandoned District: Ruins Summit"
+      },
+      {
+        "monster": "Don Profundo (Lv 302)",
+        "map": "Abandoned District: Ruins Summit"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Hexter"]
+    }
+  },
+  {
+    "name": "Primordial Moonlit",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 10
+      },
+      {
+        "stat": "MaxMP",
+        "amount": -200
+      },
+      {
+        "stat": "ATK %",
+        "amount": 10
+      },
+      {
+        "stat": "MATK %",
+        "amount": 10
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 10
+      },
+      {
+        "stat": "Guard Break %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Eripmav (Very Hard) (Lv 275)",
+        "map": "Risus Valley: Depths"
+      }
+    ]
+  },
+  {
+    "name": "Diark",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 8
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 20
+      },
+      {
+        "stat": "CSPD %",
+        "amount": -16
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Armasite"]
+    }
+  },
+  {
+    "name": "Megiston the Champion VI",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 2000
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 26
+      },
+      {
+        "stat": "Fire resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Wind resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Earth resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Light resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Dark resistance %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Megiston (8th Anniv) (Lv 285)",
+        "map": "Anniversary Arena: 8th Venue"
+      },
+      {
+        "monster": "Megiston (8th Anniv) (Lv 295)",
+        "map": "Anniversary Arena: 8th Venue"
+      },
+      {
+        "monster": "Megiston (8th Anniv) (Lv 305)",
+        "map": "Anniversary Arena: 8th Venue"
+      },
+      {
+        "monster": "Megiston (8th Anniv) (Lv 325)",
+        "map": "Anniversary Arena: 8th Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Megiston the Champion V"],
+      "upgradeInto": ["Megiston The Champion VII"]
+    }
+  },
+  {
+    "name": "Brass Dragon Reguita",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Natural HP Regen %",
+        "amount": -12
+      },
+      {
+        "stat": "Natural MP Regen %",
+        "amount": -12
+      },
+      {
+        "stat": "ATK %",
+        "amount": 10
+      },
+      {
+        "stat": "MATK %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Brass Dragon Reguita (Lv 250)",
+        "map": "Boma Konda: Village Center"
+      },
+      {
+        "monster": "Brass Dragon Reguita (Lv 260)",
+        "map": "Boma Konda: Village Center"
+      },
+      {
+        "monster": "Brass Dragon Reguita (Lv 270)",
+        "map": "Boma Konda: Village Center"
+      },
+      {
+        "monster": "Brass Dragon Reguita (Lv 290)",
+        "map": "Boma Konda: Village Center"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Repthon"]
+    }
+  },
+  {
+    "name": "Wicked Dragon Fazzino",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 7
+      },
+      {
+        "stat": "MATK %",
+        "amount": 9
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Wicked Dragon Fazzino (Lv 244)",
+        "map": "Propulsion System Room"
+      },
+      {
+        "monster": "Wicked Dragon Fazzino (Lv 254)",
+        "map": "Propulsion System Room"
+      },
+      {
+        "monster": "Wicked Dragon Fazzino (Lv 264)",
+        "map": "Propulsion System Room"
+      },
+      {
+        "monster": "Wicked Dragon Fazzino (Lv 284)",
+        "map": "Propulsion System Room"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Pisteus"],
+      "upgradeInto": ["Rondine"]
+    }
+  },
+  {
+    "name": "Cat Claw Guardkissa",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "AGI %",
+        "amount": 4
+      },
+      {
+        "stat": "MaxHP %",
+        "amount": -12
+      },
+      {
+        "stat": "ATK %",
+        "amount": 10
+      },
+      {
+        "stat": "Ailment Resistance %",
+        "amount": 2
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 2
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Guard Golem (Megiston 2022) (Lv 250)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Blancanine the White Fang"],
+      "upgradeInto": ["Neo Mage Filecia"]
+    }
+  },
+  {
+    "name": "Zega VII",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1000
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 8
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 7
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 9
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zega (Megiston 2022) (Lv 260)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zega VI"],
+      "upgradeInto": ["Zega VIII"]
+    }
+  },
+  {
+    "name": "Xmas Princess in Black",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 3
+      },
+      {
+        "stat": "INT %",
+        "amount": 3
+      },
+      {
+        "stat": "ATK %",
+        "amount": 9
+      },
+      {
+        "stat": "MATK %",
+        "amount": 9
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": -6
+      },
+      {
+        "stat": "Tumble Unavailable",
+        "amount": 1
+      },
+      {
+        "stat": "Shield only:"
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -50
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Black Velly (Very Hard) (Lv 250)",
+        "map": "Illuminare City: Central Square"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Phantom Melody Margrave"]
+    }
+  },
+  {
+    "name": "Pomie Chan II",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "AGI %",
+        "amount": 7
+      },
+      {
+        "stat": "ATK %",
+        "amount": 9
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -15
+      },
+      {
+        "stat": "Knuckle only:"
+      },
+      {
+        "stat": "Absolute Dodge %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 190)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 200)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 210)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 220)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 240)",
+        "map": "Archfiend's Throne"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Pomie Chan"],
+      "upgradeInto": ["Pomie Chan III"]
+    }
+  },
+  {
+    "name": "Hero Potum III",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 12
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 16
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 18
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 14
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 190)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 200)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 210)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 220)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 240)",
+        "map": "Archfiend's Throne"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Hero Potum II"]
+    }
+  },
+  {
+    "name": "Trickster Dragon Mimyugon",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 7
+      },
+      {
+        "stat": "ATK %",
+        "amount": 9
+      },
+      {
+        "stat": "ASPD %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Trickster Dragon Mimyugon (Lv 238)",
+        "map": "Operation Zone: Cockpit Area"
+      },
+      {
+        "monster": "Trickster Dragon Mimyugon (Lv 248)",
+        "map": "Operation Zone: Cockpit Area"
+      },
+      {
+        "monster": "Trickster Dragon Mimyugon (Lv 258)",
+        "map": "Operation Zone: Cockpit Area"
+      },
+      {
+        "monster": "Trickster Dragon Mimyugon (Lv 278)",
+        "map": "Operation Zone: Cockpit Area"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Vulture"],
+      "upgradeInto": ["Bakuzan"]
+    }
+  },
+  {
+    "name": "Megiston the Champion V",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1800
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 23
+      },
+      {
+        "stat": "Fire resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Wind resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Earth resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Light resistance %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Megiston (Lv 265)",
+        "map": "Anniversary Arena: 7th Venue"
+      },
+      {
+        "monster": "Megiston (Lv 275)",
+        "map": "Anniversary Arena: 7th Venue"
+      },
+      {
+        "monster": "Megiston (Lv 285)",
+        "map": "Anniversary Arena: 7th Venue"
+      },
+      {
+        "monster": "Megiston (Lv 305)",
+        "map": "Anniversary Arena: 7th Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Megiston the Champion IV"],
+      "upgradeInto": ["Megiston the Champion VI"]
+    }
+  },
+  {
+    "name": "Florizard",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Stability %",
+        "amount": 5
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 20
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -15
+      }
+    ],
+    "sources": [
+      {
+        "monster": "EX Arena Entry (7th Anniv)",
+        "map": "Anniversary Arena: 7th Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Armasite"]
+    }
+  },
+  {
+    "name": "Pedrio",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 10
+      },
+      {
+        "stat": "MATK %",
+        "amount": 10
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -40
+      },
+      {
+        "stat": "Reduce Dmg (Bullet) %",
+        "amount": 20
+      },
+      {
+        "stat": "Reduce Dmg (Bowling) %",
+        "amount": 20
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Pedrio (Lv 265)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Neo Maton Sword"]
+    }
+  },
+  {
+    "name": "Oculasignio",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 300
+      },
+      {
+        "stat": "MATK %",
+        "amount": 9
+      },
+      {
+        "stat": "Guard Break %",
+        "amount": 13
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Oculasignio (Lv 226)",
+        "map": "Mt. Vulcani: Summit"
+      },
+      {
+        "monster": "Oculasignio (Lv 236)",
+        "map": "Mt. Vulcani: Summit"
+      },
+      {
+        "monster": "Oculasignio (Lv 246)",
+        "map": "Mt. Vulcani: Summit"
+      },
+      {
+        "monster": "Oculasignio (Lv 266)",
+        "map": "Mt. Vulcani: Summit"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Finstern the Dark Dragon"],
+      "upgradeInto": ["Menti"]
+    }
+  },
+  {
+    "name": "Velum",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": -100
+      },
+      {
+        "stat": "ATK %",
+        "amount": 9
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 6
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 13
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Velum (Lv 223)",
+        "map": "Arstida: Depth"
+      },
+      {
+        "monster": "Velum (Lv 233)",
+        "map": "Arstida: Depth"
+      },
+      {
+        "monster": "Velum (Lv 243)",
+        "map": "Arstida: Depth"
+      },
+      {
+        "monster": "Velum (Lv 263)",
+        "map": "Arstida: Depth"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Mardula"],
+      "upgradeInto": ["Deformis"]
+    }
+  },
+  {
+    "name": "Vlam the Flame Dragon",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 400
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 7
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Vlam the Flame Dragon (Lv 220)",
+        "map": "Divido Spring"
+      },
+      {
+        "monster": "Vlam the Flame Dragon (Lv 230)",
+        "map": "Divido Spring"
+      },
+      {
+        "monster": "Vlam the Flame Dragon (Lv 240)",
+        "map": "Divido Spring"
+      },
+      {
+        "monster": "Vlam the Flame Dragon (Lv 260)",
+        "map": "Divido Spring"
+      },
+      {
+        "monster": "Vlam the Flame Dragon (Megiston 2022) (Lv 230)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Ultimate Machina"],
+      "upgradeInto": ["Supreme Evil Crystal Beast"]
+    }
+  },
+  {
+    "name": "Zega VI",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 900
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 7
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 8
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zega (Megiston 2021) (Lv 240)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zega V"],
+      "upgradeInto": ["Zega VII"],
+      "crafting": ["Beastlord Sword 1 pcs/craft"]
+    }
+  },
+  {
+    "name": "Crimson One-Eyed Wolf",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "Physical Resistance %",
+        "amount": -16
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": -8
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 8
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 4
+      },
+      {
+        "stat": "Dagger only:"
+      },
+      {
+        "stat": "Critical Damage %",
+        "amount": 1
+      },
+      {
+        "stat": "Dual Swords only:"
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -20
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Neewollah (Very Hard) (Lv 225)",
+        "map": "Manor of Surprises: Grand Hall"
+      }
+    ]
+  },
+  {
+    "name": "Devil Dango",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": -200
+      },
+      {
+        "stat": "ATK %",
+        "amount": 4
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 20
+      },
+      {
+        "stat": "Ailment Resistance %",
+        "amount": -15
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Devil Dango (Lv 220)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      },
+      {
+        "monster": "Devil Dango (Lv 250)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Fubbit", "Sakura Dango"]
+    }
+  },
+  {
+    "name": "Arbogazella",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -28
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 14
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 7
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Arbogazella (Lv 236)",
+        "map": "Guardian Forest: Lost Woods"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Doridodi"]
+    }
+  },
+  {
+    "name": "Megiston the Champion IV",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1600
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 20
+      },
+      {
+        "stat": "Fire resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Wind resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Light resistance %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Megiston (Lv 245)",
+        "map": "Anniversary Arena: 6th Venue"
+      },
+      {
+        "monster": "Megiston (Lv 255)",
+        "map": "Anniversary Arena: 6th Venue"
+      },
+      {
+        "monster": "Megiston (Lv 265)",
+        "map": "Anniversary Arena: 6th Venue"
+      },
+      {
+        "monster": "Megiston (Lv 285)",
+        "map": "Anniversary Arena: 6th Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Megiston the Champion III"],
+      "upgradeInto": ["Megiston the Champion V"]
+    }
+  },
+  {
+    "name": "Midsummer Passion",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 15
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 20
+      },
+      {
+        "stat": "Fire resistance %",
+        "amount": 25
+      },
+      {
+        "stat": "Recoil %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "[NPC]\t\t\t\t\t\t\t\t\tSynthesist: Mubia",
+        "map": "Sofya City: Synthesist"
+      }
+    ],
+    "usedFor": {
+      "crafting": ["Ocean Dancer 1 pcs/craft"]
+    }
+  },
+  {
+    "name": "Clawed Iron Witch",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 10
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 5
+      },
+      {
+        "stat": "Physical Barrier",
+        "amount": 2000
+      },
+      {
+        "stat": "Magic Barrier",
+        "amount": 2000
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Reliza (Lv 210)",
+        "map": "Manna Waterfront"
+      },
+      {
+        "monster": "Reliza (Lv 220)",
+        "map": "Manna Waterfront"
+      },
+      {
+        "monster": "Reliza (Lv 230)",
+        "map": "Manna Waterfront"
+      },
+      {
+        "monster": "Reliza (Lv 250)",
+        "map": "Manna Waterfront"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zahhak Machina"],
+      "upgradeInto": ["Queen Rosemee"]
+    }
+  },
+  {
+    "name": "Irestida",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 8
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 6
+      },
+      {
+        "stat": "MDEF %",
+        "amount": -24
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -9
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Irestida (Lv 205)",
+        "map": "Nov Diela Central"
+      },
+      {
+        "monster": "Irestida (Lv 215)",
+        "map": "Nov Diela Central"
+      },
+      {
+        "monster": "Irestida (Lv 225)",
+        "map": "Nov Diela Central"
+      },
+      {
+        "monster": "Irestida (Lv 245)",
+        "map": "Nov Diela Central"
+      },
+      {
+        "monster": "Irestida (Megiston 2021) (Lv 220)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Shampy"],
+      "upgradeInto": ["Vatudo"]
+    }
+  },
+  {
+    "name": "Hero Potum II",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 11
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 13
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 14
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 12
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 170)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 220)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 210)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 200)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 190)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 220)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 200)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 190)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 180)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 240)",
+        "map": "Archfiend's Throne"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Hero Potum"],
+      "upgradeInto": ["Hero Potum III"]
+    }
+  },
+  {
+    "name": "Hexter",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 6
+      },
+      {
+        "stat": "ATK %",
+        "amount": 8
+      },
+      {
+        "stat": "DEF %",
+        "amount": -21
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Hexter (Lv 202)",
+        "map": "Witch's Woods Depths"
+      },
+      {
+        "monster": "Hexter (Lv 212)",
+        "map": "Witch's Woods Depths"
+      },
+      {
+        "monster": "Hexter (Lv 222)",
+        "map": "Witch's Woods Depths"
+      },
+      {
+        "monster": "Hexter (Lv 242)",
+        "map": "Witch's Woods Depths"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Gwaimol"],
+      "upgradeInto": ["Don Profundo"]
+    }
+  },
+  {
+    "name": "Lil Wonder Rat",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "Aggro %",
+        "amount": -20
+      },
+      {
+        "stat": "Long Range Damage %",
+        "amount": 4
+      },
+      {
+        "stat": "Unsheathe Attack %",
+        "amount": 4
+      },
+      {
+        "stat": "Staff only:"
+      },
+      {
+        "stat": "MATK %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Phantom Wisp (Lv 200)",
+        "map": "Phantom Wisp's Hideout: Theater"
+      }
+    ]
+  },
+  {
+    "name": "Pisteus",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 5
+      },
+      {
+        "stat": "MATK %",
+        "amount": 7
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Pisteus (Lv 183)",
+        "map": "Ducia Coast: Depths"
+      },
+      {
+        "monster": "Pisteus (Lv 193)",
+        "map": "Ducia Coast: Depths"
+      },
+      {
+        "monster": "Pisteus (Lv 203)",
+        "map": "Ducia Coast: Depths"
+      },
+      {
+        "monster": "Pisteus (Lv 213)",
+        "map": "Ducia Coast: Depths"
+      },
+      {
+        "monster": "Pisteus (Lv 233)",
+        "map": "Ducia Coast: Depths"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Mozto Machina"],
+      "upgradeInto": ["Wicked Dragon Fazzino"]
+    }
+  },
+  {
+    "name": "Zega V",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 800
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 6
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 5
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 7
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zega (5th Anniv) (Lv 225)",
+        "map": "Anniversary Arena: 5th Venue"
+      },
+      {
+        "monster": "Zega (5th Anniv) (Lv 235)",
+        "map": "Anniversary Arena: 5th Venue"
+      },
+      {
+        "monster": "Zega (5th Anniv) (Lv 245)",
+        "map": "Anniversary Arena: 5th Venue"
+      },
+      {
+        "monster": "Zega (5th Anniv) (Lv 265)",
+        "map": "Anniversary Arena: 5th Venue"
+      },
+      {
+        "monster": "Zega (Megiston 2020) (Lv 220)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zega IV"],
+      "upgradeInto": ["Zega VI"]
+    }
+  },
+  {
+    "name": "Megiston the Champion III",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1400
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 18
+      },
+      {
+        "stat": "Fire resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Wind resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Light resistance %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Megiston (Lv 225)",
+        "map": "Anniversary Arena: 5th Venue"
+      },
+      {
+        "monster": "Megiston (Lv 235)",
+        "map": "Anniversary Arena: 5th Venue"
+      },
+      {
+        "monster": "Megiston (Lv 245)",
+        "map": "Anniversary Arena: 5th Venue"
+      },
+      {
+        "monster": "Megiston (Lv 265)",
+        "map": "Anniversary Arena: 5th Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Megiston the Champion II"],
+      "upgradeInto": ["Megiston the Champion IV"]
+    }
+  },
+  {
+    "name": "Megiston the Champion II",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1200
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 16
+      },
+      {
+        "stat": "Fire resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Light resistance %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Megiston (4th Anniv) (Lv 210)",
+        "map": "Anniversary Arena: 4th Venue"
+      },
+      {
+        "monster": "Megiston (4th Anniv) (Lv 220)",
+        "map": "Anniversary Arena: 4th Venue"
+      },
+      {
+        "monster": "Megiston (4th Anniv) (Lv 230)",
+        "map": "Anniversary Arena: 4th Venue"
+      },
+      {
+        "monster": "Megiston (4th Anniv) (Lv 250)",
+        "map": "Anniversary Arena: 4th Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Megiston The Champion"],
+      "upgradeInto": ["Megiston the Champion III"]
+    }
+  },
+  {
+    "name": "Vulture",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 5
+      },
+      {
+        "stat": "ATK %",
+        "amount": 7
+      },
+      {
+        "stat": "ASPD %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Vulture (Lv 190)",
+        "map": "Geist Desert: Depths"
+      },
+      {
+        "monster": "Vulture (Lv 200)",
+        "map": "Geist Desert: Depths"
+      },
+      {
+        "monster": "Vulture (Lv 210)",
+        "map": "Geist Desert: Depths"
+      },
+      {
+        "monster": "Vulture (Lv 230)",
+        "map": "Geist Desert: Depths"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Tyrant Machina"],
+      "upgradeInto": ["Trickster Dragon Mimyugon"]
+    }
+  },
+  {
+    "name": "Repthon",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Natural HP Regen %",
+        "amount": -10
+      },
+      {
+        "stat": "Natural MP Regen %",
+        "amount": -10
+      },
+      {
+        "stat": "ATK %",
+        "amount": 6
+      },
+      {
+        "stat": "MATK %",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Repthon (Lv 187)",
+        "map": "Deltzon Research Zone: Deepest Area"
+      },
+      {
+        "monster": "Repthon (Lv 197)",
+        "map": "Deltzon Research Zone: Deepest Area"
+      },
+      {
+        "monster": "Repthon (Lv 207)",
+        "map": "Deltzon Research Zone: Deepest Area"
+      },
+      {
+        "monster": "Repthon (Lv 227)",
+        "map": "Deltzon Research Zone: Deepest Area"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zolban"],
+      "upgradeInto": ["Brass Dragon Reguita"]
+    }
+  },
+  {
+    "name": "Blood Smeared Crystal",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Critical Damage",
+        "amount": 6
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 10
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 7
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Bloodie Crystal (Lv 207)",
+        "map": "Avant Plastida: Area 1"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Evil Magic Sword"]
+    }
+  },
+  {
+    "name": "Jeandoux",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 3
+      },
+      {
+        "stat": "Critical Damage",
+        "amount": 7
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Jeandoux (Milk) (Lv 120)",
+        "map": "Sweet Hades"
+      },
+      {
+        "monster": "Jeandoux (Sweet) (Lv 150)",
+        "map": "Sweet Hades"
+      },
+      {
+        "monster": "Jeandoux (Bitter) (Lv 180)",
+        "map": "Sweet Hades"
+      },
+      {
+        "monster": "Jeandoux (Dark) (Lv 210)",
+        "map": "Sweet Hades"
+      }
+    ]
+  },
+  {
+    "name": "Kuzto",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 7
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 7
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -7
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Kuzto (Lv 178)",
+        "map": "Labilans Sector: Square"
+      },
+      {
+        "monster": "Kuzto (Lv 188)",
+        "map": "Labilans Sector: Square"
+      },
+      {
+        "monster": "Kuzto (Lv 198)",
+        "map": "Labilans Sector: Square"
+      },
+      {
+        "monster": "Kuzto (Lv 218)",
+        "map": "Labilans Sector: Square"
+      },
+      {
+        "monster": "Kuzto (Megiston 2020) (Lv 190)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Springtime Sakura"]
+    }
+  },
+  {
+    "name": "Zega IV",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 700
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 5
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 4
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 6
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zega (Megiston 2019) (Lv 205)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zega III"],
+      "upgradeInto": ["Zega V"]
+    }
+  },
+  {
+    "name": "Blancanine the White Fang",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "AGI %",
+        "amount": 4
+      },
+      {
+        "stat": "MaxHP %",
+        "amount": -12
+      },
+      {
+        "stat": "ATK %",
+        "amount": 7
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Blancanine the White Fang (Megiston 2019) (Lv 195)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Cat Claw Guardkissa"]
+    }
+  },
+  {
+    "name": "Armasite",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 5
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 20
+      },
+      {
+        "stat": "CSPD %",
+        "amount": -15
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Armasite (Lv 201)",
+        "map": "Fractum Sector: Area 1"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Florizard"]
+    }
+  },
+  {
+    "name": "Drama Clown",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "Accuracy %",
+        "amount": 10
+      },
+      {
+        "stat": "ASPD",
+        "amount": 200
+      },
+      {
+        "stat": "CSPD",
+        "amount": 200
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zarth (Lv 175)",
+        "map": "Zarth's Mansion: Back"
+      }
+    ]
+  },
+  {
+    "name": "Usasama the Necromancer II",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -15
+      },
+      {
+        "stat": "MATK %",
+        "amount": 7
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 14
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 3
+      },
+      {
+        "stat": "Attack MP Recovery %",
+        "amount": -30
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Usasama the Necromancer (Lv 215)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Usasama the Necromancer"]
+    }
+  },
+  {
+    "name": "Giant Moon Crab",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "VIT %",
+        "amount": 4
+      },
+      {
+        "stat": "ATK %",
+        "amount": 6
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Giant Moon Crab (Lv 50)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      },
+      {
+        "monster": "Giant Moon Crab (Lv 100)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      },
+      {
+        "monster": "Giant Moon Crab (Lv 150)",
+        "map": "Otsukimi Event Venue: Crater Zone"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Ganglef"]
+    }
+  },
+  {
+    "name": "Neo Maton Sword",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 7
+      },
+      {
+        "stat": "MATK %",
+        "amount": 7
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -28
+      },
+      {
+        "stat": "Reduce Dmg (Bullet) %",
+        "amount": 14
+      },
+      {
+        "stat": "Reduce Dmg (Bowling) %",
+        "amount": 14
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Maton Sword (Lv 205)",
+        "map": "Event"
+      },
+      {
+        "monster": "Neo Maton High Difficulty Exchange",
+        "map": "High Difficulty Boss Battle Event Venue"
+      },
+      {
+        "monster": "Maton Sword (Lv 225)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      },
+      {
+        "monster": "Maton Sword (Lv 220)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      },
+      {
+        "monster": "Maton Sword (Lv 215)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      },
+      {
+        "monster": "Maton Sword (Lv 210)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      },
+      {
+        "monster": "Maton Sword (Lv 205)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      },
+      {
+        "monster": "Maton Sword (Lv 200)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      },
+      {
+        "monster": "Maton Sword (Lv 195)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      },
+      {
+        "monster": "Maton Sword (Lv 230)",
+        "map": "High Difficulty Boss Battle Event Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Pedrio"],
+      "crafting": ["Emotion Ticket D 1 pcs/craft"]
+    }
+  },
+  {
+    "name": "Finstern the Dark Dragon",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 300
+      },
+      {
+        "stat": "MATK %",
+        "amount": 7
+      },
+      {
+        "stat": "Guard Break %",
+        "amount": 12
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Finstern the Dark Dragon (Lv 166)",
+        "map": "Dark Dragon Shrine: Near the Top"
+      },
+      {
+        "monster": "Finstern the Dark Dragon (Lv 176)",
+        "map": "Dark Dragon Shrine: Near the Top"
+      },
+      {
+        "monster": "Finstern the Dark Dragon (Lv 186)",
+        "map": "Dark Dragon Shrine: Near the Top"
+      },
+      {
+        "monster": "Finstern the Dark Dragon (Lv 206)",
+        "map": "Dark Dragon Shrine: Near the Top"
+      },
+      {
+        "monster": "Finstern the Dark Dragon (Megiston 2020) (Lv 200)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Imitacia"],
+      "upgradeInto": ["Oculasignio"]
+    }
+  },
+  {
+    "name": "Bubble Bogey",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "CSPD",
+        "amount": 200
+      },
+      {
+        "stat": "Magic Barrier",
+        "amount": 200
+      },
+      {
+        "stat": "Additional Magic %",
+        "amount": 125
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Bubble Bogey (Lv 177)",
+        "map": "Barbaros Corridor"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Lapin The Necromancer"]
+    }
+  },
+  {
+    "name": "Mardula",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 7
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 4
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 12
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Mardula (Lv 147)",
+        "map": "Hall of Blessings Gods"
+      },
+      {
+        "monster": "Mardula (Lv 157)",
+        "map": "Hall of Blessings Gods"
+      },
+      {
+        "monster": "Mardula (Lv 167)",
+        "map": "Hall of Blessings Gods"
+      },
+      {
+        "monster": "Mardula (Lv 177)",
+        "map": "Hall of Blessings Gods"
+      },
+      {
+        "monster": "Mardula (Lv 197)",
+        "map": "Hall of Blessings Gods"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Imitator"],
+      "upgradeInto": ["Velum"]
+    }
+  },
+  {
+    "name": "Zega III",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 600
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 4
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zega (Megiston 2018) (Lv 180)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zega II"],
+      "upgradeInto": ["Zega IV"]
+    }
+  },
+  {
+    "name": "Pomie Chan",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "AGI %",
+        "amount": 5
+      },
+      {
+        "stat": "ATK %",
+        "amount": 5
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -5
+      },
+      {
+        "stat": "Knuckle only:"
+      },
+      {
+        "stat": "Absolute Dodge %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Pomie Chan (10M DL) (Lv 160)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 220)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 210)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 200)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 190)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 220)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 200)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 190)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 180)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Hero Potum Party (12M DL) (Lv 170)",
+        "map": "Archfiend's Throne"
+      },
+      {
+        "monster": "Pomie Chan (11M DL) (Lv 220)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Pomie Chan (11M DL) (Lv 190)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Pomie Chan (11M DL) (Lv 180)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Pomie Chan (11M DL) (Lv 170)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Pomie Chan (10M DL) (Lv 200)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Pomie Chan (10M DL) (Lv 180)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Pomie Chan (10M DL) (Lv 170)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum Party (13M DL) (Lv 240)",
+        "map": "Archfiend's Throne"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Pomie Chan II"]
+    }
+  },
+  {
+    "name": "Usasama the Necromancer",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -25
+      },
+      {
+        "stat": "MATK %",
+        "amount": 6
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 12
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 3
+      },
+      {
+        "stat": "Attack MP Recovery %",
+        "amount": -50
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Usasama the Necromancer (Lv 185)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Usasama the Necromancer II"]
+    }
+  },
+  {
+    "name": "Shampy",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 6
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 5
+      },
+      {
+        "stat": "MDEF %",
+        "amount": -18
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -7
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Shampy (Lv 145)",
+        "map": "Turnus Mine: Hall"
+      },
+      {
+        "monster": "Shampy (Lv 155)",
+        "map": "Turnus Mine: Hall"
+      },
+      {
+        "monster": "Shampy (Lv 165)",
+        "map": "Turnus Mine: Hall"
+      },
+      {
+        "monster": "Shampy (Lv 185)",
+        "map": "Turnus Mine: Hall"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Evil Crystal Beast"],
+      "upgradeInto": ["Irestida"]
+    }
+  },
+  {
+    "name": "Hero Potum",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": 10
+      },
+      {
+        "stat": "Accuracy %",
+        "amount": 10
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 10
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Hero Potum (9M DL) (Lv 150)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (11M DL) (Lv 190)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (11M DL) (Lv 180)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (11M DL) (Lv 170)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (10M DL) (Lv 200)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (10M DL) (Lv 180)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (10M DL) (Lv 170)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (10M DL) (Lv 160)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (9M DL) (Lv 190)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (9M DL) (Lv 170)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (9M DL) (Lv 160)",
+        "map": "Sofya City: Government Office"
+      },
+      {
+        "monster": "Hero Potum (11M DL) (Lv 220)",
+        "map": "Sofya City: Government Office"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Hero Potum II"]
+    }
+  },
+  {
+    "name": "Megiston The Champion",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 1000
+      },
+      {
+        "stat": "Critical Rate",
+        "amount": 15
+      },
+      {
+        "stat": "Fire resistance %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Megiston (Lv 160)",
+        "map": "Anniversary Arena: 3rd Venue"
+      },
+      {
+        "monster": "Megiston (Lv 170)",
+        "map": "Anniversary Arena: 3rd Venue"
+      },
+      {
+        "monster": "Megiston (Lv 180)",
+        "map": "Anniversary Arena: 3rd Venue"
+      },
+      {
+        "monster": "Megiston (Lv 200)",
+        "map": "Anniversary Arena: 3rd Venue"
+      },
+      {
+        "monster": "Megiston (Lv 160)",
+        "map": "Anniversary Arena: 3rd Venue"
+      },
+      {
+        "monster": "Megiston (Lv 170)",
+        "map": "Anniversary Arena: 3rd Venue"
+      },
+      {
+        "monster": "Megiston (Lv 180)",
+        "map": "Anniversary Arena: 3rd Venue"
+      },
+      {
+        "monster": "Megiston (Lv 200)",
+        "map": "Anniversary Arena: 3rd Venue"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Megiston the Champion II"]
+    }
+  },
+  {
+    "name": "Cursed Crysta",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 5
+      },
+      {
+        "stat": "MATK %",
+        "amount": 5
+      },
+      {
+        "stat": "Stability %",
+        "amount": 5
+      },
+      {
+        "stat": "Motion Speed %",
+        "amount": 5
+      },
+      {
+        "stat": "Recoil %",
+        "amount": 20
+      }
+    ],
+    "sources": [
+      {
+        "monster": "P. Avatar (Lv 800)",
+        "map": "Event"
+      },
+      {
+        "monster": "P. Avatar (2021) (Lv 400)",
+        "map": "Event"
+      }
+    ]
+  },
+  {
+    "name": "Ultimate Machina",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 400
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 4
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 4
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Ultimate Machina (Lv 139)",
+        "map": "Droma Square"
+      },
+      {
+        "monster": "Ultimate Machina (Lv 149)",
+        "map": "Droma Square"
+      },
+      {
+        "monster": "Ultimate Machina (Lv 159)",
+        "map": "Droma Square"
+      },
+      {
+        "monster": "Ultimate Machina (Lv 179)",
+        "map": "Droma Square"
+      },
+      {
+        "monster": "Ultimate Machina (Megiston 2018) (Lv 160)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Pillar Golem"],
+      "upgradeInto": ["Vlam the Flame Dragon"]
+    }
+  },
+  {
+    "name": "Gwaimol",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 5
+      },
+      {
+        "stat": "ATK %",
+        "amount": 6
+      },
+      {
+        "stat": "DEF %",
+        "amount": -15
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 4
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Gwaimol (Lv 126)",
+        "map": "Cuervo Jail: Roof"
+      },
+      {
+        "monster": "Gwaimol (Lv 146)",
+        "map": "Cuervo Jail: Roof"
+      },
+      {
+        "monster": "Gwaimol (Lv 156)",
+        "map": "Cuervo Jail: Roof"
+      },
+      {
+        "monster": "Gwaimol (Lv 176)",
+        "map": "Cuervo Jail: Roof"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Black Knight of Delusion"],
+      "upgradeInto": ["Hexter"]
+    }
+  },
+  {
+    "name": "Zahhak Machina",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 5
+      },
+      {
+        "stat": "Physical Barrier",
+        "amount": 1000
+      },
+      {
+        "stat": "Magic Barrier",
+        "amount": 1000
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zahhak Machina (Lv 130)",
+        "map": "Lufenas Mansion: Hall"
+      },
+      {
+        "monster": "Zahhak Machina (Lv 140)",
+        "map": "Lufenas Mansion: Hall"
+      },
+      {
+        "monster": "Zahhak Machina (Lv 150)",
+        "map": "Lufenas Mansion: Hall"
+      },
+      {
+        "monster": "Zahhak Machina (Lv 170)",
+        "map": "Lufenas Mansion: Hall"
+      },
+      {
+        "monster": "Zahhak Machina (Megiston 2019) (Lv 165)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Clawed Iron Witch"]
+    }
+  },
+  {
+    "name": "Commander Golem",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "ASPD",
+        "amount": 100
+      },
+      {
+        "stat": "Physical Barrier",
+        "amount": 100
+      },
+      {
+        "stat": "Additional Melee %",
+        "amount": 100
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Commander Golem (Lv 154)",
+        "map": "Lufenas Mansion: Entrance"
+      }
+    ]
+  },
+  {
+    "name": "Grecia",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 6
+      },
+      {
+        "stat": "MATK %",
+        "amount": 6
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 3
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 3
+      },
+      {
+        "stat": "Guard Recharge %",
+        "amount": -10
+      },
+      {
+        "stat": "Evasion Recharge %",
+        "amount": -10
+      },
+      {
+        "stat": "Neutral Resistance %",
+        "amount": 1
+      },
+      {
+        "stat": "% stronger against Neutral",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Grecia the Goddess of Courage (7M DL) (Lv 150)",
+        "map": "Event"
+      }
+    ]
+  },
+  {
+    "name": "Mozto Machina",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 4
+      },
+      {
+        "stat": "MATK %",
+        "amount": 6
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 2
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Mozto Machina (Lv 124)",
+        "map": "Large Demi Machina Factory: Deepest Part"
+      },
+      {
+        "monster": "Mozto Machina (Lv 134)",
+        "map": "Large Demi Machina Factory: Deepest Part"
+      },
+      {
+        "monster": "Mozto Machina (Lv 144)",
+        "map": "Large Demi Machina Factory: Deepest Part"
+      },
+      {
+        "monster": "Mozto Machina (Lv 164)",
+        "map": "Large Demi Machina Factory: Deepest Part"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Demon's Gate"],
+      "upgradeInto": ["Pisteus"]
+    }
+  },
+  {
+    "name": "Tyrant Machina",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 4
+      },
+      {
+        "stat": "ATK %",
+        "amount": 6
+      },
+      {
+        "stat": "ASPD %",
+        "amount": 2
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Tyrant Machina (Lv 121)",
+        "map": "Small Demi Machina Factory Core"
+      },
+      {
+        "monster": "Tyrant Machina (Lv 131)",
+        "map": "Small Demi Machina Factory Core"
+      },
+      {
+        "monster": "Tyrant Machina (Lv 141)",
+        "map": "Small Demi Machina Factory Core"
+      },
+      {
+        "monster": "Tyrant Machina (Lv 161)",
+        "map": "Small Demi Machina Factory Core"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Ganglef"],
+      "upgradeInto": ["Vulture"]
+    }
+  },
+
+  {
+    "name": "Builder Golem",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "Guard Power %",
+        "amount": 7
+      },
+      {
+        "stat": "Guard Recharge %",
+        "amount": 7
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Builder Golem (Lv 138)",
+        "map": "Huge Crysta Factory: 3rd Floor"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Excavated Golem"],
+      "upgradeInto": ["Meduso"]
+    }
+  },
+  {
+    "name": "Evil Magic Sword",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "Critical Damage",
+        "amount": 5
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 10
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Evil Magic Sword (Lv 134)",
+        "map": "Singolare Ruins: 2nd Floor"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Blood Smeared Crystal"]
+    }
+  },
+  {
+    "name": "Zega II",
+    "type": "Enhancer Crysta (Red)",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 500
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 3
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 2
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 4
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zega (Lv 150)",
+        "map": "Event"
+      },
+      {
+        "monster": "Zega (Megiston 2017) (Lv 160)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Zega"],
+      "upgradeInto": ["Zega III"]
+    }
+  },
+  {
+    "name": "Imitacia",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 200
+      },
+      {
+        "stat": "MATK %",
+        "amount": 5
+      },
+      {
+        "stat": "Guard Break %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Imitacia (Lv 109)",
+        "map": "Dark Castle: Grand Hall"
+      },
+      {
+        "monster": "Imitacia (Lv 119)",
+        "map": "Dark Castle: Grand Hall"
+      },
+      {
+        "monster": "Imitacia (Lv 129)",
+        "map": "Dark Castle: Grand Hall"
+      },
+      {
+        "monster": "Imitacia (Lv 149)",
+        "map": "Dark Castle: Grand Hall"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Finstern the Dark Dragon"]
+    }
+  },
+  {
+    "name": "Imitator",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "ATK %",
+        "amount": 5
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 2
+      },
+      {
+        "stat": "Anticipate %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Imitator (Lv 106)",
+        "map": "Plastida: Deepest Part"
+      },
+      {
+        "monster": "Imitator (Lv 116)",
+        "map": "Plastida: Deepest Part"
+      },
+      {
+        "monster": "Imitator (Lv 126)",
+        "map": "Plastida: Deepest Part"
+      },
+      {
+        "monster": "Imitator (Lv 146)",
+        "map": "Plastida: Deepest Part"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Mardula"]
+    }
+  },
+  {
+    "name": "Marchitar",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "Stability %",
+        "amount": 5
+      },
+      {
+        "stat": "Dodge %",
+        "amount": 15
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Marchitar (Hanami 2017) (Lv 60)",
+        "map": "Hanami Venue: Summit"
+      },
+      {
+        "monster": "Marchitar (Hanami 2017) (Lv 80)",
+        "map": "Hanami Venue: Summit"
+      },
+      {
+        "monster": "Marchitar (Hanami 2017) (Lv 100)",
+        "map": "Hanami Venue: Summit"
+      }
+    ],
+    "usedFor": {
+      "crafting": ["Robust Charmstone 1 pcs/craft"]
+    }
+  },
+  {
+    "name": "Lapin The Necromancer",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "CSPD",
+        "amount": 100
+      },
+      {
+        "stat": "Magic Barrier",
+        "amount": 100
+      },
+      {
+        "stat": "Additional Magic %",
+        "amount": 100
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Lapin The Necromancer (Lv 124)",
+        "map": "Trace of Dark River"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Bubble Bogey"],
+      "crafting": ["[Book of Magic Warrior] 1 pcs/craft"]
+    }
+  },
+  {
+    "name": "Zolban",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "Natural HP Regen %",
+        "amount": -10
+      },
+      {
+        "stat": "Natural MP Regen %",
+        "amount": -10
+      },
+      {
+        "stat": "ATK %",
+        "amount": 4
+      },
+      {
+        "stat": "MATK %",
+        "amount": 4
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zolban (Lv 98)",
+        "map": "Dark Mirror"
+      },
+      {
+        "monster": "Zolban (Lv 88)",
+        "map": "Dark Mirror"
+      },
+      {
+        "monster": "Zolban (Lv 108)",
+        "map": "Dark Mirror"
+      },
+      {
+        "monster": "Zolban (Lv 118)",
+        "map": "Dark Mirror"
+      },
+      {
+        "monster": "Zolban (Lv 138)",
+        "map": "Dark Mirror"
+      },
+      {
+        "monster": "Zolban (Megiston 2020) (Lv 210)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Repthon"]
+    }
+  },
+  {
+    "name": "Nightmare Potum",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -5
+      },
+      {
+        "stat": "Aggro %",
+        "amount": 10
+      },
+      {
+        "stat": "Fractional Barrier %",
+        "amount": 2
+      }
+    ]
+  },
+  {
+    "name": "Evil Crystal Beast",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 4
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 3
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Evil Crystal Beast (Lv 91)",
+        "map": "Lunagent Mountain: Deepest Area"
+      },
+      {
+        "monster": "Evil Crystal Beast (Lv 101)",
+        "map": "Lunagent Mountain: Deepest Area"
+      },
+      {
+        "monster": "Evil Crystal Beast (Lv 111)",
+        "map": "Lunagent Mountain: Deepest Area"
+      },
+      {
+        "monster": "Evil Crystal Beast (Lv 131)",
+        "map": "Lunagent Mountain: Deepest Area"
+      },
+      {
+        "monster": "Evil Crystal Beast (Megiston 2017) (Lv 130)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Shampy"]
+    }
+  },
+  {
+    "name": "Black Knight of Delusion",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "STR %",
+        "amount": 3
+      },
+      {
+        "stat": "ATK %",
+        "amount": 4
+      },
+      {
+        "stat": "DEF %",
+        "amount": -9
+      },
+      {
+        "stat": "Critical Rate %",
+        "amount": 2
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Black Knight of Delusion (Lv 88)",
+        "map": "Abyss of No Return: Deepest Area"
+      },
+      {
+        "monster": "Black Knight of Delusion (Lv 98)",
+        "map": "Abyss of No Return: Deepest Area"
+      },
+      {
+        "monster": "Black Knight of Delusion (Lv 108)",
+        "map": "Abyss of No Return: Deepest Area"
+      },
+      {
+        "monster": "Black Knight of Delusion (Lv 128)",
+        "map": "Abyss of No Return: Deepest Area"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Gwaimol"]
+    }
+  },
+  {
+    "name": "Zega",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP",
+        "amount": 400
+      },
+      {
+        "stat": "Magic Resistance %",
+        "amount": 2
+      },
+      {
+        "stat": "Water resistance %",
+        "amount": 1
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Zega (Lv 100)",
+        "map": "Event"
+      },
+      {
+        "monster": "Zega (Megiston 2016) (Lv 120)",
+        "map": "Event"
+      },
+      {
+        "monster": "Zega (Lv 150)",
+        "map": "Event"
+      },
+      {
+        "monster": "Zega (Megiston 2020) (Lv 220)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Zega II"]
+    }
+  },
+  {
+    "name": "Death Colon",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": -2000
+      },
+      {
+        "stat": "ASPD",
+        "amount": 1000
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Death Colon (Lv 84)",
+        "map": "Vyshed the Tainted Land: Area 2"
+      }
+    ]
+  },
+  {
+    "name": "Pillar Golem",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxMP",
+        "amount": 300
+      },
+      {
+        "stat": "Physical Pierce %",
+        "amount": 3
+      },
+      {
+        "stat": "Short Range Damage %",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Pillar Golem (Lv 70)",
+        "map": "Lost Town: Magic Barrier"
+      },
+      {
+        "monster": "Pillar Golem (Lv 80)",
+        "map": "Lost Town: Magic Barrier"
+      },
+      {
+        "monster": "Pillar Golem (Lv 90)",
+        "map": "Lost Town: Magic Barrier"
+      },
+      {
+        "monster": "Pillar Golem (Lv 110)",
+        "map": "Lost Town: Magic Barrier"
+      },
+      {
+        "monster": "Pillar Golem (Megiston 2018) (Lv 140)",
+        "map": "Event"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Ultimate Machina"]
+    }
+  },
+  {
+    "name": "Moonlight Potum",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "CSPD",
+        "amount": -90
+      },
+      {
+        "stat": "Attack MP Recovery",
+        "amount": 3
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Moonlight Potum (Lv 72)",
+        "map": "New Moon Palace: Innermost"
+      }
+    ]
+  },
+  {
+    "name": "Miracle Potum",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MaxHP %",
+        "amount": -10
+      },
+      {
+        "stat": "Evasion Recharge %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Miracle Potum (Lv 42)",
+        "map": "Ruined Temple: Area 2"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Ultra Potum"]
+    }
+  },
+  {
+    "name": "Ganglef",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 2
+      },
+      {
+        "stat": "ATK %",
+        "amount": 3
+      },
+      {
+        "stat": "ASPD %",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Ganglef (Lv 58)",
+        "map": "Scaro Town: Deepest Part"
+      },
+      {
+        "monster": "Ganglef (Lv 68)",
+        "map": "Scaro Town: Deepest Part"
+      },
+      {
+        "monster": "Ganglef (Lv 78)",
+        "map": "Scaro Town: Deepest Part"
+      },
+      {
+        "monster": "Ganglef (Lv 98)",
+        "map": "Scaro Town: Deepest Part"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Tyrant Machina"]
+    }
+  },
+  {
+    "name": "Excavated Golem",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "Guard Power %",
+        "amount": 5
+      },
+      {
+        "stat": "Guard Recharge %",
+        "amount": 5
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Excavated Golem (Lv 16)",
+        "map": "Underground Ruins: Deepest Part"
+      },
+      {
+        "monster": "Excavated Golem (Lv 26)",
+        "map": "Underground Ruins: Deepest Part"
+      },
+      {
+        "monster": "Excavated Golem (Lv 36)",
+        "map": "Underground Ruins: Deepest Part"
+      },
+      {
+        "monster": "Excavated Golem (Lv 56)",
+        "map": "Underground Ruins: Deepest Part"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Builder Golem"]
+    }
+  },
+  {
+    "name": "Demon's Gate",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 2
+      },
+      {
+        "stat": "MATK %",
+        "amount": 3
+      },
+      {
+        "stat": "CSPD %",
+        "amount": 1
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Demon's Gate (Lv 60)",
+        "map": "Saham Crater"
+      },
+      {
+        "monster": "Demon's Gate (Lv 70)",
+        "map": "Saham Crater"
+      },
+      {
+        "monster": "Demon's Gate (Lv 80)",
+        "map": "Saham Crater"
+      },
+      {
+        "monster": "Demon's Gate (Lv 100)",
+        "map": "Saham Crater"
+      }
+    ],
+    "usedFor": {
+      "upgradeInto": ["Mozto Machina"]
+    }
+  },
+  {
+    "name": "Mortares",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "DEX %",
+        "amount": 4
+      },
+      {
+        "stat": "MaxMP",
+        "amount": -200
+      },
+      {
+        "stat": "ATK %",
+        "amount": 13
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -20
+      },
+      {
+        "stat": "Guard Break %",
+        "amount": 10
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Mortares (Lv 345)",
+        "map": "Izolara Underground Passage : Hidden Passage"
+      }
+    ]
+  },
+  {
+    "name": "Kipina",
+    "type": "Weapon Crysta",
+    "stats": [
+      {
+        "stat": "MATK %",
+        "amount": 12
+      },
+      {
+        "stat": "Magic Pierce %",
+        "amount": 8
+      },
+      {
+        "stat": "Aggro %",
+        "amount": -13
+      },
+      {
+        "stat": "MDEF %",
+        "amount": -36
+      }
+    ],
+    "sources": [
+      {
+        "monster": "Kipina (Lv 313)",
+        "map": "Gubise Valley : Depths"
+      },
+      {
+        "monster": "Kipina (Lv 323)",
+        "map": "Gubise Valley : Depths"
+      },
+      {
+        "monster": "Kipina (Lv 333)",
+        "map": "Gubise Valley : Depths"
+      },
+      {
+        "monster": "Kipina (Lv 353)",
+        "map": "Gubise Valley : Depths"
+      }
+    ],
+    "usedFor": {
+      "upgradeFor": ["Vatudo"]
+    },
+    "date_adding": "18/09/2026 00:20"
+  }
+]
