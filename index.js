@@ -948,6 +948,11 @@ async function fetchXtallData(env, question) {
     return null;
   }
 
+  const url = `${env.GITHUB_RAW_BASE}/normal.json`;
+  console.log("🔗 Fetching URL:", url);
+  const res = await fetch(url);
+  console.log("📡 Status:", res.status, res.statusText);
+
   try {
     // OPTIMASI: Pakai keyword detection, bukan AI
     const categoriesToFetch = detectXtallCategories(question);
