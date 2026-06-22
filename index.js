@@ -15,10 +15,10 @@ import { verifyKey } from "discord-interactions";
 // ============================================
 
 const GEMINI_MODELS = [
+  "gemini-3.5-flash", // Terkuat, terbaru
   "gemini-2.5-flash", // Stable, powerful
   "gemini-2.5-flash-lite", // Hemat, cepat
-  "gemini-2.0-flash", // Fallback
-  "gemini-1.5-flash", // Fallback terakhir
+  "gemini-3.1-flash", // Paling hemat, fallback terakhir
 ];
 
 const GEMINI_API_BASE =
