@@ -1003,28 +1003,71 @@ Jika semua relevan atau tidak spesifik: all`;
   }
 }
 
+// ============================================
+// HELPER: Fuzzy name match (tanpa AI)
+// ============================================
+
+function fuzzyNameMatch(allXtall, query) {
+  const q = query.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+  // Pass 1: exact normalized match
+  let results = allXtall.filter((x) => {
+    const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
+    return name === q;
+  });
+  if (results.length > 0) return results;
+
+  // Pass 2: contains match (e.g. "wiltileaf" di dalam "Wiltileaf Seed")
+  results = allXtall.filter((x) => {
+    const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
+    return name.includes(q) || q.includes(name);
+  });
+  if (results.length > 0) return results;
+
+  // Pass 3: partial word match (minimum 4 karakter)
+  if (q.length >= 4) {
+    results = allXtall.filter((x) => {
+      const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
+      // Cek apakah ada substring 4+ karakter yang cocok
+      for (let i = 0; i <= q.length - 4; i++) {
+        if (name.includes(q.slice(i, i + 4))) return true;
+      }
+      return false;
+    });
+    if (results.length > 0) return results;
+  }
+
+  return []; // tidak ketemu, fallback ke AI
+}
+
+// ============================================
+// GANTI: filterRelevantXtall — name-based, bukan index
+// ============================================
+
 async function filterRelevantXtall(allXtall, question, env) {
   if (allXtall.length === 0) return [];
 
-  // Buat index ringkas untuk AI pilih
-  const xtallIndex = allXtall
-    .map((x, i) => {
-      const stats = x.stats
-        .slice(0, 3)
-        .map((s) => s.stat)
-        .join(", ");
-      return `[${i}] ${x.name} (${x.category}) - ${stats}`;
-    })
-    .join("\n");
+  // LANGKAH 1: Coba exact/fuzzy match dulu (cepat, akurat, tanpa AI)
+  const directMatch = fuzzyNameMatch(allXtall, question);
+  if (directMatch.length > 0) {
+    console.log(
+      `✅ Direct name match: ${directMatch.map((x) => x.name).join(", ")}`,
+    );
+    return directMatch;
+  }
+
+  // LANGKAH 2: Ekstrak nama xtall dari pertanyaan dengan AI
+  // AI hanya diminta sebut NAMA, bukan index — jauh lebih akurat
+  const xtallNames = allXtall.map((x) => x.name).join(", ");
 
   const filterPrompt = `Pertanyaan user: "${question}"
 
-Daftar xtall/crysta yang tersedia:
-${xtallIndex}
+Daftar nama xtall/crysta yang tersedia:
+${xtallNames}
 
-Pilih nomor xtall yang PALING RELEVAN untuk menjawab pertanyaan (maksimal 10).
-Pertimbangkan stats, tipe, dan kegunaan berdasarkan konteks pertanyaan.
-Balas HANYA nomor dipisah koma. Contoh: 0,3,7,12
+Sebutkan nama-nama xtall yang PALING RELEVAN untuk menjawab pertanyaan (maksimal 10).
+PENTING: Tulis nama PERSIS seperti di daftar di atas, dipisah koma.
+Contoh: Wiltileaf, Ageladanios, Kryoeruf
 Jika tidak ada yang relevan: none`;
 
   try {
@@ -1033,17 +1076,39 @@ Jika tidak ada yang relevan: none`;
 
     if (raw === "none" || !raw) return [];
 
-    const indices = raw
+    // Parse nama-nama yang disebut AI
+    const namedByAI = raw
       .split(",")
-      .map((s) => parseInt(s.trim()))
-      .filter((n) => !isNaN(n) && n >= 0 && n < allXtall.length);
+      .map((s) => s.trim())
+      .filter(Boolean);
 
-    const selected = indices.map((i) => allXtall[i]);
-    console.log(`🎯 AI pilih ${selected.length} xtall relevan`);
+    // Lookup by name (exact, lalu fuzzy)
+    const selected = [];
+    for (const aiName of namedByAI) {
+      // Cari exact match dulu
+      let found = allXtall.find(
+        (x) => x.name.toLowerCase() === aiName.toLowerCase(),
+      );
+      // Fallback: contains match
+      if (!found) {
+        found = allXtall.find(
+          (x) =>
+            x.name.toLowerCase().includes(aiName.toLowerCase()) ||
+            aiName.toLowerCase().includes(x.name.toLowerCase()),
+        );
+      }
+      if (found && !selected.includes(found)) {
+        selected.push(found);
+      }
+    }
+
+    console.log(
+      `🎯 AI sebut ${namedByAI.length} nama → ${selected.length} xtall ditemukan`,
+    );
     return selected;
   } catch (err) {
     console.error("❌ filterRelevantXtall error:", err.message);
-    // Fallback: return semua (max 20)
+    // Fallback: return semua (max 20) daripada return kosong
     return allXtall.slice(0, 20);
   }
 }
