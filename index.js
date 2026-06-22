@@ -994,35 +994,50 @@ async function fetchXtallData(env, question) {
 // ============================================
 
 function fuzzyNameMatch(allXtall, query) {
-  const q = query.toLowerCase().replace(/[^a-z0-9]/g, "");
+  // Ekstrak semua "kata" dari query yang panjangnya >= 4
+  const qWords = query
+    .toLowerCase()
+    .replace(/[^a-z0-9\s]/g, "")
+    .split(/\s+/)
+    .filter((w) => w.length >= 4);
 
-  // Pass 1: exact normalized match
+  // Pass 1: exact normalized match pada seluruh query
+  const qFull = query.toLowerCase().replace(/[^a-z0-9]/g, "");
   let results = allXtall.filter((x) => {
     const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
-    return name === q;
+    return name === qFull;
   });
   if (results.length > 0) return results;
 
-  // Pass 2: contains match (e.g. "wiltileaf" di dalam "Wiltileaf Seed")
+  // Pass 2: contains match (nama ada di dalam query atau sebaliknya)
   results = allXtall.filter((x) => {
     const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
-    return name.includes(q) || q.includes(name);
+    return name.includes(qFull) || qFull.includes(name);
   });
   if (results.length > 0) return results;
 
-  // Pass 3: partial word match (minimum 4 karakter)
-  if (q.length >= 4) {
+  // Pass 3: cek tiap kata dalam query cocok dengan nama xtall
+  if (qWords.length > 0) {
     results = allXtall.filter((x) => {
       const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
-      for (let i = 0; i <= q.length - 4; i++) {
-        if (name.includes(q.slice(i, i + 4))) return true;
+      return qWords.some((word) => name.includes(word) || word.includes(name));
+    });
+    if (results.length > 0) return results;
+  }
+
+  // Pass 4: partial 4-char sliding window (existing logic)
+  if (qFull.length >= 4) {
+    results = allXtall.filter((x) => {
+      const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
+      for (let i = 0; i <= qFull.length - 4; i++) {
+        if (name.includes(qFull.slice(i, i + 4))) return true;
       }
       return false;
     });
     if (results.length > 0) return results;
   }
 
-  return []; // tidak ketemu, fallback ke AI
+  return [];
 }
 
 // ============================================
@@ -1087,6 +1102,11 @@ Jika tidak ada yang relevan: none`;
 
     console.log(
       `🎯 AI sebut ${namedByAI.length} nama → ${selected.length} xtall ditemukan`,
+    );
+    console.log(`🔍 Total xtall loaded untuk fuzzy: ${allXtall.length}`);
+    console.log(
+      `🔍 Sample names:`,
+      allXtall.slice(0, 10).map((x) => x.name),
     );
     return selected;
   } catch (err) {
