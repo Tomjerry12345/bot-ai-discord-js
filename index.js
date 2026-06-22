@@ -341,29 +341,14 @@ async function followUpResponse(interaction, env, question) {
   const username = interaction.member.user.username;
 
   try {
-    /**
-     * OPTIMASI: Jalankan semua persiapan secara PARALEL:
-     * - getUserContext (KV read)
-     * - searchKnowledge dari getKnowledge (KV read)
-     * - fetchXtallData jika pertanyaan xtall (GitHub fetch + 1 AI call)
-     *
-     * Dulu: berurutan → sekarang: paralel → lebih cepat
-     */
-    const [userContext, knowledge] = await Promise.all([
+    const [userContext, knowledge, xtallData] = await Promise.all([
       getUserContext(env, userId),
       getKnowledge(env),
+      fetchXtallData(env, question), // selalu fetch, biarkan fungsi yang filter
     ]);
 
     const results = searchKnowledge(knowledge, question);
 
-    // fetchXtallData paralel dengan context (sudah selesai di atas),
-    // tapi pisah karena butuh `results` dulu untuk getAIResponse
-    const xtallData = isXtallQuestion(question)
-      ? await fetchXtallData(env, question)
-      : null;
-
-    // Get AI response dengan context + xtall data
-    // OPTIMASI: selectRelevantData() dihapus, langsung pakai keyword results
     const aiResponse = await getAIResponse(
       question,
       results,
@@ -975,7 +960,18 @@ async function fetchXtallData(env, question) {
     const allXtall = fetched.flat();
     console.log(`✅ Total xtall loaded: ${allXtall.length}`);
 
-    // Langsung return semua, biarkan AI yang filter & analisis
+    // Cek apakah pertanyaan menyebut nama xtall atau keyword xtall
+    const isKeywordMatch = isXtallQuestion(question);
+    const isNameMatch = allXtall.some((x) =>
+      question.toLowerCase().includes(x.name.toLowerCase()),
+    );
+
+    if (!isKeywordMatch && !isNameMatch) {
+      console.log("⏭️ Bukan pertanyaan xtall, skip data");
+      return null;
+    }
+
+    console.log(`✅ Relevan sebagai pertanyaan xtall`);
     return allXtall;
   } catch (err) {
     console.error("❌ fetchXtallData error:", err.message);
