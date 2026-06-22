@@ -944,26 +944,18 @@ async function getAIResponse(
  */
 async function fetchXtallData(env, question) {
   if (!env.GITHUB_RAW_BASE) {
-    console.warn("⚠️ GITHUB_RAW_BASE  belum diset");
+    console.warn("⚠️ GITHUB_RAW_BASE belum diset");
     return null;
   }
 
-  const url = `${env.GITHUB_RAW_BASE}/normal.json`;
-  console.log("🔗 Fetching URL:", url);
-  const res = await fetch(url);
-  console.log("📡 Status:", res.status, res.statusText);
-
   try {
-    // OPTIMASI: Pakai keyword detection, bukan AI
     const categoriesToFetch = detectXtallCategories(question);
     console.log(`📦 Fetching xtall kategori: ${categoriesToFetch.join(", ")}`);
 
-    // Fetch semua kategori yang dipilih secara paralel
     const fetched = [];
     for (const cat of categoriesToFetch) {
       try {
         const url = `${env.GITHUB_RAW_BASE}/${cat}.json`;
-        console.log(`🔗 Fetching ${cat}...`);
         const res = await fetch(url, {
           headers: { Accept: "application/json" },
         });
@@ -983,138 +975,11 @@ async function fetchXtallData(env, question) {
     const allXtall = fetched.flat();
     console.log(`✅ Total xtall loaded: ${allXtall.length}`);
 
-    // Filter xtall yang relevan dengan pertanyaan menggunakan AI (1 call)
-    return await filterRelevantXtall(allXtall, question, env);
+    // Langsung return semua, biarkan AI yang filter & analisis
+    return allXtall;
   } catch (err) {
     console.error("❌ fetchXtallData error:", err.message);
     return null;
-  }
-}
-
-// ============================================
-// HELPER: Fuzzy name match (tanpa AI)
-// ============================================
-
-function fuzzyNameMatch(allXtall, query) {
-  // Ekstrak semua "kata" dari query yang panjangnya >= 4
-  const qWords = query
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, "")
-    .split(/\s+/)
-    .filter((w) => w.length >= 4);
-
-  // Pass 1: exact normalized match pada seluruh query
-  const qFull = query.toLowerCase().replace(/[^a-z0-9]/g, "");
-  let results = allXtall.filter((x) => {
-    const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
-    return name === qFull;
-  });
-  if (results.length > 0) return results;
-
-  // Pass 2: contains match (nama ada di dalam query atau sebaliknya)
-  results = allXtall.filter((x) => {
-    const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
-    return name.includes(qFull) || qFull.includes(name);
-  });
-  if (results.length > 0) return results;
-
-  // Pass 3: cek tiap kata dalam query cocok dengan nama xtall
-  if (qWords.length > 0) {
-    results = allXtall.filter((x) => {
-      const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
-      return qWords.some((word) => name.includes(word) || word.includes(name));
-    });
-    if (results.length > 0) return results;
-  }
-
-  // Pass 4: partial 4-char sliding window (existing logic)
-  if (qFull.length >= 4) {
-    results = allXtall.filter((x) => {
-      const name = x.name.toLowerCase().replace(/[^a-z0-9]/g, "");
-      for (let i = 0; i <= qFull.length - 4; i++) {
-        if (name.includes(qFull.slice(i, i + 4))) return true;
-      }
-      return false;
-    });
-    if (results.length > 0) return results;
-  }
-
-  return [];
-}
-
-// ============================================
-// filterRelevantXtall — name-based, bukan index
-// ============================================
-
-async function filterRelevantXtall(allXtall, question, env) {
-  if (allXtall.length === 0) return [];
-
-  // LANGKAH 1: Coba exact/fuzzy match dulu (cepat, akurat, tanpa AI)
-  const directMatch = fuzzyNameMatch(allXtall, question);
-  if (directMatch.length > 0) {
-    console.log(
-      `✅ Direct name match: ${directMatch.map((x) => x.name).join(", ")}`,
-    );
-    return directMatch;
-  }
-
-  // LANGKAH 2: Fallback ke AI — ekstrak nama xtall dari pertanyaan
-  // AI hanya diminta sebut NAMA, bukan index — jauh lebih akurat
-  const xtallNames = allXtall.map((x) => x.name).join(", ");
-
-  const filterPrompt = `Pertanyaan user: "${question}"
-
-Daftar nama xtall/crysta yang tersedia:
-${xtallNames}
-
-Sebutkan nama-nama xtall yang PALING RELEVAN untuk menjawab pertanyaan (maksimal 10).
-PENTING: Tulis nama PERSIS seperti di daftar di atas, dipisah koma.
-Contoh: Wiltileaf, Ageladanios, Kryoeruf
-Jika tidak ada yang relevan: none`;
-
-  try {
-    const result = await callGeminiWithRotation(filterPrompt, env, []);
-    const raw = result.text.trim();
-
-    if (raw === "none" || !raw) return [];
-
-    const namedByAI = raw
-      .split(",")
-      .map((s) => s.trim())
-      .filter(Boolean);
-
-    const selected = [];
-    for (const aiName of namedByAI) {
-      // Cari exact match dulu
-      let found = allXtall.find(
-        (x) => x.name.toLowerCase() === aiName.toLowerCase(),
-      );
-      // Fallback: contains match
-      if (!found) {
-        found = allXtall.find(
-          (x) =>
-            x.name.toLowerCase().includes(aiName.toLowerCase()) ||
-            aiName.toLowerCase().includes(x.name.toLowerCase()),
-        );
-      }
-      if (found && !selected.includes(found)) {
-        selected.push(found);
-      }
-    }
-
-    console.log(
-      `🎯 AI sebut ${namedByAI.length} nama → ${selected.length} xtall ditemukan`,
-    );
-    console.log(`🔍 Total xtall loaded untuk fuzzy: ${allXtall.length}`);
-    console.log(
-      `🔍 Sample names:`,
-      allXtall.slice(0, 10).map((x) => x.name),
-    );
-    return selected;
-  } catch (err) {
-    console.error("❌ filterRelevantXtall error:", err.message);
-    // Fallback: return semua (max 20) daripada return kosong
-    return allXtall.slice(0, 20);
   }
 }
 
